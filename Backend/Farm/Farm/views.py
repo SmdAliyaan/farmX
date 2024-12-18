@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render 
 
 def home(request):
-    return render(request, 'farmX/index.html')  # Specify the app name if necessary
-
+    return render(request, 'index.html') 
