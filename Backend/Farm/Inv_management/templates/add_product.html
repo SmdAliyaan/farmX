@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block title %}Add Products{% endblock %}
+{%block nav %} Add products nav {%endblock%}
+
+{% block content %}
+<h1>Add Product</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
+    </form>
+    <a href="{% url 'inventory_report' %}">Back to Inventory</a>
+
+
+
+
+
+{% endblock %}
+    
+

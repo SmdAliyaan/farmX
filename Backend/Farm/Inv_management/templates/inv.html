@@ -1,15 +1,36 @@
 {% extends "index.html" %}
 
-{% block title %}
-Report Page
-{% endblock %}
+{% block title %}Inventory Report{% endblock %}
 
 {% block nav %}
-<nav>Report Page Navigation</nav>
+<h3>Inventory Report Navigation</h3>
 {% endblock %}
 
 {% block content %}
-<h1 class="bg-orange-500 text-3xl">Content | Report Page</h1>
-
+<h1>Inventory Report</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>
+                <a href="{% url 'delete_product' product.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_product' %}">Add a New Product</a>
 {% endblock %}
-
