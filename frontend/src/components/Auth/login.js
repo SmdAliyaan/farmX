@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import authService from '../../services/authService';
-import './Auth.css';
+import '../../public/stylesheets/login.css';  // Adjust the path as needed
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -27,6 +27,7 @@ const Login = () => {
                     <label>Email:</label>
                     <input
                         type="email"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -36,6 +37,7 @@ const Login = () => {
                     <label>Password:</label>
                     <input
                         type="password"
+                        placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -49,3 +51,4 @@ const Login = () => {
 };
 
 export default Login;
+
