@@ -2,11 +2,6 @@
 {% load static %}
 
 {% block content %}
-<div class="body">
-  <div class="intro">
-    <h1>Welcome to farmX</h1>
-    <p>Modernizing Farm Management with Advanced Technology</p>
-  </div>
 <div class="farm-container">
   {% if user.is_authenticated %}
     <form action="{% url 'logout' %}" method="post" class="auth-box logout-form">
