@@ -1,10 +1,10 @@
-/* html {
+html {
     height: 100%;
     font-family: sans-serif;
 }
 
 body {
-    background: linear-gradient(to bottom, transparent, rgba(66, 49, 49, 0.678));
+    background: linear-gradient(to bottom, transparent, rgb(59, 40, 40));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,8 +17,9 @@ form {
     padding: 2rem;
     font-weight: 700;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
     max-width: fit-content;
-    margin: auto;
+    margin: 0 auto;
 }
 form input,
 form select,
@@ -27,7 +28,7 @@ form textarea {
     margin-bottom: 10px;
     padding: 10px;
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: none;
     padding: 1em;
 }
@@ -37,15 +38,19 @@ form button {
     width: 100%;
     padding: 15px;
     font-size: 16px;
-    background-color: rgb(106, 106, 244);
+    background-color: rgb(93, 72, 72);
     border: none;
-    color: white;
+    color: rgb(221, 213, 213);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in;
 }
-form button:hover{
+
+form button:hover {
     background-color: brown;
-} */
+}
 
-
+form .errorlist li {
+    list-style-type: none;
+    color:red;
+}

@@ -2,27 +2,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}My Site{% endblock %}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" type='text/css' href="{% static 'css/text.css' %}"/>
-    <link rel="icon" href="favicon.png" />
-</head>
-<body>
-  {% block content %}{% endblock %}
-</body>
-</html> {% endcomment %}
-
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="../../static/css/login.css">
+
 
 </head>
 <body>
@@ -44,7 +30,8 @@
                 </form>
             </div>
             <div class="form-container sign-in-container">
-                <form action="#">
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
                     <h1>Sign in</h1>
                     <div class="social-container">
                         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -52,10 +39,10 @@
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <span>or use your account</span>
-                    <input type="email" placeholder="Email" required/>
-                    <input type="password" placeholder="Password" required/>
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="password" name="password" placeholder="Password" required />
                     <a href="#">Forgot your password?</a>
-                    <button>Sign In</button>
+                    <button type="submit">Sign In</button>
                 </form>
             </div>
             <div class="overlay-container">
@@ -73,6 +60,24 @@
                 </div>
             </div>
         </div>
-        <script src="javascripts/login.js"></script>
+        <script src="../../static/JS/login.js"></script>
 </body>
-</html>
+</html> 
+ {% endcomment %}
+
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <title>{% block title %}My Site{% endblock %}</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{% static 'css/text.css' %}">
+     <meta name="description" content="">
+ </head>
+ <body>
+     {% block content %}{% endblock %}
+ </body>
+ </html>
+ 
+ 
