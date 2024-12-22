@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --clr-primary: #2c5530;
+    --clr-primary: rgb(78, 115, 70) ;
     --clr-danger: #8B4513;
     --clr-success: #90EE90;
     --clr-white: #fff;
     --clr-info-dark: #5c4033;
-    --clr-info-light: #e8e4d9;
+    --clr-info-light: #d4d0c6;
     --clr-dark: #2F4F4F;
     --clr-warning: #DAA520;
     --clr-light: rgba(144, 238, 144, 0.18);
     --clr-primary-variant: #3c703f;
     --clr-dark-variant: #6b4423;
-    --clr-color-background: #f5f5dc;
+    --clr-color-background: #dad1cb;
   
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -405,8 +405,5 @@ main .insights .progress .number {
         grid-template-columns: repeat(1,1fr);
     }
 }
-
-
-
 
 

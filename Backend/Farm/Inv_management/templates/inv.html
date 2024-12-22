@@ -8,29 +8,18 @@
 
 {% block content %}
 <h1>Inventory Report</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.category.name }}</td>
-            <td>
-                <a href="{% url 'delete_product' product.pk %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="inventory-cards">
+    {% for product in products %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ product.name }}</h2>
+            <p class="card-text">Price: {{ product.price }}</p>
+            <p class="card-text">Quantity: {{ product.quantity }}</p>
+            <p class="card-text">Category: {{ product.category.name }}</p>
+            <a href="{% url 'delete_product' product.pk %}" class="card-link">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 <a href="{% url 'add_product' %}">Add a New Product</a>
 {% endblock %}
