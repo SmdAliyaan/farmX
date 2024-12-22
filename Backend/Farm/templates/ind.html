@@ -4,11 +4,20 @@
 {% block content %}
 <div class="farm-container">
   {% if user.is_authenticated %}
-  <form action="{% url 'dashboard_index' %}" method="post" class="auth-box logout-form">
-    {% csrf_token %}
-    <p>Welcome {{user.username}} to the Dashboard</p>
-    <button type="submit" class="farm-button">Continue to Dashboard</button>
-  </form>
+<!-- Form to continue to the dashboard -->
+<form action="{% url 'dashboard_index' %}" method="post" class="auth-box logout-form" style="text-align: center; margin-bottom: 20px;">
+  {% csrf_token %}
+  <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Welcome {{ user.username }} to the Dashboard</p>
+  <button type="submit" class="farm-button" style="background-color: #5a3d3d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Continue to Dashboard</button>
+</form>
+
+<!-- Form to log out -->
+<form action="{% url 'logout' %}" method="post" class="auth-box logout-form" style="text-align: center;">
+  {% csrf_token %}
+  <button type="submit" class="farm-button" style="background-color: #5a3d3d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Logout</button>
+</form>
+
+  
   {% else %}
     <div class="auth-box guest-welcome">
       <p>Welcome, new user. Please log in.</p>
