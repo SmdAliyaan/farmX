@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'dash.html')
+    return render(request, 'dashboard.html')
