@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --clr-primary: #2c5530;
+    --clr-danger: #8B4513;
+    --clr-success: #90EE90;
+    --clr-white: #fff;
+    --clr-info-dark: #5c4033;
+    --clr-info-light: #e8e4d9;
+    --clr-dark: #2F4F4F;
+    --clr-warning: #DAA520;
+    --clr-light: rgba(144, 238, 144, 0.18);
+    --clr-primary-variant: #3c703f;
+    --clr-dark-variant: #6b4423;
+    --clr-color-background: #f5f5dc;
+  
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+  
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--clr-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 0;
+    list-style: none;
+    appearance: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow-x: hidden;
+    background: var(--clr-color-background);
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 14rem;
+    margin: 0;
+}
+
+a {
+    color: var(--clr-dark);
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 0.87rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem; 
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text-muted {
+    color: var(--clr-info-dark);
+}
+
+p {
+    color: var(--clr-dark-variant);
+}
+
+b {
+    color: var(--clr-dark);
+}
+
+.primary {
+    color: var(--clr-primary);
+}
+
+.success {
+    color: var(--clr-success);
+}
+
+.danger {
+    color: green; 
+}
+
+.warning {
+    color: var(--clr-warning);
+}
+
+/* Aside */
+
+aside {
+    height: 100vh;
+}
+
+aside .top {
+    background-color: var(--clr-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    padding: 1rem;
+    height: 4rem;
+}
+
+aside .logo {
+    display: flex;
+    gap: 1rem;
+}
+
+aside .top div .close {
+    display: none;
+    margin-right: 1rem;
+}
+
+/* Sidebar */
+
+aside .sidebar {
+    background-color: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 4rem);
+    position: relative;
+    top: 0;
+}
+
+aside h3 {
+    font-weight: 500;
+}
+
+aside .sidebar a {
+    display: flex;
+    color: var(--clr-info-dark);
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    height: 3.2rem;
+    transition: all .1s ease-in;
+}
+
+aside .sidebar a span {
+    font-size: 1.6rem;
+    transition: all .1s ease-in;
+}
+
+aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+}
+
+aside .sidebar a.active {
+    background: var(--clr-light);
+    color: var(--clr-primary);
+    margin-left: 0;
+    border-left: 5px solid var(--clr-primary);
+}
+
+aside .sidebar a.active::before{
+    content: '';
+    width: 6px;
+    height: 100%;
+    background-color: var(--clr-primary);
+}
+
+aside .sidebar a:hover{
+    color: var(--clr-primary);
+}
+
+aside .sidebar a:hover span{
+    margin-left: 1rem;
+    transition:  .4s ease;
+}
+
+aside .sidebar a span.msg_count{
+    background: var(--clr-danger);
+    color: var(--clr-white);
+    padding: 2px 5px;
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
+}
+
+
+/* starting main section */
+
+main{
+    margin-top: 1.4rem;
+    width: auto;
+}
+
+main input{
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--clr-danger);
+}
+
+
+main .insights{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+main .insights > div{
+    padding: 1.8rem;
+    border-radius: 2rem;
+    background: var(--clr-white);
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+    min-width: 200px;
+}
+
+main .insights > div:hover{
+    box-shadow: none;
+}
+
+main .insights > div span{
+    background: coral;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--clr-white);
+    font-size: 2rem;
+}
+
+main .insights > div.count span{
+    background: var(--clr-success);
+}
+
+main .insights > div .nostock span{
+    background: var(--clr-danger);
+}
+
+main .insights > div.lowstock span{
+    background: var(--clr-danger);
+}
+
+main .insights > div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .insights > div .middle h1{
+    font-size: 1.6rem;
+}
+
+main h1{
+    color: var(--clr-dark);
+}
+
+main .insights h1{
+    color: var(--clr-dark);
+}
+
+main .insights h3{
+    color: var(--clr-dark);
+}
+
+main .insights p{
+    color: var(--clr-dark);
+}
+
+main .insights .progress {
+    position: relative;
+    height: 68px;
+    width: 68px;
+    border-radius: 50px;
+}
+
+main .insights svg {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 0;
+}
+
+main .insights svg circle {
+    fill: none;
+    stroke: var(--clr-primary);
+    transform: rotate(270,80,80);
+    stroke-width: 5;
+}
+
+main .insights .sales svg circle {
+    stroke-dashoffset: 10;
+    stroke-dasharray: 150;
+}
+
+main .insights .count svg circle {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 150;
+}
+
+main .insights .nostock svg circle {
+    stroke-dashoffset: 35;
+    stroke-dasharray: 200;
+}
+
+main .insights .lowstock svg circle {
+    stroke: var(--clr-success);
+}
+
+main .insights .progress .number {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.insights-tall {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+    margin-top: 1.6rem;
+    width: 100%;
+}
+
+.insights-tall > div {
+    padding: 1.8rem;
+    border-radius: 1rem;
+    background: var(--clr-white);
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+    min-width: 200px;
+    height: calc(2.25 * (68px + 3.6rem));
+}
+
+.insights-tall .wheat span {
+    background: #F1C40F;
+}
+
+.insights-tall .rice span {
+    background: #27AE60;
+}
+
+.insights-tall .corn span {
+    background: #E67E22;
+}
+
+.insights-tall .jowar span {
+    background: #8E44AD;
+}
+
+
+/* Media Query */
+
+
+@media screen and (max-width: 1200px){
+    .container{
+        width: 94%;
+        grid-template-columns: 7rem auto 14rem;
+    }
+
+    aside .sidebar h3{
+        display: none;
+    }
+    
+    aside .sidebar h3{
+        display: none;
+    }
+
+    aside .sidebar a:last-child{
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+    main .insights{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+
+
+
+
