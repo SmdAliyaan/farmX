@@ -4,11 +4,11 @@
 {% block content %}
 <div class="farm-container">
   {% if user.is_authenticated %}
-    <form action="{% url 'logout' %}" method="post" class="auth-box logout-form">
-      <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-      {% csrf_token %}
-      <button type="submit" class="farm-button">Logout</button>
-    </form>
+  <form action="{% url 'dashboard_index' %}" method="post" class="auth-box logout-form">
+    {% csrf_token %}
+    <p>Welcome {{user.username}} to the Dashboard</p>
+    <button type="submit" class="farm-button">Continue to Dashboard</button>
+  </form>
   {% else %}
     <div class="auth-box guest-welcome">
       <p>Welcome, new user. Please log in.</p>

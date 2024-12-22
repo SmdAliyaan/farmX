@@ -15,7 +15,8 @@ urlpatterns = [
     path('inv/', include('Inv_management.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", ind, name="index"),
-    path("accounts/register/", registration_view, name="register") 
+    path("accounts/register/", registration_view, name="register"),
+    path('dash/', include('dashboard.urls')),
 
    
 
