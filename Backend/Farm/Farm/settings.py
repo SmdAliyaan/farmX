@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Inv_management',
     'dashboard',
-    
-    
-   
 ]
 
 MIDDLEWARE = [
@@ -74,10 +71,6 @@ TEMPLATES = [
         },
     },
 ]
-
-
-
-
 
 WSGI_APPLICATION = 'Farm.wsgi.application'
 
@@ -146,7 +139,5 @@ EMAIL_HOST_USER = os.environ.get("MAIL")
 EMAIL_HOST_PASSWORD = os.environ.get("MAIL_PASS")
 DEFAULT_FROM_EMAIL = os.environ.get("MAIL")
 
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'  
 LOGIN_REDIRECT_URL = '/'
-
-

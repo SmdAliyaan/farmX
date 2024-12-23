@@ -9,12 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/dash_style.css' %}">
 </head>
 <body>
-
     <div class="container">
-        <!-- aside section start -->
-         <aside>
-
-
+        <aside>
             <div class="top">
                 <div class="logo">
                     <h2><span class="danger">FarmX</span></h2>
@@ -23,9 +19,6 @@
                     <span class="material-symbols-sharp">close</span>
                 </div>
             </div>
-
-            <!-- End Top -->
-
             <div class="sidebar">
                 <a href="#">
                     <span class="material-symbols-sharp">dashboard</span>
@@ -55,20 +48,17 @@
                     <span class="material-symbols-sharp">Monitoring</span>
                     <h3>Analysis</h3>
                 </a>
-                <a href="#">
+                <a href="#" onclick="document.getElementById('logout-form').submit();">
                     <span class="material-symbols-sharp">logout</span>
                     <h3>Logout</h3>
                 </a>
+                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                    {% csrf_token %}
+                </form>                
             </div>
-
-         </aside>
-        <!-- aside section end -->
-
-        <!-- main section start -->
+        </aside>
         <main>
-
             <div class="insights">
-                <!-- sales box -->
                 <div class="sales">
                     <span class="material-symbols-sharp">trending_up</span>
                     <div class="middle">
@@ -79,8 +69,6 @@
                     </div>
                     <small>last 24 hours</small>
                 </div>
-
-                <!-- inventory count box -->
                 <div class="count">
                     <span class="material-symbols-sharp">inventory_2</span>
                     <div class="middle">
@@ -91,8 +79,6 @@
                     </div>
                     <small>last 24 hours</small>
                 </div>
-
-                <!-- out of stock box -->
                 <div class="nostock">
                     <span class="material-symbols-sharp">bar_chart_4_bars</span>
                     <div class="middle">
@@ -103,8 +89,6 @@
                     </div>
                     <small>last 24 hours</small>
                 </div>
-
-                <!-- low stock box -->
                 <div class="lowstock">
                     <span class="material-symbols-sharp">bar_chart</span>
                     <div class="middle">
@@ -116,11 +100,7 @@
                     <small>last 24 hours</small>
                 </div>
             </div>
-            <!-- end inside -->
-
-            <!-- Updated crop boxes -->
             <div class="insights-tall">
-                <!-- Wheat box -->
                 <div class="wheat">
                     <span class="material-symbols-sharp">grass</span>
                     <div class="middle">
@@ -131,8 +111,6 @@
                     </div>
                     <small>Current Season</small>
                 </div>
-
-                <!-- Rice box -->
                 <div class="rice">
                     <span class="material-symbols-sharp">grass</span>
                     <div class="middle">
@@ -143,8 +121,6 @@
                     </div>
                     <small>Current Season</small>
                 </div>
-
-                <!-- Corn box -->
                 <div class="corn">
                     <span class="material-symbols-sharp">grass</span>
                     <div class="middle">
@@ -155,8 +131,6 @@
                     </div>
                     <small>Current Season</small>
                 </div>
-
-                <!-- Jowar box -->
                 <div class="jowar">
                     <span class="material-symbols-sharp">grass</span>
                     <div class="middle">
@@ -169,17 +143,7 @@
                 </div>
             </div>
         </main>
-        <!-- main section end -->
-
-        <!-- <div class="right">
-            <h1>right</h1>
-        </div>
-        right section end -->
     </div> 
-
-
-
-
     <script src="dashboard.js"></script>
 </body>
 </html>
