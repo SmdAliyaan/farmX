@@ -124,3 +124,7 @@ form .errorlist li {
     list-style-type: none;
     color:red;
 }
+
+.danger {
+    color: green; /* Ensuring it is set to green */
+}
