@@ -240,10 +240,12 @@ main .insights > div{
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
     transition: all 300ms ease;
     min-width: 200px;
+    transform: translateY(0);
 }
 
 main .insights > div:hover{
-    box-shadow: none;
+    transform: translateY(-10px);
+    box-shadow: 0 4rem 6rem rgba(132, 139, 200, 0.3);
 }
 
 main .insights > div span{
@@ -342,6 +344,7 @@ main .insights .progress .number {
     justify-content: center;
     align-items: center;
 }
+
 
 .insights-tall {
     display: grid;
