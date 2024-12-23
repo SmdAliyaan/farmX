@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from .views import ind, registration_view
+from django.conf import settings 
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,4 +13,4 @@ urlpatterns = [
     path("", ind, name="index"),
     path("accounts/register/", registration_view, name="register"),
     path('dash/', include('dashboard.urls')),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

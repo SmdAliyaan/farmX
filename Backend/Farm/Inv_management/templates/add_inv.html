@@ -1,0 +1,51 @@
+{% extends "bs.html" %}
+{% load static %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Add Product to Inventory</h2>
+    <form id="product-form" method="post" enctype="multipart/form-data" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="product-image">Product Image:</label>
+            <input type="file" id="product-image" name="image" accept="image/*" required>
+        </div>
+        <div class="form-group">
+            <label for="product-price">Price:</label>
+            <input type="number" id="product-price" name="price" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="product-quantity">Quantity Total:</label>
+            <input type="number" id="product-quantity" name="quantity_total" required>
+        </div>
+        <div class="form-group">
+            <label for="date-bought">Date Bought:</label>
+            <input type="date" id="date-bought" name="date_bought" required>
+        </div>
+        <div class="form-group">
+            <label for="date-expiration">Date Expiration:</label>
+            <input type="date" id="date-expiration" name="date_expiration">
+        </div>
+        <div class="form-group">
+            <label for="product-category">Category:</label>
+            <select id="product-category" name="category" required>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity-remaining">Quantity Remaining:</label>
+            <input type="number" id="quantity-remaining" name="quantity_remaining" required>
+        </div>
+        <button type="submit">Add Product</button>
+    </form>
+    <a href="{% url 'inventory_report' %}">Back to Inventory</a>
+</div>
+{% endblock %}

@@ -141,3 +141,6 @@ DEFAULT_FROM_EMAIL = os.environ.get("MAIL")
 
 LOGOUT_REDIRECT_URL = '/'  
 LOGIN_REDIRECT_URL = '/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
