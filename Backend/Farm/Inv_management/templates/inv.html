@@ -16,6 +16,7 @@
                 <span class="material-symbols-sharp">close</span>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="sidebar">
             <a href="#">
                 <span class="material-symbols-sharp">dashboard</span>
@@ -44,3 +45,71 @@
             <a href="#">
                 <span class="material-symbols-sharp">Monitoring</span>
                 <h3>Analysis</h
+=======
+        <div class="close">
+            <span class="material-symbols-sharp">close</span>
+        </div>
+    </div>
+    <div class="sidebar">
+        <a href="#">
+            <span class="material-symbols-sharp">dashboard</span>
+            <h3>Dashboard</h3>
+        </a>
+        <a href="#" class="active">
+            <span class="material-symbols-sharp">analytics</span>
+            <h3>Resource Estimation</h3>
+        </a>
+        <a href="#">
+            <span class="material-symbols-sharp">cloud</span>
+            <h3>Weather Forecast</h3>
+        </a>
+        <a href="{% url 'inventory_report' %}">
+            <span class="material-symbols-sharp">inventory</span>
+            <h3>Inventory Management</h3>
+        </a>
+        <a href="#">
+            <span class="material-symbols-sharp">search_insights</span>
+            <h3>Market Insights</h3>
+        </a>
+        <a href="#">
+            <span class="material-symbols-sharp">Inventory_2</span>
+            <h3>Out Of Stock</h3>
+        </a>
+        <a href="#">
+            <span class="material-symbols-sharp">Monitoring</span>
+            <h3>Analysis</h3>
+        </a>
+        
+        <a href="#" onclick="document.getElementById('logout-form').submit();">
+            <span class="material-symbols-sharp">logout</span>
+            <h3>Logout</h3>
+        </a>
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+            {% csrf_token %}
+        </form>
+    </div>
+</aside>
+<h1>Inventory Report</h1>
+<div class="inventory-cards">
+    {% for product in products %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ product.name }}</h2>
+            <p class="card-text">Price: {{ product.price }}</p>
+            <p class="card-text">Quantity Total: {{ product.quantity_total }}</p>
+            <p class="card-text">Quantity Remaining: {{ product.quantity_remaining }}</p>
+            <p class="card-text">Date Bought: {{ product.date_bought }}</p>
+            <p class="card-text">Date Expiration: {{ product.date_expiration }}</p>
+            <p class="card-text">Category: {{ product.category.name }}</p>
+            <form method="post" action="{% url 'delete_product' product.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<a href="{% url 'add_product' %}" class="farm-button">Add a New Product</a>
+{% endblock %}
+>>>>>>> 73589302905e3ace73e169ddb6e19163ceddab9d

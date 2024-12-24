@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Product
 from .forms import ProductForm
+from django.contrib import messages
 
 def add_product(request):
     if request.method == 'POST':
@@ -22,5 +23,6 @@ def delete_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         product.delete()
+        messages.success(request, 'Product deleted successfully')
         return redirect('inventory_report')
     return render(request, 'confirm_delete.html', {'product': product})
