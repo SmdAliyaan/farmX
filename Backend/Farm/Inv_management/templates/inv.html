@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block content %}
-<aside>
+<aside id="sidebar">
     <div class="top">
         <div class="logo">
             <h2><span class="danger">FarmX</span></h2>
         </div>
-        <div class="close">
+        <div class="close" id="close-btn">
             <span class="material-symbols-sharp">close</span>
         </div>
     </div>
@@ -55,23 +55,31 @@
         </form>
     </div>
 </aside>
-<h1>Inventory Report</h1>
-<div class="inventory-cards">
-    {% for product in products %}
-    <div class="card">
-        <div class="card-body">
-            <h2 class="card-title">{{ product.name }}</h2>
-            <p class="card-text">Price: {{ product.price }}</p>
-            <p class="card-text">Quantity Total: {{ product.quantity_total }}</p>
-            <p class="card-text">Quantity Remaining: {{ product.quantity_remaining }}</p>
-            <p class="card-text">Date Bought: {{ product.date_bought }}</p>
-            <p class="card-text">Date Expiration: {{ product.date_expiration }}</p>
-            <p class="card-text">Category: {{ product.category.name }}</p>
-            <a href="{% url 'delete_product' product.pk %}" class="card-link">Delete</a>
+<div class="main-content" id="main-content">
+    <h1>Inventory Report</h1>
+    <div class="inventory-cards">
+        {% for product in products %}
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ product.name }}</h2>
+                <p class="card-text">Price: {{ product.price }}</p>
+                <p class="card-text">Quantity Total: {{ product.quantity_total }}</p>
+                <p class="card-text">Quantity Remaining: {{ product.quantity_remaining }}</p>
+                <p class="card-text">Date Bought: {{ product.date_bought }}</p>
+                <p class="card-text">Date Expiration: {{ product.date_expiration }}</p>
+                <p class="card-text">Category: {{ product.category.name }}</p>
+                <a href="{% url 'delete_product' product.pk %}" class="card-link">Delete</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <a href="{% url 'add_product' %}" class="farm-button">Add a New Product</a>
 </div>
 
-<a href="{% url 'add_product' %}" class="farm-button">Add a New Product</a>
+<script>
+    document.getElementById('close-btn').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('closed');
+        document.getElementById('main-content').classList.toggle('expanded');
+    });
+</script>
 {% endblock %}

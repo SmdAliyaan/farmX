@@ -108,6 +108,11 @@ aside {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 100;
     overflow-y: auto; /* Scrollable if content exceeds viewport */
+    transition: transform 0.3s ease; /* Smooth transition for toggling */
+}
+
+aside.closed {
+    transform: translateX(-100%); /* Move sidebar out of view */
 }
 
 .sidebar {
@@ -138,4 +143,17 @@ aside {
     padding: 2rem;
     margin-left: 14rem; /* Push content to the right of the sidebar */
     overflow-y: auto;
+    z-index: 1; /* Ensure inventory cards are above the sidebar */
+}
+
+.main-content {
+    margin-left: 14rem; /* Push content to the right of the sidebar */
+    padding: 2rem;
+    overflow-y: auto;
+    z-index: 1; /* Ensure main content is above the sidebar */
+    transition: margin-left 0.3s ease; /* Smooth transition for toggling */
+}
+
+.main-content.expanded {
+    margin-left: 0; /* Expand main content to full width */
 }
