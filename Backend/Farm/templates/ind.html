@@ -13,10 +13,10 @@
 
   {% else %}
   <div class="logo">
-    <h2><span class="danger">FarmX</span></h2>
-</div>
+    <img src="{% static 'css/images/farmXlogotransparent.png' %}" alt="Farm Image" class="farmx-logo">
+  </div>
     <div class="auth-box guest-welcome">
-      <p>Welcome, new user. Please log in.</p>
+      <p><h1>Welcome to FarmX, where technology meets tradition. Please log in or register!<h1></p>
       <div class="auth-buttons">
         <a href="{% url 'login' %}" class="farm-button">Login</a>
         <span class="separator">or</span>
