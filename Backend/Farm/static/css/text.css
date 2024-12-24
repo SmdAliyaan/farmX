@@ -128,3 +128,8 @@ form .errorlist li {
 .danger {
     color: green; /* Ensuring it is set to green */
 }
+h1 {
+    font-size: 2em;
+    color: black;
+    text-align: center;
+})
