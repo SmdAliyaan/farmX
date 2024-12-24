@@ -1,77 +1,46 @@
-{% extends "Ham.html" %}
 
-{% block title %}Inventory Report{% endblock %}
-
-{% block nav %}
-<h3>Inventory Report Navigation</h3>
-{% endblock %}
-
-{% block content %}
-<aside>
-    <div class="top">
-        <div class="logo">
-            <h2><span class="danger">FarmX</span></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FarmX Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <aside>
+        <div class="top">
+            <div class="logo">
+                <h2><span class="danger">FarmX</span></h2>
+            </div>
+            <div class="close">
+                <span class="material-symbols-sharp">close</span>
+            </div>
         </div>
-        <div class="close">
-            <span class="material-symbols-sharp">close</span>
-        </div>
-    </div>
-    <div class="sidebar">
-        <a href="#">
-            <span class="material-symbols-sharp">dashboard</span>
-            <h3>Dashboard</h3>
-        </a>
-        <a href="#" class="active">
-            <span class="material-symbols-sharp">analytics</span>
-            <h3>Resource Estimation</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-sharp">cloud</span>
-            <h3>Weather Forecast</h3>
-        </a>
-        <a href="{% url 'inventory_report' %}">
-            <span class="material-symbols-sharp">inventory</span>
-            <h3>Inventory Management</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-sharp">search_insights</span>
-            <h3>Market Insights</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-sharp">Inventory_2</span>
-            <h3>Out Of Stock</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-sharp">Monitoring</span>
-            <h3>Analysis</h3>
-        </a>
-        
-        <a href="#" onclick="document.getElementById('logout-form').submit();">
-            <span class="material-symbols-sharp">logout</span>
-            <h3>Logout</h3>
-        </a>
-        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
-            {% csrf_token %}
-        </form>
-    </div>
-</aside>
-<h1>Inventory Report</h1>
-<div class="inventory-cards">
-    {% for product in products %}
-    <div class="card">
-        <div class="card-body">
-            <h2 class="card-title">{{ product.name }}</h2>
-            <p class="card-text">Price: {{ product.price }}</p>
-            <p class="card-text">Quantity Total: {{ product.quantity_total }}</p>
-            <p class="card-text">Quantity Remaining: {{ product.quantity_remaining }}</p>
-            <p class="card-text">Date Bought: {{ product.date_bought }}</p>
-            <p class="card-text">Date Expiration: {{ product.date_expiration }}</p>
-            <p class="card-text">Category: {{ product.category.name }}</p>
-            <a href="{% url 'delete_product' product.pk %}" class="card-link">Delete</a>
-        </div>
-    </div>
-    {% endfor %}
-</div>
-
-<a href="{% url 'add_product' %}" class="farm-button">Add a New Product</a>
-{% endblock %}
+        <div class="sidebar">
+            <a href="#">
+                <span class="material-symbols-sharp">dashboard</span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="#" class="active">
+                <span class="material-symbols-sharp">analytics</span>
+                <h3>Resource Estimation</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-sharp">cloud</span>
+                <h3>Weather Forecast</h3>
+            </a>
+            <a href="{% url 'inventory_report' %}">
+                <span class="material-symbols-sharp">inventory</span>
+                <h3>Inventory Management</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-sharp">search_insights</span>
+                <h3>Market Insights</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-sharp">Inventory_2</span>
+                <h3>Out Of Stock</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-sharp">Monitoring</span>
+                <h3>Analysis</h
