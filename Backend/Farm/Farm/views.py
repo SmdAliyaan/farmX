@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django import forms
 from django.shortcuts import redirect, render
+from Inv_management.models import Farmer
 
 def home(request):
     return render(request, 'index.html')
@@ -15,16 +16,22 @@ def about(request):
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    phone_number = forms.CharField(max_length=15, required=True)
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["username", "email", "phone_number", "password1", "password2"]
 
 def registration_view(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            # Create Farmer instance
+            Farmer.objects.create(
+                name=user.username,
+                phone_number=form.cleaned_data['phone_number']
+            )
             login(request, user)
             return redirect("index")
         else:
@@ -35,4 +42,4 @@ def registration_view(request):
 
 
 def ind(request):
-    return render(request, "ind.html")   
+    return render(request, "ind.html")
