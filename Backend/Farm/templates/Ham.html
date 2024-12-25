@@ -1,4 +1,4 @@
-{% load static %}
+ {% load static %}
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -12,5 +12,25 @@
  <body>
      {% block content %}{% endblock %}
  </body>
+ </html> 
+ {% comment %} .html
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <title>{% block title %}My Site{% endblock %}</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+     <!-- Add dashboard CSS first -->
+     <link rel="stylesheet" href="{% static 'css/dash_style.css' %}">
+     <!-- Add inventory CSS second to override if needed -->
+     <link rel="stylesheet" href="{% static 'css/inv.css' %}">
+     <meta name="description" content="">
+ </head>
+ <body>
+     {% block content %}{% endblock %}
+     <script src="{% static 'js/script.js' %}"></script>
+ </body>
  </html>
- 
+ {% endcomment %}
