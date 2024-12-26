@@ -62,6 +62,10 @@ aside .logo {
     gap: 1rem;
 }
 
+aside span.danger{
+    color: var(--clr-primary);
+}
+
 aside .logo a {
     text-decoration: none;
     cursor: pointer;
@@ -83,6 +87,7 @@ aside .sidebar {
     width: 14rem;
     overflow-x: hidden;
 }
+
 
 aside h3 {
     font-weight: 500;
