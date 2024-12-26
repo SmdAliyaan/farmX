@@ -144,69 +144,93 @@ aside .top div .close {
 
 /* Sidebar */
 
-aside .sidebar {
+.sidebar {
     background-color: var(--clr-white);
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 4rem); /* Full height of sidebar minus header */
     position: relative;
     top: 0;
 }
 
-aside h3 {
+.sidebar h3 {
     font-weight: 500;
 }
 
-aside .sidebar a {
+.sidebar a {
     display: flex;
+    align-items: center;
     color: var(--clr-info-dark);
     margin-left: 2rem;
     gap: 1rem;
-    align-items: center;
     height: 3.2rem;
-    transition: all .1s ease-in;
+    padding: 0;
+    text-decoration: none;
+    transition: all 0.1s ease-in;
 }
 
-aside .sidebar a span {
+.sidebar a span {
     font-size: 1.6rem;
-    transition: all .1s ease-in;
+    transition: all 0.1s ease-in;
 }
 
-aside .sidebar a:last-child {
+.sidebar a:last-child {
     position: absolute;
     bottom: 1rem;
     width: 100%;
 }
 
-aside .sidebar a.active {
+.sidebar a.active {
     background: var(--clr-light);
     color: var(--clr-primary);
     margin-left: 0;
     border-left: 5px solid var(--clr-primary);
 }
 
-aside .sidebar a.active::before{
+.sidebar a.active::before {
     content: '';
     width: 6px;
     height: 100%;
     background-color: var(--clr-primary);
 }
 
-aside .sidebar a:hover{
+.sidebar a:hover {
     color: var(--clr-primary);
 }
 
-aside .sidebar a:hover span{
+.sidebar a:hover span {
     margin-left: 1rem;
-    transition:  .4s ease;
+    transition: 0.4s ease;
 }
 
-aside .sidebar a span.msg_count{
+.sidebar a span.msg_count {
     background: var(--clr-danger);
     color: var(--clr-white);
     padding: 2px 5px;
     font-size: 11px;
     border-radius: var(--border-radius-1);
+}
+
+/* Main content */
+.inventory-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem;
+    margin-left: 14rem; /* Push content to the right of the sidebar */
+    z-index: 1; /* Ensure inventory cards are above the sidebar */
+}
+
+.main-content {
+    margin-left: 14rem; /* Push content to the right of the sidebar */
+    padding: 2rem;
+    z-index: 1; /* Ensure main content is above the sidebar */
+    transition: margin-left 0.3s ease; /* Smooth transition for toggling */
+}
+
+.main-content.expanded {
+    margin-left: 0; /* Expand main content to full width */
 }
 
 
