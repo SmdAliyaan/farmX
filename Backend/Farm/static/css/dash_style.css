@@ -44,10 +44,8 @@ body {
     background: var(--clr-color-background);
 }
 
-
 /* Main content styling */
 main .insights {
->>>>>>> a3befb3b12f6d3c8dc24d4193bebcc4a29c39267
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.6rem;
@@ -211,5 +209,3 @@ main .insights .progress .number {
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
-
