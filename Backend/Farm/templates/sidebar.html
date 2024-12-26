@@ -1,7 +1,9 @@
 <aside>
     <div class="top">
         <div class="logo">
-            <h2><span class="danger">FarmX</span></h2>
+            <a href="{% url 'dashboard_index' %}">
+                <h2><span class="danger">FarmX</span></h2>
+            </a>
         </div>
         <div class="close">
             <span class="material-symbols-sharp">close</span>
@@ -44,4 +46,4 @@
             {% csrf_token %}
         </form>
     </div>
-</aside> 
+</aside>
