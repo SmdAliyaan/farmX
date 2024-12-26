@@ -13,5 +13,6 @@ urlpatterns = [
     path("", ind, name="index"),
     path("accounts/register/", registration_view, name="register"),
     path('dash/', include('dashboard.urls')),
+    # Remove the bot URL
     path('bot/', include('bot.urls'))
 ]
