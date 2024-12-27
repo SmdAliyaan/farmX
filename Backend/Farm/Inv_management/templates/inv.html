@@ -5,6 +5,70 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/inv.css' %}">
+<style>
+   
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 20%;
+        text-align: center;
+    }
+    .modal-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+    .modal-buttons button, .modal-buttons a {
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+    }
+    .modal-buttons .delete-btn {
+        background-color: red;
+        color: white;
+    }
+    .modal-buttons .delete-btn:hover {
+        cursor:pointer;
+        background-color: red;
+        color: white;
+    }
+    .modal-buttons .cancel-btn {
+        background-color: gray;
+        color: white;
+    }
+    .red-box {
+        display: inline-block;
+        margin: 10px; /* Adjust as needed */
+        margin-left:-5px;
+        padding: 5px 10px;
+        text-align: center;
+        background-color: red;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    
+    .red-box:hover {
+        background-color: darkred;
+        cursor: pointer;
+    }
+    
+</style>
 {% endblock %}
 
 {% block content %}
@@ -14,6 +78,10 @@
         {% for product in products %}
         <div class="card">
             <div class="card-body">
+                <!-- Display product image -->
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px;">
+                {% endif %}
                 <h2 class="card-title">{{ product.name }}</h2>
                 <p class="card-text">Price: {{ product.price }}</p>
                 <p class="card-text">Quantity Total: {{ product.quantity_total }}</p>
@@ -21,18 +89,58 @@
                 <p class="card-text">Date Bought: {{ product.date_bought }}</p>
                 <p class="card-text">Date Expiration: {{ product.date_expiration }}</p>
                 <p class="card-text">Category: {{ product.category.name }}</p>
-                <a href="{% url 'delete_product' product.pk %}" class="card-link">Delete</a>
+                <!-- Delete button inside card-body -->
+               
             </div>
+            <a href="#" class="delete-link red-box" data-id="{{ product.pk }}" data-name="{{ product.name }}">Delete</a>
         </div>
+        
         {% endfor %}
     </div>
     <a href="{% url 'add_product' %}" class="farm-button">Add a New Product</a>
 </div>
 
+<!-- Delete Confirmation Modal -->
+<div class="modal" id="delete-modal">
+    <div class="modal-content">
+        <h2 id="modal-title"></h2>
+        <form id="delete-form" method="post">
+            {% csrf_token %}
+            <div class="modal-buttons">
+                <button type="submit" class="delete-btn">Delete</button>
+                <a href="#" class="cancel-btn" id="cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
-    document.getElementById('close-btn').addEventListener('click', function() {
-        document.getElementById('sidebar').classList.toggle('closed');
-        document.getElementById('main-content').classList.toggle('expanded');
+    const deleteLinks = document.querySelectorAll('.delete-link');
+
+deleteLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const productId = this.getAttribute('data-id');
+        const productName = this.getAttribute('data-name');
+
+        // Update modal content
+        document.getElementById('modal-title').textContent = `Are you sure you want to delete "${productName}"?`;
+
+        // Update form action with the correct product ID
+        const deleteForm = document.getElementById('delete-form');
+        deleteForm.action = `/inv/delete/${productId}/`; // Set action dynamically
+
+        // Show the modal
+        document.getElementById('delete-modal').style.display = 'block';
     });
+});
+
+// Hide modal on cancel
+document.getElementById('cancel-btn').addEventListener('click', function (event) {
+    event.preventDefault();
+    document.getElementById('delete-modal').style.display = 'none';
+});
+
 </script>
 {% endblock %}
