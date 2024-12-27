@@ -31,7 +31,7 @@ def check_expiring_products():
             message = "⚠️ Products Expiring Tomorrow:\n\n"
             for product in expiring_products:
                 message += (
-                    f"Name: {product.name}\n"
+                    f"⦿ Name: {product.name}\n"
                     f"Quantity: {product.quantity_remaining}\n"
                     f"Expiry Date: {product.date_expiration}\n\n"
                 )
