@@ -1,26 +1,27 @@
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Prevents scrollbars from appearing */
 }
 
 body {
-    background: linear-gradient(to bottom, rgba(72, 54, 54, 0.8), rgba(59, 40, 40, 0.8)), url('/static/images/farX background') no-repeat center center fixed;
-    background-image: url(images/backgroundClear.jpg);
+    background: linear-gradient(to bottom, rgba(72, 54, 54, 0.8), rgba(59, 40, 40, 0.8)),
+                url('/static/images/farX background') no-repeat center center fixed;
+    background-image: url(images/backgroundClear.png);
     background-size: cover;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     height: 100vh;
-    margin: 0;
-    padding: 0;
+    flex-direction: column; /* Ensure elements stack vertically */
 }
 
 .farm-container {
-    /* background-color: rgba(255, 255, 255, 0.9); */
     border-radius: 15px;
     padding: 2rem;
     font-weight: 700;
-    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
     max-width: 600px;
     margin: 20px;
     text-align: left;
@@ -35,7 +36,6 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    /* background: rgba(255, 255, 255, 0.9); */
     border-radius: 15px;
     z-index: 1;
 }
@@ -51,7 +51,7 @@ body {
 
 .auth-buttons {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     margin-top: 30rem;
     margin-left: 13rem;
 }
@@ -93,9 +93,9 @@ form {
     font-weight: 700;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     max-width: 700px;
-    max-width: fit-content;
     margin: 0 auto;
 }
+
 form input,
 form select,
 form textarea {
@@ -127,28 +127,73 @@ form button:hover {
 
 form .errorlist li {
     list-style-type: none;
-    color:red;
+    color: red;
 }
 
 .danger {
-    color: green;
-     /* Ensuring it is set to green */
+    color: green; /* Ensuring it is set to green */
 }
 
+/* Position the logo at the top left */
 .farmx-logo {
-    width: 200px; 
+    width: 200px;
     height: auto;
-    margin-left: 90px;
-    margin-bottom: 20px;
-    z-index: 1;
+    position: fixed; /* Fixed position for top-left corner */
+    top: 10px; /* 10px from the top */
+    left: 20px; /* 20px from the left */
+    z-index: 10; /* Ensure it stays on top */
 }
 
-h1 {
-    font-style: italic;
-    font-size: 2em;
+/* Position the "About", "Contact", and "Help Center" links at the top right of the screen */
+.top-right-links {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns the items in a row */
+    z-index: 10; /* Ensure it's on top */
+}
+
+.link-item {
     color: black;
-    text-align: center;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 600;
+    margin-left: 20px; /* Space between the links */
+    cursor: pointer;
 }
-.logo{
-    margin-left: 10px;
+
+.link-item:hover {
+    text-decoration: underline;
 }
+
+/* Add styles for the login and register buttons with translucent background and blur effect */
+.top-right-links .farm-button {
+    font-size: 16px;
+    padding: 12px 24px; /* Adjust padding to match the size of links */
+    background: rgba(255, 255, 255, 0.3); /* Transparent white background */
+    color: white;
+    border-radius: 30px;
+    margin-left: 20px; /* Space between buttons */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    backdrop-filter: blur(8px); /* Add blur effect to the background */
+    transform: translateX(0); /* Initial position */
+}
+
+.top-right-links .farm-button:hover {
+    background-color: white; /* Change the background color to white when hovered */
+    color: black; /* Change text color to black on hover */
+    backdrop-filter: none; /* Remove the blur effect on hover */
+    transform: translateX(10px); /* Move the button to the right */
+}
+
+.separator {
+    margin-left: 20px;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+}
+
+
