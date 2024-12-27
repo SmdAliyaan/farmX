@@ -8,33 +8,34 @@ body {
     background-image: url(images/backgroundClear.jpg);
     background-size: cover;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     height: 100vh;
     margin: 0;
     padding: 0;
 }
 
 .farm-container {
-    background-color: rgba(255, 255, 255, 0.9);
+    /* background-color: rgba(255, 255, 255, 0.9); */
     border-radius: 15px;
     padding: 2rem;
     font-weight: 700;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
     max-width: 600px;
     margin: 20px;
-    text-align: center;
+    text-align: left;
     position: relative;
+    z-index: 2;
 }
 
 .farm-container::before {
     content: '';
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
+    /* background: rgba(255, 255, 255, 0.9); */
     border-radius: 15px;
     z-index: 1;
 }
@@ -50,25 +51,28 @@ body {
 
 .auth-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
+    justify-content:center;
+    margin-top: 30rem;
+    margin-left: 13rem;
 }
 
 .auth-buttons .farm-button {
     flex: 1;
     margin: 0 0.5rem;
-    padding: 15px 20px;
+    padding: 20px;
     font-size: 18px;
-    background-color: #5d4848;
+    background-color: #755d5d;
     border: none;
     color: #ddd5d5;
-    border-radius: 10px;
+    border-radius: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
     cursor: pointer;
     transition: background-color 0.3s ease-in, transform 0.3s ease-in;
 }
 
 .auth-buttons .farm-button:hover {
-    background-color: #3e2e2e;
+    background-color: #584343;
     transform: scale(1.05);
 }
 
@@ -77,8 +81,9 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 0.5rem;
-    color: #5d4848;
+    color: #000000;
     font-weight: bold;
+    font-size: larger;
 }
 
 form {
@@ -131,11 +136,11 @@ form .errorlist li {
 }
 
 .farmx-logo {
-    width: 30%; /* Adjust the width as needed */
+    width: 200px; 
     height: auto;
-    opacity: 0.8; /* Adjust the opacity for transparency */
-    display: block;
-    margin: 0 auto; /* Center the logo */
+    margin-left: 90px;
+    margin-bottom: 20px;
+    z-index: 1;
 }
 
 h1 {
@@ -143,4 +148,7 @@ h1 {
     font-size: 2em;
     color: black;
     text-align: center;
+}
+.logo{
+    margin-left: 10px;
 }

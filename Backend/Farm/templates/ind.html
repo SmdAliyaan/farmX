@@ -15,11 +15,16 @@
   <div class="logo">
     <img src="{% static 'css/images/logo.png' %}" alt="Farm Image" class="farmx-logo">
   </div>
+  <div style="left: 1200px; top: 60px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">About</div>
+        <div style="left: 1400px; top: 60px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">Contact</div>
+        <div style="left: 1600px; top: 60px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">Help Center</div>
+        <div style="width: 619px; height: 200px; left: 150px; top: 200px; position: absolute; color:rgb(64, 159, 53); font-size: 58px; font-family: Inter ; font-weight: 1200; word-wrap: break-word">Where Technology Meets Tradition</div>
+        <div style="width: 600px; height: 167px; left: 150px; top: 375px; position: absolute; color: black; font-size: 22px; font-family: Inria Sans; font-weight: 700; word-wrap: break-word">FarmX is your ultimate farming companion, integrating modern technology with traditional farming practices.Manage your inventory efficiently, receive timely WhatsApp alerts on product expiration, access accurate weather forecasts to optimize crop growth, and stay updated with market pricing to sell your products at the best rates. Empower your farming with FarmX.</div>
     <div class="auth-box guest-welcome">
-      <p><h1>Welcome to FarmX, where technology meets tradition. Please log in or register!<h1></p>
+      {% comment %} <p><h1>Welcome to FarmX, where technology meets tradition. Please log in or register!<h1></p> {% endcomment %}
       <div class="auth-buttons">
         <a href="{% url 'login' %}" class="farm-button">Login</a>
-        <span class="separator">or</span>
+        <span class="separator">OR</span>
         <a href="{% url 'register' %}" class="farm-button">Register</a>
       </div>
     </div>
