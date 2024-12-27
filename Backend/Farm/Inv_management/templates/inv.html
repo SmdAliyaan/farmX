@@ -89,10 +89,10 @@
                 <p class="card-text">Date Bought: {{ product.date_bought }}</p>
                 <p class="card-text">Date Expiration: {{ product.date_expiration }}</p>
                 <p class="card-text">Category: {{ product.category.name }}</p>
-                <!-- Delete button inside card-body -->
-               
             </div>
             <a href="#" class="delete-link red-box" data-id="{{ product.pk }}" data-name="{{ product.name }}">Delete</a>
+            <a href="{% url 'edit_product' product.pk %}" class="edit-link red-box">Edit</a>
+
         </div>
         
         {% endfor %}
