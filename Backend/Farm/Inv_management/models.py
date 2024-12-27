@@ -23,6 +23,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity_remaining = models.IntegerField()
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to='products/', null=True, blank=True)  # Add image field
 
     def __str__(self):
         return self.name

@@ -149,7 +149,5 @@ LOGIN_REDIRECT_URL = '/'
 
 TWILIO_ACCOUNT_SID = 'ACe878110ff7ee0b1c6fd6754019ea71b2'
 TWILIO_AUTH_TOKEN = '2df008d871bdd1acda99bae50b27c0dc'
-
-
-
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

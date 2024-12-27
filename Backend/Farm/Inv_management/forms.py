@@ -23,5 +23,5 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = [
             'name', 'price', 'quantity_total', 'date_bought',
-            'date_expiration', 'category', 'quantity_remaining'
+            'date_expiration', 'category', 'quantity_remaining', 'image'  # Add image field here
         ]
