@@ -11,5 +11,6 @@ urlpatterns = [
     path("accounts/register/", views.registration_view, name="register"),
     path('dash/', include('dashboard.urls')),
     path('bot/', include('bot.urls')),
-    path('test/', views.test, name='test'),  # Ensure this line is correct
+    path('test/', views.test, name='test'), 
+    path('plant/', include('plant.urls')),
 ]

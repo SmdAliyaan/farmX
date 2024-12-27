@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Inv_management',
     'dashboard',
     'bot',
+    'plant',
     
     
 ]
