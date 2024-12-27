@@ -1,0 +1,17 @@
+<h2>Register for Price Alerts</h2>
+<form method="POST" action="{% url 'register_phone' %}">
+    {% csrf_token %}
+    <label>Phone Number:</label>
+    <input type="text" name="phone" required>
+    <button type="submit">Register</button>
+</form>
+
+<h2>Verify Phone</h2>
+<form method="POST" action="{% url 'verify_phone' %}">
+    {% csrf_token %}
+    <label>Phone Number:</label>
+    <input type="text" name="phone" required>
+    <label>OTP:</label>
+    <input type="text" name="otp" required>
+    <button type="submit">Verify</button>
+</form>
