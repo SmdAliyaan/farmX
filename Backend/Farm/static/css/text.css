@@ -185,8 +185,8 @@ form .errorlist li {
 .top-right-links .farm-button:hover {
     background-color: white; /* Change the background color to white when hovered */
     color: black; /* Change text color to black on hover */
-    backdrop-filter: none; /* Remove the blur effect on hover */
-    transform: translateX(10px); /* Move the button to the right */
+    backdrop-filter: none; 
+    transform: translateX(10px); 
 }
 
 .separator {
