@@ -1,0 +1,75 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom, rgba(72, 54, 54, 0.8), rgba(59, 40, 40, 0.8)),
+              url('/static/images/farX background') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  background-image: url(images/backgroundClear.png);
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  height: 100vh;           /* Full viewport height */
+  flex-direction: column;  /* Stack elements vertically */
+}
+
+.login-container {
+  width: 400px; /* Set width for the login form */
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.login-container h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container input,
+.login-container select,
+.login-container textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+}
+
+.login-container button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  background-color: rgb(93, 72, 72);
+  border: none;
+  color: rgb(221, 213, 213);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in;
+}
+
+.login-container button:hover {
+  background-color: brown;
+}
+
+.login-container a {
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: underline;
+  color: #555;
+  cursor: pointer;
+}

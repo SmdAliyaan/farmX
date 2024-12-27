@@ -60,7 +60,7 @@ body {
     font-size: 18px;
     background-color: #755d5d;
     border: none;
-    color: #ddd5d5;
+    color: #6e0a0a;
     border-radius: 30px;
     padding-left: 100px;
     padding-right: 100px;
@@ -197,40 +197,61 @@ form .errorlist li {
     color: black;
     font-weight: bold;
 }
+.login-container {
+    width: 400px; /* Set width for the login form */
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-.login-register-buttons {
+.login-container h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container form {
     display: flex;
-    gap: 15px;
-    margin-left: 20px;
+    flex-direction: column;
 }
 
-.login-register-buttons .farm-button {
-    background-color: #409F35; /* Theme green color */
-    color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid #409F35;
+.login-container input,
+.login-container select,
+.login-container textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
 }
 
-.login-register-buttons .farm-button:hover {
-    background-color: white;
-    color: #409F35;
-    border: 2px solid #409F35;
+.login-container button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: rgb(93, 72, 72);
+    border: none;
+    color: rgb(221, 213, 213);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
 }
 
-/* Make the SignUp button stand out more */
-.login-register-buttons .farm-button:last-child {
-    background-color: #5a3d3d; /* Theme brown color */
-    border-color: #5a3d3d;
+.login-container button:hover {
+    background-color: brown;
 }
 
-.login-register-buttons .farm-button:last-child:hover {
-    background-color: white;
-    color: #5a3d3d;
-    border-color: #5a3d3d;
+.login-container a {
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: underline;
+    color: #555;
+    cursor: pointer;
 }
+
 
 
