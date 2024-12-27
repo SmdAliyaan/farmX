@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dashboard',
     'bot',
     'plant',
+    'market_analysis.apps.MarketAnalysisConfig',
     
     
 ]
