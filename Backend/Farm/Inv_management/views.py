@@ -28,6 +28,8 @@ def delete_product(request, pk):
     return render(request, 'confirm_delete.html', {'product': product})
 def edit_product(request, pk):
     product = get_object_or_404(Product, pk=pk)  # Retrieve the product by its primary key
+    categories = Category.objects.all()  # Fetch all categories to pass to the template
+    
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)  # Pass the existing product to the form
         if form.is_valid():
@@ -36,4 +38,5 @@ def edit_product(request, pk):
     else:
         form = ProductForm(instance=product)  # Pre-fill the form with the existing product data
 
-    return render(request, 'add_inv.html', {'form': form, 'product': product})
+    # Pass form, product, and categories to the template
+    return render(request, 'add_inv.html', {'form': form, 'product': product, 'categories': categories})

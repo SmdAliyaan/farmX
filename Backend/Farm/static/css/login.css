@@ -6,70 +6,120 @@ html, body {
 }
 
 body {
-  background: linear-gradient(to bottom, rgba(72, 54, 54, 0.8), rgba(59, 40, 40, 0.8)),
-              url('/static/images/farX background') no-repeat center center fixed;
-  background-size: cover;
+  background-image: url('/static/images/backgroundClear.png'); /* Your image URL */
+  background-size: cover; /* Make sure the image covers the entire viewport */
+  background-position: center center; /* Center the background image */
+  background-attachment: fixed; /* Make the image fixed as you scroll */
+  
   display: flex;
-  background-image: url(images/backgroundClear.png);
   justify-content: center; /* Center horizontally */
   align-items: center;     /* Center vertically */
   height: 100vh;           /* Full viewport height */
   flex-direction: column;  /* Stack elements vertically */
 }
 
+
 .login-container {
   width: 400px; /* Set width for the login form */
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
   z-index: 10;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .login-container h1 {
-  font-size: 24px;
-  text-align: center;
+  font-size: 32px;
+  color: #4CAF50; /* Green text for the title */
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .login-container form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
 .login-container input,
 .login-container select,
 .login-container textarea {
   width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: none;
-  border-radius: 5px;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #4CAF50; /* Green border */
+  background-color: #f1f1f1; /* Light gray background */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #666; /* Darker text color */
+  outline: none; /* Remove default outline */
+  box-shadow: none; /* Remove default box-shadow */
+}
+
+.login-container input::placeholder {
+  color: #aaa; /* Light gray placeholder text */
+  font-style: italic; /* Optional: make placeholder text italic */
+}
+
+.login-container input:focus,
+.login-container select:focus,
+.login-container textarea:focus {
+  border-color: #8B4513; /* Brown border on focus */
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .login-container button {
   display: block;
   width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  background-color: rgb(93, 72, 72);
+  padding: 16px;
+  font-size: 18px;
+  background-color: #8B4513; /* Brown button */
   border: none;
-  color: rgb(221, 213, 213);
-  border-radius: 5px;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, transform 0.2s ease;
 }
 
 .login-container button:hover {
-  background-color: brown;
+  background-color: #6A2E1A; /* Darker brown on hover */
+  transform: translateY(-3px); /* Slight lift effect */
 }
 
 .login-container a {
   margin-top: 10px;
   font-size: 14px;
-  text-decoration: underline;
-  color: #555;
-  cursor: pointer;
+  color: #8B4513; /* Brown text for the link */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
+
+.login-container a:hover {
+  color: #4CAF50; /* Green on hover */
+}
+
+.login-container .forgot-password {
+  font-size: 12px;
+  color: #6A2E1A; /* Slightly darker brown */
+  margin-top: 5px;
+}
+
+.login-container .forgot-password:hover {
+  color: #4CAF50; /* Green on hover */
+}
+
+

@@ -11,6 +11,7 @@
 <div class="main-content">
     <div class="form-container">
         <h2>{% if product %}Edit Product{% else %}Add Product to Inventory{% endif %}</h2>
+
         <form id="product-form" method="post" enctype="multipart/form-data" 
               action="{% if product %}{% url 'edit_product' product.pk %}{% else %}{% url 'add_product' %}{% endif %}">
             {% csrf_token %}
@@ -65,7 +66,7 @@
                 <label for="product-category">Category:</label>
                 <select id="product-category" name="category" required>
                     {% for category in categories %}
-                        <option value="{{ category.id }}" {% if category == product.category %}selected{% endif %}>{{ category.name }}</option>
+                        <option value="{{ category.id }}" {% if product and category == product.category %}selected{% endif %}>{{ category.name }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -85,6 +86,8 @@
     </div>
 </div>
 {% endblock %}
+
+
 
 
 
