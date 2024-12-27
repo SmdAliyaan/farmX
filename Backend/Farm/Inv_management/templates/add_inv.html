@@ -1,7 +1,7 @@
 {% extends 'extend.html' %}
 {% load static %}
 
-{% block title %}Add Product{% endblock %}
+{% block title %}{% if product %}Edit Product{% else %}Add Product{% endif %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/add_inv.css' %}">
@@ -10,44 +10,54 @@
 {% block content %}
 <div class="main-content">
     <div class="form-container">
-        <h2>Add Product to Inventory</h2>
-        <form id="product-form" method="post" enctype="multipart/form-data" action="{% url 'add_product' %}">
+        <h2>{% if product %}Edit Product{% else %}Add Product to Inventory{% endif %}</h2>
+        <form id="product-form" method="post" enctype="multipart/form-data" 
+              action="{% if product %}{% url 'edit_product' product.pk %}{% else %}{% url 'add_product' %}{% endif %}">
             {% csrf_token %}
             
             <!-- Product Name -->
             <div class="form-group">
                 <label for="product-name">Product Name:</label>
-                <input type="text" id="product-name" name="name" required>
+                <input type="text" id="product-name" name="name" 
+                       value="{% if product %}{{ product.name }}{% else %}""{% endif %}" required>
             </div>
 
             <!-- Product Image -->
             <div class="form-group">
                 <label for="product-image">Product Image:</label>
                 <input type="file" id="product-image" name="image" accept="image/*">
+                {% if product and product.image %}
+                    <p>Current Image: <img src="{{ product.image.url }}" alt="{{ product.name }}" 
+                                           style="max-width: 100%; height: auto; border-radius: 5px;"></p>
+                {% endif %}
             </div>
 
             <!-- Product Price -->
             <div class="form-group">
                 <label for="product-price">Price:</label>
-                <input type="number" id="product-price" name="price" step="0.01" required>
+                <input type="number" id="product-price" name="price" 
+                       value="{% if product %}{{ product.price }}{% else %}""{% endif %}" step="0.01" required>
             </div>
 
             <!-- Quantity Total -->
             <div class="form-group">
                 <label for="product-quantity">Quantity Total:</label>
-                <input type="number" id="product-quantity" name="quantity_total" required>
+                <input type="number" id="product-quantity" name="quantity_total" 
+                       value="{% if product %}{{ product.quantity_total }}{% else %}""{% endif %}" required>
             </div>
 
             <!-- Date Bought -->
             <div class="form-group">
                 <label for="date-bought">Date Bought:</label>
-                <input type="date" id="date-bought" name="date_bought" required>
+                <input type="date" id="date-bought" name="date_bought" 
+                       value="{% if product %}{{ product.date_bought|date:'Y-m-d' }}{% else %}""{% endif %}" required>
             </div>
 
             <!-- Date Expiration -->
             <div class="form-group">
                 <label for="date-expiration">Date Expiration:</label>
-                <input type="date" id="date-expiration" name="date_expiration">
+                <input type="date" id="date-expiration" name="date_expiration" 
+                       value="{% if product %}{{ product.date_expiration|date:'Y-m-d' }}{% else %}""{% endif %}">
             </div>
 
             <!-- Category Selection -->
@@ -55,7 +65,7 @@
                 <label for="product-category">Category:</label>
                 <select id="product-category" name="category" required>
                     {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        <option value="{{ category.id }}" {% if category == product.category %}selected{% endif %}>{{ category.name }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -63,16 +73,18 @@
             <!-- Quantity Remaining -->
             <div class="form-group">
                 <label for="quantity-remaining">Quantity Remaining:</label>
-                <input type="number" id="quantity-remaining" name="quantity_remaining" required>
+                <input type="number" id="quantity-remaining" name="quantity_remaining" 
+                       value="{% if product %}{{ product.quantity_remaining }}{% else %}""{% endif %}" required>
             </div>
 
             <!-- Submit Button -->
-            <button type="submit">Add Product</button>
+            <button type="submit">{% if product %}Save Changes{% else %}Add Product{% endif %}</button>
         </form>
 
-        <!-- Link back to inventory page -->
         <a href="{% url 'inventory_report' %}">Back to Inventory</a>
     </div>
 </div>
 {% endblock %}
+
+
 
