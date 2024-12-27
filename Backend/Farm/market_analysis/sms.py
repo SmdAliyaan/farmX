@@ -4,8 +4,8 @@ from .models import UserPhone
 
 account_sid = "ACe878110ff7ee0b1c6fd6754019ea71b2"
 auth_token = "2df008d871bdd1acda99bae50b27c0dc"
-twilio_number = "+14155238886"  # Ensure this is a valid Twilio number associated with your account
-your_number = "+919515474144"  # Your number
+twilio_number = "whatsapp:+14155238886"  # Ensure this is a valid Twilio number associated with your account
+your_number = "whatsapp:+919515474144"  # Your number
 
 client = Client(account_sid, auth_token)
 
