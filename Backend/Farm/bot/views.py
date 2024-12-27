@@ -31,7 +31,7 @@ def check_expiring_products():
             message = "⚠️ Products Expiring Tomorrow:\n\n"
             for product in expiring_products:
                 message += (
-                    f"Name: {product.name}\n"
+                    f"⦿ Name: {product.name}\n"
                     f"Quantity: {product.quantity_remaining}\n"
                     f"Expiry Date: {product.date_expiration}\n\n"
                 )
@@ -56,7 +56,7 @@ def check_expiring_products():
         logger.error(f"Error in check_expiring_products: {str(e)}")
 
 def schedule_checker():
-    schedule.every(1).minutes.do(check_expiring_products)
+    schedule.every().day.at("07:45").do(check_expiring_products)
     while True:
         schedule.run_pending()
         time.sleep(60)

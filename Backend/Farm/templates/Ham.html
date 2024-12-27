@@ -1,36 +1,26 @@
- {% load static %}
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <title>{% block title %}My Site{% endblock %}</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
-     <link rel="stylesheet" href="{% static 'css/inv.css' %}">
-     <meta name="description" content="">
- </head>
- <body>
-     {% block content %}{% endblock %}
- </body>
- </html> 
- {% comment %} .html
- {% load static %}
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <title>{% block title %}My Site{% endblock %}</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
-     <!-- Add dashboard CSS first -->
-     <link rel="stylesheet" href="{% static 'css/dash_style.css' %}">
-     <!-- Add inventory CSS second to override if needed -->
-     <link rel="stylesheet" href="{% static 'css/inv.css' %}">
-     <meta name="description" content="">
- </head>
- <body>
-     {% block content %}{% endblock %}
-     <script src="{% static 'js/script.js' %}"></script>
- </body>
- </html>
- {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmX - Where Technology Meets Tradition</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'test.css' %}">
+</head>
+<body>
+    <div style="width: 1440px; height: 1024px; position: relative; background: white; border-radius: 30px; overflow: hidden">
+        <img style="width: 1440px; height: 1024px; left: 0px; top: 0px; position: absolute" src="{% static 'images/background.jpg' %}" alt="Background Image" />
+        <img src="{% static 'images/logo.png' %}" alt="FarmX Logo" style="width: 148px; height: 79px; left: 140px; top: 60px; position: absolute">
+        <div style="left: 626px; top: 94px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">Home</div>
+        
+        <button class="button" style="left: 140px; top: 699px;">Login</button>
+        <button class="button" style="left: 464px; top: 699px;">Register</button>
+        
+        <div style="left: 760px; top: 94px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">About</div>
+        <div style="left: 892px; top: 94px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">Contact</div>
+        <div style="left: 1042px; top: 94px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">Help Center</div>
+        <div style="width: 619px; height: 170px; left: 140px; top: 331px; position: absolute; color: #47751C; font-size: 64px; font-family: Inter; font-weight: 800; word-wrap: break-word">Where Technology Meets Tradition</div>
+        <div style="width: 628px; height: 167px; left: 140px; top: 512px; position: absolute; color: white; font-size: 22px; font-family: Inria Sans; font-weight: 700; word-wrap: break-word">FarmX is your ultimate farming companion, integrating modern technology with traditional farming practices. Manage your inventory efficiently, receive timely WhatsApp alerts on product expiration, access accurate weather forecasts to optimize crop growth, and stay updated with market pricing to sell your products at the best rates. Empower your farming with FarmX.</div>
+    </div>
+</body>
+</html>

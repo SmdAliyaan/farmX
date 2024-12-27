@@ -1,0 +1,29 @@
+<!-- filepath: /c:/Users/kaash/Desktop/new/farmX/Backend/Farm/plant/templates/plant/plant.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'test.css' %}">
+</head>
+<body>
+    <div style="width: 1440px; height: 1024px; position: relative; background: white; border-radius: 30px; overflow: hidden">
+        <h1 style="text-align: center; font-family: Inter, sans-serif; margin-top: 20px;">Plant Disease Detection</h1>
+        <form method="post" enctype="multipart/form-data" style="text-align: center; margin-top: 40px;">
+            {% csrf_token %}
+            <label for="image" style="font-size: 20px; font-family: Inter, sans-serif;">Choose image:</label>
+            <input type="file" name="image" accept="image/*" required>
+            <button class="button" type="submit">Upload</button>
+        </form>
+        {% if uploaded_file_url %}
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Uploaded image:</p>
+                <img src="{{ uploaded_file_url }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+                <p>Analysis result: {{ analysis_result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

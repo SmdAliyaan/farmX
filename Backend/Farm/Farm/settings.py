@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'Inv_management',
     'dashboard',
     'bot',
+    'plant',
+    'market_analysis.apps.MarketAnalysisConfig',
+    
     
 ]
 
