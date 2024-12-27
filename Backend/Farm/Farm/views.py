@@ -8,11 +8,8 @@ from Inv_management.models import Farmer
 def home(request):
     return render(request, 'index.html')
 
-
 def about(request):
     return render(request, "about.html")
-
-
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -40,6 +37,8 @@ def registration_view(request):
         form = RegistrationForm()
     return render(request, "registration/register.html", {"form": form})
 
-
 def ind(request):
     return render(request, "ind.html")
+
+def test(request):
+    return render(request, 'Ham.html')
