@@ -18,15 +18,12 @@ body {
     flex-direction: column; /* Ensure elements stack vertically */
 }
 
-.farm-container {
-    border-radius: 15px;
-    padding: 2rem;
-    font-weight: 700;
-    max-width: 600px;
-    margin: 20px;
-    text-align: left;
-    position: relative;
-    z-index: 2;
+.navbar{
+    margin: 0px;
+    padding: 0px;
+    height: 65px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .farm-container::before {
@@ -138,10 +135,10 @@ form .errorlist li {
 .farmx-logo {
     width: 200px;
     height: auto;
-    position: fixed; /* Fixed position for top-left corner */
-    top: 10px; /* 10px from the top */
-    left: 20px; /* 20px from the left */
-    z-index: 10; /* Ensure it stays on top */
+    position: fixed; 
+    top: 10px;
+    left: 20px; 
+    z-index: 10; 
 }
 
 /* Position the "About", "Contact", and "Help Center" links at the top right of the screen */
@@ -151,8 +148,11 @@ form .errorlist li {
     right: 20px;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Aligns the items in a row */
-    z-index: 10; /* Ensure it's on top */
+    justify-content: flex-start; 
+    z-index: 10; 
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px 20px;
 }
 
 .link-item {
@@ -162,6 +162,8 @@ form .errorlist li {
     font-weight: 600;
     margin-left: 20px; /* Space between the links */
     cursor: pointer;
+    border-radius: 15px;
+    padding: 5px 15px;
 }
 
 .link-item:hover {
@@ -194,6 +196,41 @@ form .errorlist li {
     font-size: 18px;
     color: black;
     font-weight: bold;
+}
+
+.login-register-buttons {
+    display: flex;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+.login-register-buttons .farm-button {
+    background-color: #409F35; /* Theme green color */
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid #409F35;
+}
+
+.login-register-buttons .farm-button:hover {
+    background-color: white;
+    color: #409F35;
+    border: 2px solid #409F35;
+}
+
+/* Make the SignUp button stand out more */
+.login-register-buttons .farm-button:last-child {
+    background-color: #5a3d3d; /* Theme brown color */
+    border-color: #5a3d3d;
+}
+
+.login-register-buttons .farm-button:last-child:hover {
+    background-color: white;
+    color: #5a3d3d;
+    border-color: #5a3d3d;
 }
 
 
