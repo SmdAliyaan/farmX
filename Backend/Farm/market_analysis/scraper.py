@@ -1,26 +1,56 @@
+# views.py
+
+import asyncio
+from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+import time
 
-BASE_URL = "https://agmarknet.gov.in"
+URL = 'https://www.agriculturemarket.com/today-prices'
 
-def scrape_crop_price(crop_name):
-    search_url = f"{BASE_URL}/SearchCmmMkt.aspx?cname={crop_name}"
-    response = requests.get(search_url)
-    
-    if response.status_code != 200:
-        return None
-    
-    soup = BeautifulSoup(response.text, 'html.parser')
-    table = soup.find('table', {'class': 'tablePrice'})
-    
-    if not table:
-        return None
-    
-    rows = table.find_all('tr')[1:]  # Skip header row
-    if rows:
-        first_row = rows[0]
-        columns = first_row.find_all('td')
-        price = float(columns[3].text.strip())  # Extract price column
-        return price
-    
-    return None
+# Function to scrape crop prices
+def scrape_crop_price(crop_name, cities, retries=3):
+    prices = {}
+    for city in cities:
+        url = f"https://www.agriwatch.com"  # Replace with the actual URL of the crop prices
+        attempt = 0
+        while attempt < retries:
+            try:
+                response = requests.get(url, timeout=10)  # Added timeout to avoid hanging requests
+                response.raise_for_status()  # Raises an HTTPError if status code >= 400
+                soup = BeautifulSoup(response.content, 'html.parser')
+                
+                # Example: Look for a price in a specific element (replace with actual logic)
+                price_element = soup.find("span", {"class": "price"})
+                if price_element:
+                    price = price_element.text.strip()
+                    prices[city] = price
+                    break  # Exit loop on successful scrape
+                else:
+                    prices[city] = None  # Price not found
+                    break
+
+            except requests.exceptions.Timeout:
+                print(f"Timeout error for {city}. Retrying... ({attempt + 1}/{retries})")
+            except requests.exceptions.RequestException as e:
+                print(f"Failed to scrape {crop_name} price for {city}: {e}")
+                prices[city] = None
+                break  # Stop retrying on other request errors
+            
+            attempt += 1
+            time.sleep(2)  # Wait before retrying
+        if attempt == retries:
+            print(f"Failed to get data for {city} after {retries} retries.")
+            prices[city] = None  # If retry limit is reached, set to None
+    return prices
+
+# Django view to handle the price dashboard
+async def price_dashboard(request):
+    crop_name = "wheat"  # Example crop name, can be dynamic as needed
+    cities = ["Mumbai", "Delhi"]  # List of cities you want to scrape prices for
+
+    # Call the scraping function, passing both crop_name and cities
+    prices = await asyncio.to_thread(scrape_crop_price, crop_name, cities)
+
+    # Render the prices in the template
+    return render(request, 'market_analysis/price_dashboard.html', {'prices': prices})

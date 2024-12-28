@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'market_analysis.apps.MarketAnalysisConfig',
     'widget_tweaks',
     
+    
 ]
 
 MIDDLEWARE = [
