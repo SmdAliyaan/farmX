@@ -1,21 +1,20 @@
-/* Add your CSS styles here */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    font-family: 'Arial', sans-serif;
+    margin: 50px;
+    text-align: center;
 }
+
 form {
     margin-bottom: 20px;
 }
-input {
-    margin: 5px;
+
+input, button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
 }
+
 button {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #45a049;
 }
