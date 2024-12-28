@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmer's Market Analysis</title>
+</head>
+<body>
+    <h1>Farmer's Market Analysis</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="crop_name">Enter the crop name:</label>
+        <input type="text" id="crop_name" name="crop_name">
+        <button type="submit">Get Prices</button>
+    </form>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% elif crop_name %}
+        <h2>Current Prices:</h2>
+        <ul>
+            {% for state, price in prices.items %}
+                <li>{{ state }}: {{ price }} per quintal</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Predicted Prices for the Next 7 Days:</h2>
+        {% for state, forecast in predictions.items %}
+            <h3>{{ state }}</h3>
+            <ul>
+                {% for date, pred_price in forecast %}
+                    <li>{{ date }}: {{ pred_price|floatformat:2 }} per quintal</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
