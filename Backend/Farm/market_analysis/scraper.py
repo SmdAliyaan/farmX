@@ -1,56 +1,53 @@
-# views.py
+import pandas as pd
+from prophet import Prophet
+from datetime import datetime, timedelta
 
-import asyncio
-from django.shortcuts import render
-import requests
-from bs4 import BeautifulSoup
-import time
+def get_crop_prices_from_csv(crop, file_path="commodity_prices.csv"):
+    try:
+        # Load the CSV file
+        data = pd.read_csv(file_path)
 
-URL = 'https://www.agriculturemarket.com/today-prices'
+        # Filter data for the specified crop and relevant states
+        filtered_data = data[
+            (data['Commodity'].str.lower() == crop.lower()) &
+            (data['State'].isin(['Andhra Pradesh', 'Telangana', 'Kerala']))
+        ]
 
-# Function to scrape crop prices
-def scrape_crop_price(crop_name, cities, retries=3):
-    prices = {}
-    for city in cities:
-        url = f"https://www.agriwatch.com"  # Replace with the actual URL of the crop prices
-        attempt = 0
-        while attempt < retries:
-            try:
-                response = requests.get(url, timeout=10)  # Added timeout to avoid hanging requests
-                response.raise_for_status()  # Raises an HTTPError if status code >= 400
-                soup = BeautifulSoup(response.content, 'html.parser')
-                
-                # Example: Look for a price in a specific element (replace with actual logic)
-                price_element = soup.find("span", {"class": "price"})
-                if price_element:
-                    price = price_element.text.strip()
-                    prices[city] = price
-                    break  # Exit loop on successful scrape
-                else:
-                    prices[city] = None  # Price not found
-                    break
+        if filtered_data.empty:
+            print(f"No data found for crop: {crop}")
+            return {}
 
-            except requests.exceptions.Timeout:
-                print(f"Timeout error for {city}. Retrying... ({attempt + 1}/{retries})")
-            except requests.exceptions.RequestException as e:
-                print(f"Failed to scrape {crop_name} price for {city}: {e}")
-                prices[city] = None
-                break  # Stop retrying on other request errors
-            
-            attempt += 1
-            time.sleep(2)  # Wait before retrying
-        if attempt == retries:
-            print(f"Failed to get data for {city} after {retries} retries.")
-            prices[city] = None  # If retry limit is reached, set to None
-    return prices
+        # Group by state and calculate the average modal price
+        crop_prices = (
+            filtered_data.groupby('State')['Modal Price'].mean().to_dict()
+        )
+        return crop_prices
 
-# Django view to handle the price dashboard
-async def price_dashboard(request):
-    crop_name = "wheat"  # Example crop name, can be dynamic as needed
-    cities = ["Mumbai", "Delhi"]  # List of cities you want to scrape prices for
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return {}
 
-    # Call the scraping function, passing both crop_name and cities
-    prices = await asyncio.to_thread(scrape_crop_price, crop_name, cities)
+def predict_prices(prices):
+    predictions = {}
+    today = datetime.now()
+    for state, price in prices.items():
+        # Create a dataframe for Prophet
+        data = pd.DataFrame({
+            "ds": pd.date_range(start=today - timedelta(days=10), periods=10),
+            "y": [price] * 10
+        })
 
-    # Render the prices in the template
-    return render(request, 'market_analysis/price_dashboard.html', {'prices': prices})
+        model = Prophet()
+        model.fit(data)
+        future = model.make_future_dataframe(periods=7)
+        forecast = model.predict(future)
+
+        predictions[state] = list(zip(forecast["ds"].tail(7).dt.strftime("%Y-%m-%d"), forecast["yhat"].tail(7)))
+
+    return predictions
+
+# # Example usage
+# if __name__ == "__main__":
+#     crop = "rice"
+#     prices = get_crop_prices_from_csv(crop)
+#     print(prices)

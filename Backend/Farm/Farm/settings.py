@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'plant',
     'market_analysis.apps.MarketAnalysisConfig',
     'widget_tweaks',
+    'app1',
     
     
 ]
