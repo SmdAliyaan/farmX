@@ -13,4 +13,5 @@ urlpatterns = [
     path("", ind, name="index"),
     path("accounts/register/", registration_view, name="register"),
     path('dash/', include('dashboard.urls')),
+    path('map/', include('forecast.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
