@@ -174,7 +174,7 @@ form .errorlist li {
 .top-right-links .farm-button {
     font-size: 16px;
     padding: 12px 24px; /* Adjust padding to match the size of links */
-    background: rgba(255, 255, 255, 0.3); /* Transparent white background */
+    background: rgba(255, 255, 255, 0.3); 
     color: white;
     border-radius: 30px;
     margin-left: 20px; /* Space between buttons */
@@ -200,4 +200,7 @@ form .errorlist li {
 
 
 
+.tag-line{
+    margin-top: 100px;
+}
 
