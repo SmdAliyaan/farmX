@@ -3,46 +3,43 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <!-- Form to continue to the dashboard -->
-    <form action="{% url 'dashboard_index' %}" method="post" class="auth-box logout-form" style="text-align: center; margin-bottom: 20px;">
-      {% csrf_token %}
-      <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Welcome {{ user.username }} </p>
-      <button type="submit" class="farm-button" style="background-color: #5a3d3d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Continue to Dashboard</button>
-    </form>
+    <!-- Redirect directly to the dashboard -->
+    <script>
+      window.location.href = "{% url 'dashboard_index' %}";
+    </script>
   {% else %}
-<div class="navbar">
-  <div class="logo">
-    <img src="{% static 'css/images/logo.png' %}" alt="Farm Image" class="farmx-logo">
-  </div>
+    <div class="navbar">
+      <div class="logo">
+        <img src="{% static 'css/images/logo.png' %}" alt="Farm Image" class="farmx-logo">
+      </div>
   
-  <!-- Top right links including Login and Register buttons -->
-  <div class="top-right-links">
-    <div class="link-item">About</div>
-    <div class="link-item">Contact</div>
-    <div class="link-item">Help Center</div>
+      <!-- Top right links including Login and Register buttons -->
+      <div class="top-right-links">
+        <div class="link-item">About</div>
+        <div class="link-item">Contact</div>
+        <div class="link-item">Help Center</div>
+  
+        <!-- Login and Register buttons inside top-right-links -->
+        <div class="login-register-buttons">
+          <a href="{% url 'login' %}" class="farm-button">Login</a>
+          <a href="{% url 'register' %}" class="farm-button">SignUp</a>
+        </div>
+      </div>
+    </div>
 
-    <!-- Login and Register buttons inside top-right-links -->
-     <div class="login-register-buttons">
-    <a href="{% url 'login' %}" class="farm-button">Login</a>
-    <a href="{% url 'register' %}" class="farm-button">SignUp</a>
-     </div>
-  </div>
-</div>
+    <div class="tag-line">
+      <div style="width: 619px; height: 200px; left: 10px; top: 150px; position: absolute; color: rgb(15, 107, 5); font-size: 58px; font-family: 'Arial Black', sans-serif; font-weight: bold; line-height: 1.1; word-wrap: break-word;">
+        Where Technology Meets Tradition
+      </div>
 
-<div class="tag-line">
-  <div style="width: 619px; height: 200px; left: 10px; top: 150px; position: absolute; color: rgb(64, 159, 53); font-size: 58px; font-family: 'Arial Black', sans-serif; font-weight: bold; line-height: 1; word-wrap: break-word;">
-    Where Technology Meets Tradition
-</div>
-
-
-  <div style="width: 600px; height: 167px; left: 10px; top: 285px; position: absolute; color: #333333; font-size: 22px; font-family: Helvetica; font-weight: 400; word-wrap: break-word;">
-    FarmX combines modern tech with traditional farming to help you manage inventory, get WhatsApp alerts for product expiration, access weather forecasts, and stay updated on market prices. Empower your farming with FarmX.
-</div>
-</div>
-
-
+      <div style="width: 600px; height: 167px; left: 10px; top: 300px; position: absolute; color: #333333; font-size: 22px; font-family: Helvetica; font-weight: 400; word-wrap: break-word;">
+        FarmX combines modern tech with traditional farming to help you manage inventory, get WhatsApp alerts for product expiration, access weather forecasts, and stay updated on market prices. Empower your farming with FarmX.
+      </div>
+    </div>
   {% endif %}
 </div>
 {% endblock %}
+
+
 
 

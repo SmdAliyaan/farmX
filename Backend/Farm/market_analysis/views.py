@@ -1,27 +1,23 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from .sms import send_verification_code, verify_otp
-from .models import UserPhone
-from django.views.decorators.csrf import csrf_exempt
-from django.urls import reverse
+from django.shortcuts import render
+from .scraper import scrape_crop_price
+from .tasks import predict_price
+from datetime import datetime
 
-def register_phone(request):
+def price_dashboard(request):
+    crop_name = None
+    current_price = None
+    predicted_price = None
+    
     if request.method == 'POST':
-        phone_number = request.POST.get('phone')
-        send_verification_code(phone_number)
-        return redirect(f"{reverse('verify_phone')}?phone={phone_number}")
-    return render(request, 'market_analysis/register_market.html')
-
-def verify_phone(request):
-    phone_number = request.GET.get('phone')
-    if request.method == 'POST':
-        phone_number = request.POST.get('phone')
-        otp = request.POST.get('otp')
-        if verify_otp(phone_number, otp):
-            return redirect('market_landing')
-        else:
-            return render(request, 'market_analysis/verify.html', {'phone': phone_number, 'error': 'Invalid OTP. Try again.'})
-    return render(request, 'market_analysis/verify.html', {'phone': phone_number})
-
-def market_landing(request):
-    return render(request, 'market_analysis/market_landing.html')
+        crop_name = request.POST.get('crop_name')
+        current_price = scrape_crop_price(crop_name)
+        
+        # Only predict if scraping is successful
+        if current_price:
+            predicted_price = predict_price(crop_name)
+    
+    return render(request, 'price_dashboard.html', {
+        'crop_name': crop_name,
+        'current_price': current_price,
+        'predicted_price': predicted_price
+    })

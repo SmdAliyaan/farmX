@@ -150,8 +150,8 @@ form .errorlist li {
     align-items: center;
     justify-content: flex-start; 
     z-index: 10; 
-    background-color: white;
-    border-radius: 25px;
+    
+    
     padding: 10px 20px;
 }
 
