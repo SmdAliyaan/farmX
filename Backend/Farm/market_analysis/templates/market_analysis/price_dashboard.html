@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Price Analysis</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/market.css' %}">
 </head>
 <body>
     <h1>Crop Price Analysis</h1>
@@ -18,7 +19,7 @@
     {% if crop_name %}
         <h2>Results for: {{ crop_name }}</h2>
         <p>Current Price: ₹{{ current_price }}</p>
-        <p>Predicted Price (Next Week): ₹{{ predicted_price }}</p>
+        <p>Predicted Price: ₹{{ predicted_price }}</p>
     {% endif %}
 </body>
 </html>

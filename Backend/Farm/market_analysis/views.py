@@ -16,7 +16,7 @@ def price_dashboard(request):
         if current_price:
             predicted_price = predict_price(crop_name)
     
-    return render(request, 'price_dashboard.html', {
+    return render(request, 'market_analysis/price_dashboard.html', {
         'crop_name': crop_name,
         'current_price': current_price,
         'predicted_price': predicted_price
