@@ -60,7 +60,7 @@ body {
     font-size: 18px;
     background-color: #755d5d;
     border: none;
-    color: #ddd5d5;
+    color: #6e0a0a;
     border-radius: 30px;
     padding-left: 100px;
     padding-right: 100px;
@@ -150,8 +150,8 @@ form .errorlist li {
     align-items: center;
     justify-content: flex-start; 
     z-index: 10; 
-    background-color: white;
-    border-radius: 25px;
+    
+    
     padding: 10px 20px;
 }
 
@@ -198,40 +198,7 @@ form .errorlist li {
     font-weight: bold;
 }
 
-.login-register-buttons {
-    display: flex;
-    gap: 15px;
-    margin-left: 20px;
-}
 
-.login-register-buttons .farm-button {
-    background-color: #409F35; /* Theme green color */
-    color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border: 2px solid #409F35;
-}
-
-.login-register-buttons .farm-button:hover {
-    background-color: white;
-    color: #409F35;
-    border: 2px solid #409F35;
-}
-
-/* Make the SignUp button stand out more */
-.login-register-buttons .farm-button:last-child {
-    background-color: #5a3d3d; /* Theme brown color */
-    border-color: #5a3d3d;
-}
-
-.login-register-buttons .farm-button:last-child:hover {
-    background-color: white;
-    color: #5a3d3d;
-    border-color: #5a3d3d;
-}
 
 .tag-line{
     margin-top: 100px;

@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'bot',
     'plant',
     'market_analysis.apps.MarketAnalysisConfig',
-    
+    'widget_tweaks',
     
 ]
 

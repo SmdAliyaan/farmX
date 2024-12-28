@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import CropPrice, UserPhone
+from .models import CropPrice
 
 admin.site.register(CropPrice)
-admin.site.register(UserPhone)
