@@ -15,7 +15,7 @@ urlpatterns = [
     path('bot/', include('bot.urls')),
     path('test/', views.test, name='test'), 
     path('plant/', include('plant.urls')),
-    path('market/', include('market_analysis.urls')),  # Corrected line
+    path('app/', include('myapp.urls')), # Corrected line
 ]
 
 # Add this to serve media files in development
