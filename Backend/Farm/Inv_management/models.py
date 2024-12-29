@@ -16,14 +16,15 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity_total = models.IntegerField()
+    image = models.ImageField(upload_to='product_images/', null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    quantity_total = models.IntegerField(default=0)
     date_bought = models.DateField(null=True, blank=True)
     date_expiration = models.DateField(null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    quantity_remaining = models.IntegerField()
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to='products/', null=True, blank=True)  # Add image field
+    
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    quantity_remaining = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
+
