@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'plant',
     'widget_tweaks',
     'myapp',
-    'yolo',
+    
     
 ]
 
