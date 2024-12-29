@@ -1,12 +1,70 @@
+{% extends 'extend.html' %}  <!-- Ensure 'extend.html' exists and has the necessary blocks -->
 {% load static %}
+
+{% block content %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-time Object Detection</title>
     <link rel="stylesheet" href="{% static 'css/out_of_stock.css' %}">
 </head>
 <body>
     <h1>Real-time Object Detection</h1>
-    <img id="video" src="{% url 'out_of_stock' %}" width="640" height="480" alt="Real-time Video Stream">
+    <h2>Detect Your Product Quantity</h2>
+    
+    <!-- Form to trigger object detection -->
+    <form method="POST" action="{% url 'start_detection' %}">
+        {% csrf_token %}
+        <button type="submit">Start Object Detection</button>
+    </form>
+
+    <p id="message"></p>
+    
+    <!-- Hidden video element (to be shown after starting the detection) -->
+    <img id="video" src="{% url 'out_of_stock' %}" width="640" height="480" style="display:none;" alt="Real-time Video Stream">
+
+    <script>
+        // Optional: Hide or show video element when the detection starts
+        const form = document.querySelector('form');
+        const videoElement = document.getElementById('video');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from reloading the page
+
+            // Show the video when detection starts
+            videoElement.style.display = 'block';
+            
+            // Optionally, display a message
+            document.getElementById('message').innerText = "Object Detection Started!";
+            
+            // Optionally, make AJAX request to start detection
+            // You can remove the AJAX section if you don't need it
+            fetch("{% url 'start_detection' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                body: JSON.stringify({
+                    action: 'start'  // You can pass more data if needed
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>
+{% endblock %}
+
+
+
+
+

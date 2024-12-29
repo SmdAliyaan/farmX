@@ -24,7 +24,13 @@ def send_report_via_sms(qty):
 
 
 def out_of_stock(request):
-    if request.method == 'GET':
+    # Only render the out_of_stock.html page without starting the detection immediately
+    return render(request, 'out_of_stock.html')
+
+
+def start_detection(request):
+    # This view will be triggered to start object detection
+    if request.method == 'POST':
         # Initialize YOLO model
         model = YOLO('yolov8n.pt')
 
@@ -68,10 +74,8 @@ def out_of_stock(request):
         cap.release()
         cv2.destroyAllWindows()
 
-        # Render the result on a webpage
+        # Return a response to notify detection has been triggered
         return render(request, 'out_of_stock.html', {'message': message})
-    
-    else:
-        return render(request, 'out_of_stock.html')
+
 
 # Create your views here.
