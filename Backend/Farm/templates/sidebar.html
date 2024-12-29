@@ -26,7 +26,7 @@
             <span class="material-symbols-sharp">inventory</span>
             <h3>Inventory Management</h3>
         </a>
-        <a href="{% url 'crop_analysis' %}" >
+        <a href="{% url 'crop_analysis' %}" class="{% if request.resolver_match.url_name == 'crop_analysis' %}active{% endif %}">
             <span class="material-symbols-sharp">search_insights</span>
             <h3>Market Insights</h3>
         </a>

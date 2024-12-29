@@ -1,36 +1,100 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Farmer's Market Analysis</title>
-</head>
-<body>
-    <h1>Farmer's Market Analysis</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="crop_name">Enter the crop name:</label>
-        <input type="text" id="crop_name" name="crop_name">
-        <button type="submit">Get Prices</button>
-    </form>
+{% extends "extend.html" %}
 
-    {% if error %}
-        <p>{{ error }}</p>
-    {% elif crop_name %}
-        <h2>Current Prices:</h2>
-        <ul>
-            {% for state, price in prices.items %}
-                <li>{{ state }}: {{ price }} per quintal</li>
-            {% endfor %}
-        </ul>
+{% load static %}
 
-        <h2>Predicted Prices for the Next 7 Days:</h2>
-        {% for state, forecast in predictions.items %}
-            <h3>{{ state }}</h3>
-            <ul>
-                {% for date, pred_price in forecast %}
-                    <li>{{ date }}: {{ pred_price|floatformat:2 }} per quintal</li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
-    {% endif %}
-</body>
-</html>
+{% block extra_css %}
+<link href="{% static 'css/crop_analysis.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="crop-analysis-header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1><span class="material-symbols-sharp">monitoring</span> Crop Price Analysis</h1>
+                <p>Track and analyze market prices across states</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <!-- Header -->
+
+
+            <!-- Search Section -->
+            <div class="search-container">
+                <form method="POST" class="search-form">
+                    {% csrf_token %}
+                    <div class="search-box">
+                        <span class="material-symbols-sharp">grass</span>
+                        <input type="text" 
+                               name="crop_name" 
+                               placeholder="Enter crop name..." 
+                               required>
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Current Prices Section -->
+            {% if current_prices %}
+                <div class="current-prices-section">
+                    <div class="section-header">
+                        <span class="material-symbols-sharp">payments</span>
+                        <h2>Current Market Prices</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="current-prices-table">
+                            <thead>
+                                <tr>
+                                    <th>State</th>
+                                    <th>Price (per quintal)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for state, price in current_prices.items %}
+                                    <tr>
+                                        <td>
+                                            <span class="material-symbols-sharp">location_on</span>
+                                            {{ state }}
+                                        </td>
+                                        <td>₹{{ price }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Predictions Section -->
+            {% if predictions %}
+                <h2 class="h4 mb-3">Predicted Prices for the Next 7 Days:</h2>
+                <div class="timeline-container">
+                    {% for state, forecast in predictions.items %}
+                        <div class="timeline-box">
+                            <h3 class="state-header">{{ state }}</h3>
+                            <div class="rb-container">
+                                <ul class="rb">
+                                    {% for date, pred_price in forecast %}
+                                        <li class="rb-item">
+                                            <div class="timestamp">
+                                                {{ date }}
+                                            </div>
+                                            <div class="price-title">
+                                                ₹{{ pred_price|floatformat:2 }} per quintal
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

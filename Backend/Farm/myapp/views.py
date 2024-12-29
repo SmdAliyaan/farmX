@@ -9,9 +9,16 @@ def crop_analysis(request):
 
         if prices:
             predictions = predict_prices(prices)
+            current_prices = {}
+            for state in prices:
+                if isinstance(prices[state], list):
+                    current_prices[state] = prices[state][-1]
+                else:
+                    current_prices[state] = prices[state]
+            
             context = {
                 "crop_name": crop_name,
-                "prices": prices,
+                "current_prices": current_prices,
                 "predictions": predictions
             }
         else:
