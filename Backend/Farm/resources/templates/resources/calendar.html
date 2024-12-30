@@ -1,0 +1,24 @@
+{% extends 'extend.html' %}
+{% load static %}
+{% block title %}
+Fertilizer Calendar
+{% endblock title %}
+{% block content %}
+<link href="{% static 'css/calendar.css' %}" rel="stylesheet">
+<div class="calendar-container">
+  <div class="calendar-header">Fertilizer Application Calendar</div>
+  <div id="calendar"></div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: [
+        // Add your events here
+      ]
+    });
+    calendar.render();
+  });
+</script>
+{% endblock %}

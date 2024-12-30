@@ -1,0 +1,27 @@
+{% extends 'extend.html' %}
+{% load static %}
+{% block title %}
+Order Fertilizer
+{% endblock title %}
+{% block content %}
+<link href="{% static 'css/order.css' %}" rel="stylesheet">
+<div class="order-container">
+  <div class="order-header">Order Fertilizer</div>
+  <form method="post">
+    {% csrf_token %}
+    <div class="order-item">
+      <label for="fertilizer-type">Fertilizer Type</label>
+      <input type="text" id="fertilizer-type" name="fertilizer_type" required>
+    </div>
+    <div class="order-item">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" name="quantity" required>
+    </div>
+    <div class="order-item">
+      <label for="delivery-date">Delivery Date</label>
+      <input type="date" id="delivery-date" name="delivery_date" required>
+    </div>
+    <button type="submit" class="order-submit">Submit Order</button>
+  </form>
+</div>
+{% endblock %}
