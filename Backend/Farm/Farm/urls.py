@@ -11,13 +11,16 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("", views.ind, name="index"),
     path("accounts/register/", views.registration_view, name="register"),
-    path('dash/', include('dashboard.urls')),
+    path('dashboard/', include('dashboard.urls', namespace='dashboard')),  # Keep this one
     path('bot/', include('bot.urls')),
-    path('test/', views.test, name='test'), 
+    path('test/', views.test, name='test'),
     path('plant/', include('plant.urls')),
     path('app/', include('myapp.urls')),
-     path('yolo/', include('yolo.urls')),# Corrected line
+    path('yolo/', include('yolo.urls')),
+    path('resources/', include('resources.urls', namespace='resources')),
+    
 ]
+
 
 # Add this to serve media files in development
 if settings.DEBUG:

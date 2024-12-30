@@ -103,19 +103,8 @@ aside .sidebar a {
     gap: 1rem;
     align-items: center;
     height: 3.2rem;
-    transition: all .1s ease-in;
-    white-space: normal;
-}
-
-aside .sidebar a span {
-    font-size: 1.6rem;
-    transition: all .1s ease-in;
-}
-
-aside .sidebar a:last-child {
-    position: absolute;
-    bottom: 1rem;
-    width: 100%;
+    transition: all .1s ease-in-out;
+    white-space: nowrap;
 }
 
 aside .sidebar a.active {
@@ -125,15 +114,23 @@ aside .sidebar a.active {
     border-left: 10px solid var(--clr-primary);
 }
 
-
-
 aside .sidebar a:hover {
     color: var(--clr-primary);
 }
 
 aside .sidebar a:hover span {
     margin-left: 1rem;
-    transition: .4s ease;
+    transition: all .3s ease;
+}
+
+/* Fix active state issue */
+aside .sidebar a.active:hover {
+    background: var(--clr-light); /* Keep background for active state even on hover */
+    color: var(--clr-primary); /* Ensure active link maintains primary color */
+}
+
+aside .sidebar a.active span {
+    transform: translateX(0.5rem); /* Optional smooth hover effect */
 }
 
 /* Main content area */
@@ -172,3 +169,4 @@ main {
         width: calc(100vw - 7rem);
     }
 }
+

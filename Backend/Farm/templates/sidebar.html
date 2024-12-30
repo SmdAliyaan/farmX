@@ -1,7 +1,7 @@
 <aside>
     <div class="top">
         <div class="logo">
-            <a href="{% url 'dashboard_index' %}">
+            <a href="{% url 'dashboard:dashboard_index' %}">
                 <h2><span class="danger">FarmX</span></h2>
             </a>
         </div>
@@ -10,14 +10,15 @@
         </div>
     </div>
     <div class="sidebar">
-        <a href="{% url 'dashboard_index' %}" class="{% if request.resolver_match.url_name == 'dashboard_index' %}active{% endif %}">
+        <a href="{% url 'dashboard:dashboard_index' %}" class="{% if request.resolver_match.url_name == 'dashboard:dashboard_index' %}active{% endif %}">
             <span class="material-symbols-sharp">dashboard</span>
             <h3>Dashboard</h3>
         </a>
-        <a href="#" class="{% if request.resolver_match.url_name == 'resource_estimation' %}active{% endif %}">
+        <a href="{% url 'resources:resource_estimation' %}" class="{% if request.resolver_match.url_name == 'resources:resource_estimation' %}active{% endif %}">
             <span class="material-symbols-sharp">analytics</span>
             <h3>Resource Estimation</h3>
         </a>
+        
         <a href="{% url 'weather_forecast' %}" class="{% if request.resolver_match.url_name == 'weather_forecast' %}active{% endif %}">
             <span class="material-symbols-sharp">cloud</span>
             <h3>Weather Forecast</h3>
@@ -49,3 +50,4 @@
         </form>
     </div>
 </aside>
+
