@@ -18,10 +18,11 @@
             <span class="material-symbols-sharp">analytics</span>
             <h3>Resource Estimation</h3>
         </a>
-        <a href="#" class="{% if request.resolver_match.url_name == 'weather_forecast' %}active{% endif %}">
+        <a href="{% url 'weather_forecast' %}" class="{% if request.resolver_match.url_name == 'weather_forecast' %}active{% endif %}">
             <span class="material-symbols-sharp">cloud</span>
             <h3>Weather Forecast</h3>
         </a>
+        
         <a href="{% url 'inventory_report' %}" class="{% if request.resolver_match.url_name == 'inventory_report' or request.resolver_match.url_name == 'add_product' %}active{% endif %}">
             <span class="material-symbols-sharp">inventory</span>
             <h3>Inventory Management</h3>
