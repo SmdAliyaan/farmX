@@ -4,9 +4,9 @@ recommendations = {
         'text': 'Appears as small, circular, reddish-brown pustules on both corn upper and lower leaf surfaces, leading to reduced photosynthesis and stunted growth.',
         'solution': 'Apply fungicides such as azoxystrobin, pyraclostrobin, or propiconazole.',
         'medicine_products': [
-            {'image': 'static/images/Azoxybin-corn.png', 'name': 'Azoxybin'},
-            {'image': 'static/images/corn-pyraclostrobin.png', 'name': 'Pyraclostrobin'},
-            {'image': 'static/images/corn-propiconazole.jpeg', 'name': 'Propiconazole'}
+            {'image': 'images/Azoxybin-corn.png', 'name': 'Azoxybin'},
+            {'image': 'images/corn-pyraclostrobin.png', 'name': 'Pyraclostrobin'},
+            {'image': 'images/corn-propiconazole.jpeg', 'name': 'Propiconazole'}
         ],
         'prevention': 'Plant resistant hybrids and use crop rotation.'
     },
@@ -15,9 +15,9 @@ recommendations = {
         'text': 'Manifests as rectangular lesions with yellow halos, affecting the corn lower leaves first and spreading upwards, causing premature leaf death and reduced yield.',
         'solution': 'Use fungicides like strobilurins or triazoles.',
         'medicine_products': [
-            {'image': 'static/images/traizole-corn.jpg', 'name': 'Triazoles'},
-            {'image': 'static/images/actara.png', 'name': 'Actara'},
-            {'image': 'static/images/corn-propiconazole.jpeg', 'name': 'Propiconazole'}
+            {'image': 'images/traizole-corn.jpg', 'name': 'Triazoles'},
+            {'image': 'images/actara.png', 'name': 'Actara'},
+            {'image': 'images/corn-propiconazole.jpeg', 'name': 'Propiconazole'}
         ],
         'prevention': 'Improve air circulation and reduce humidity through proper spacing and avoiding overhead irrigation.'
     },
