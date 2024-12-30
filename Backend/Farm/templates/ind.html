@@ -5,7 +5,7 @@
   {% if user.is_authenticated %}
     <!-- Redirect directly to the dashboard -->
     <script>
-      window.location.href = "{% url 'dashboard_index' %}";
+      window.location.href = "{% url 'dashboard:dashboard_index' %}";
     </script>
   {% else %}
     <div class="navbar">

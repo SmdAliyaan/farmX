@@ -46,11 +46,6 @@ def edit_product(request, pk):
 
 
 
-
-
-
-
-
 import requests
 from django.shortcuts import render
 

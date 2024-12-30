@@ -1,22 +1,77 @@
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+import logging
+logging.getLogger('absl').setLevel(logging.ERROR)
 from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
-from .models import PlantImage
+from django.core.files.storage import default_storage
+from django.conf import settings
+from .recommendations import recommendations
+import tensorflow as tf
+import numpy as np
+from PIL import Image
 
-def upload_image(request):
-    if request.method == 'POST' and request.FILES['image']:
-        image = request.FILES['image']
-        fs = FileSystemStorage()
-        filename = fs.save(image.name, image)
-        uploaded_file_url = fs.url(filename)
+# Suppress TensorFlow warnings
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
-        # For now, the analysis result is a placeholder
-        analysis_result = "Your image has been uploaded successfully. AI analysis coming soon!"
+# Update model path
+model_path = os.path.join(settings.BASE_DIR, 'model/model_InceptionV3.h5')
+model = tf.keras.models.load_model(model_path)
 
-        # Save image and analysis result
-        PlantImage.objects.create(image=image)
+class_names = {
+    0: 'Corn___Common_Rust', 1: 'Corn___Gray_Leaf_Spot',
+    2: 'Corn___Healthy', 3: 'Corn___Leaf_Blight', 
+    4: 'Potato___Early_Blight', 5: 'Potato___Healthy', 
+    6: 'Potato___Late_Blight', 7: 'Rice___Brown_Spot', 
+    8: 'Rice___Healthy', 9: 'Rice___Hispa', 10: 'Rice___Leaf_Blast', 
+    11: 'Wheat___Brown_Rust', 12: 'Wheat___Healthy', 13: 'Wheat___Yellow_Rust'
+}
 
-        return render(request, 'plant/plant.html', {
-            'uploaded_file_url': uploaded_file_url,
-            'analysis_result': analysis_result,
-        })
-    return render(request, 'plant/plant.html')
+def home(request):
+    if request.method == 'POST' and request.FILES.get('image'):
+        # Save uploaded image
+        image_file = request.FILES['image']
+        file_name = default_storage.save(f'uploads/{image_file.name}', image_file)
+        file_path = os.path.join(settings.MEDIA_ROOT, file_name)
+        
+        try:
+            # Preprocess image
+            img = Image.open(file_path)
+            img = img.resize((224, 224))  # Adjust size according to your model's input requirements
+            img_array = tf.keras.preprocessing.image.img_to_array(img)
+            img_array = np.expand_dims(img_array, axis=0)
+            img_array = img_array / 255.0  # Normalize
+            
+            # Make prediction
+            predictions = model.predict(img_array)
+            predicted_class_index = np.argmax(predictions[0])
+            predicted_class = class_names[predicted_class_index]
+            confidence = float(predictions[0][predicted_class_index])
+            
+            # Get recommendations
+            recommendation = recommendations.get(predicted_class, {})
+            
+            context = {
+                'predicted_class': predicted_class.replace('___', ' '),
+                'confidence_format': f"{confidence * 100:.2f}%",
+                'image_url': f'/media/{file_name}',
+                'disease': recommendation.get('disease', ''),
+                'text': recommendation.get('text', ''),
+                'solution': recommendation.get('solution', ''),
+                'prevention': recommendation.get('prevention', ''),
+                'medicine_products': recommendation.get('medicine_products', [])
+            }
+            
+            return render(request, 'plant/plant.html', context)
+            
+        except Exception as e:
+            print(f"Error during prediction: {e}")
+            context = {'error': 'Error processing image'}
+            return render(request, 'plant/ho.html', context)
+            
+        finally:
+            # Clean up uploaded file
+            if os.path.exists(file_path):
+                os.remove(file_path)
+    
+    return render(request, 'plant/ho.html')
