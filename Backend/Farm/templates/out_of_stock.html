@@ -1,0 +1,128 @@
+{% extends 'extend.html' %} <!-- Ensure 'extend.html' exists and has the necessary blocks -->
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Object Detection</title>
+    <style>
+        /* Scope all styles to the #detection-page container */
+        #detection-page {
+            font-family: 'Arial', sans-serif;
+            color: #333; /* Dark gray text for readability */
+            margin: 0px 0px 0px 16px; /* Top, right, bottom, left margins */
+            padding: 16px; /* Padding inside the container */
+            text-align: center;
+        }
+
+        /* Banner styling for the header */
+        .banner {
+            background: linear-gradient(to right, #2e7d32, #81c784); /* Gradient background */
+            color: white; /* White text for contrast */
+            padding: 1.5rem; /* Space inside the banner */
+            border-radius: 0.5rem; /* Rounded corners */
+            margin-bottom: 2rem; /* Spacing below the banner */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 2em;
+            margin: 0 0 0.5rem 0; /* Larger text for the main heading */
+        }
+
+        .banner h2 {
+            font-size: 1.2em;
+            margin: 0; /* Smaller text for the subheading */
+        }
+
+        /* Stylish button */
+        button {
+            background: linear-gradient(90deg, #3498db, #2980b9); /* Gradient effect */
+            color: white; /* Text color */
+            border: none; /* Remove border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px 30px; /* Size of the button */
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        /* Button hover effects */
+        button:hover {
+            background: linear-gradient(90deg, #2980b9, #1e6f96); /* Darker gradient on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Container to scope styles -->
+    <div id="detection-page">
+        <!-- Banner for the header -->
+        <div class="banner">
+            <h1>Real-time Object Detection</h1>
+            <h2>Detect Your Product Quantity</h2>
+        </div>
+        
+        <!-- Form to trigger object detection -->
+        <form method="POST" action="{% url 'start_detection' %}">
+            {% csrf_token %}
+            <button type="submit">Start Object Detection</button>
+        </form>
+
+        <p id="message"></p>
+        
+        <!-- Hidden video element (to be shown after starting the detection) -->
+        <img id="video" src="{% url 'out_of_stock' %}" width="640" height="480" style="display:none;" alt="Real-time Video Stream">
+    </div>
+
+    <script>
+        // Optional: Hide or show video element when the detection starts
+        const form = document.querySelector('form');
+        const videoElement = document.getElementById('video');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from reloading the page
+
+            // Show the video when detection starts
+            videoElement.style.display = 'block';
+            
+            // Optionally, display a message
+            document.getElementById('message').innerText = "Object Detection Started!";
+            
+            // Optionally, make AJAX request to start detection
+            fetch("{% url 'start_detection' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                body: JSON.stringify({
+                    action: 'start'  // You can pass more data if needed
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock %}
+
+
+
+
+
+
+
