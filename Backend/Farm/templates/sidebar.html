@@ -36,9 +36,11 @@
             <span class="material-symbols-sharp">inventory_2</span>
             <h3>Out Of Stock</h3>
         </a>
+
         <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
-            <span class="material-icons">inventory_2</span> <!-- Use 'eco' for the leaf icon -->
-            <h3>Crop Disease Detection</h3>
+            <span class="material-symbols-sharp">inventory_2</span>
+            <h3>Crop Disease
+                 Detection</h3>
         </a>
         
         <a href="#">
