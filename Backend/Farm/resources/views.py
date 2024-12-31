@@ -68,8 +68,10 @@ def extract_resources(response_text):
 
 # Call the function with the response
 
+
 # Output the extracted resources
-def order(request):
+def order_view(request):
+    
     global r
     print(f'shar{r}')
     return render(request,'resources/order.html',{"resources": r})
