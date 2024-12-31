@@ -42,3 +42,10 @@ def ind(request):
 
 def test(request):
     return render(request, 'Ham.html')
+# Farm/views.py
+from django.shortcuts import render
+
+def order_view(request):
+    # Your code here for handling the order view
+    return render(request, 'order.html')
+

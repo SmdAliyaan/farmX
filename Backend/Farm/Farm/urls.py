@@ -18,7 +18,7 @@ urlpatterns = [
     path('app/', include('myapp.urls')),
     path('yolo/', include('yolo.urls')),
     path('resources/', include('resources.urls', namespace='resources')),
-    
+    path('order/', views.order_view, name='order'),
 ]
 
 
