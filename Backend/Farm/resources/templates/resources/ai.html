@@ -1,223 +1,338 @@
 {% extends 'extend.html' %}
 {% load static %}
-{% block title %}
-AI Fertilizer Recommendations
-{% endblock title %}
+
+{% block title %}AI Farm Assistant{% endblock %}
+
 {% block content %}
-<link href="{% static 'css/ai.css' %}" rel="stylesheet">
-<style>
-    /* Scoped styles to only affect elements inside the content section */
-    .content-wrapper {
-        font-family: 'Arial', sans-serif;
-        background-color: #f0f0f0;
-        margin: 0;
-        padding: 20px;
-    }
-
-    #minecraftForm {
-        max-width: 400px;
-        margin: 0 auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        color: #555;
-    }
-
-    input, select {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        transition: border-color 0.3s;
-    }
-
-    input:focus, select:focus {
-        border-color: #4caf50;
-    }
-
-    button {
-        background-color: #4caf50;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s;
-    }
-
-    button:hover {
-        background-color: #45a049;
-    }
-
-    /* Responsive styling */
-    @media (max-width: 600px) {
-        #minecraftForm {
-            width: 90%;
-        }
-
-        input, select {
-            width: 100%;
-        }
-    }
-
-    /* Additional styles for the header image */
-    .page-header {
-        background-size: cover;
-        background-position: center;
-        height: 300px;
-        position: relative;
-    }
-
-    .mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-
-    #exampleImage {
-        display: none;
-        position: absolute;
-        top: 30px;
-        left: 0;
-        padding: 10px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-</style>
-
-<div class="container-fluid px-2 px-md-4 content-wrapper">
-    <div class="page-header min-height-300 border-radius-xl mt-4"
-        style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-        <span class="mask bg-gradient-primary opacity-6"></span>
+<div class="container-fluid">
+    <!-- Header styled like crop_analysis -->
+    <div class="crop-analysis-header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1><span class="material-symbols-sharp">smart_toy</span> AI Farm Assistant</h1>
+                <p>Get personalized recommendations for your farm</p>
+            </div>
+        </div>
     </div>
 
-    <div class="card card-body mx-3 mx-md-4 mt-n6">
-        <div class="row gx-4 mb-2">
-            <div class="col-auto">
-                <div class="avatar avatar-xl position-relative">
-                    <img src="{% static 'assets/img/bruce-mars.jpg' %}" alt="profile_image"
-                        class="w-100 border-radius-lg shadow-sm">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <!-- White Background Container -->
+            <div class="white-container">
+                <!-- Input Form Section -->
+                <div class="search-container">
+                    <form method="POST" id="aiForm" class="search-form">
+                        {% csrf_token %}
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>
+                                    <span class="material-symbols-sharp">grass</span>
+                                    Crop Type
+                                </label>
+                                <input type="text" 
+                                       name="cropType" 
+                                       placeholder="e.g., Rice, Wheat, Cotton..." 
+                                       required>
+                            </div>
+
+                            <div class="input-group">
+                                <label>
+                                    <span class="material-symbols-sharp">landscape</span>
+                                    Land Area
+                                </label>
+                                <input type="number" 
+                                       name="landArea" 
+                                       placeholder="Area in square meters" 
+                                       required>
+                            </div>
+
+                            <div class="input-group">
+                                <label>
+                                    <span class="material-symbols-sharp">terrain</span>
+                                    Soil Type
+                                </label>
+                                <select name="soilquality" required>
+                                    <option value="" disabled selected>Select soil type...</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="loam">Loam</option>
+                                    <option value="slit">Silt</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>
+                                    <span class="material-symbols-sharp">thermostat</span>
+                                    Season
+                                </label>
+                                <select name="season" required>
+                                    <option value="" disabled selected>Select season...</option>
+                                    <option value="summer">Summer</option>
+                                    <option value="spring">Spring</option>
+                                    <option value="autumn">Autumn</option>
+                                    <option value="winter">Winter</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="material-symbols-sharp">psychology</span>
+                            Get AI Insights
+                        </button>
+                    </form>
                 </div>
-            </div>
 
-            <form method="post" id="farmerForm">
-                {% csrf_token %}
-                <label for="cropType">Crop Type:</label>
-                <input type="text" id="cropType" name="cropType" required>
-
-                <label for="landArea">Land Area (in sq. meters):</label>
-                <input type="number" id="landArea" name="landArea" required>
-                
-                <label for="soilquality">Soil Quality:</label>
-                <select id="soilquality" name="soilquality" required>
-                    <option value="sandy">Sandy</option>
-                    <option value="clay">Clay</option>
-                    <option value="loam">Loam</option>
-                    <option value="slit">Slit</option>
-                </select>
-
-                <div class="position-relative">
-                    <img src="{% static 'assets/img/soil.png' %}" alt="profile_image"
-                        class="w-70 border-radius-lg shadow-sm">
+                <!-- Enhanced Loader -->
+                <div class="loader-container" style="display: none;">
+                    <div class="loader-wrapper">
+                        <div class="loader"></div>
+                        <div class="loader-rings"></div>
+                    </div>
+                    <div class="loader-text">
+                        <h3>Analyzing Farm Data</h3>
+                        <p>Please wait while our AI processes your information...</p>
+                    </div>
                 </div>
-                <br>
 
-                <label for="season">Planting Season:</label>
-                <select id="season" name="season" required>
-                    <option value="summer">Summer</option>
-                    <option value="spring">Spring</option>
-                    <option value="autumn">Autumn</option>
-                    <option value="winter">Winter</option>
-                </select>
-
-                <br>
-
-                <button class="btn bg-gradient-primary cursor-pointer" type="submit">Send</button>
-            </form>
-
-            {% if response %}
-            <div id="aiResponse" class="mt-4">
-                <h2 class="text-primary">AI Response:</h2>
-                <pre class="text-dark">{{ response }}</pre>
+                <!-- Response Section -->
+                {% if response %}
+                    <div class="current-prices-section">
+                        <div class="section-header">
+                            <span class="material-symbols-sharp">tips_and_updates</span>
+                            <h2>AI Recommendations</h2>
+                        </div>
+                        <div class="response-content">
+                            {{ response|linebreaks }}
+                        </div>
+                        <a href="{% url 'order' %}" class="action-btn">
+                            <span class="material-symbols-sharp">shopping_cart</span>
+                            Order Recommended Products
+                        </a>
+                    </div>
+                {% endif %}
             </div>
-
-            <a href="/order"><button class="btn bg-gradient-primary cursor-pointer">Send</button></a>
-            {% endif %}
         </div>
     </div>
 </div>
 
-<div class="ai-container">
-  <div class="ai-header">AI Fertilizer Recommendations</div>
-  <form method="post">
-    {% csrf_token %}
-    <div class="ai-item">
-      <label for="crop-type">Crop Type</label>
-      <input type="text" id="crop-type" name="crop_type" required>
-    </div>
-    <div class="ai-item">
-      <label for="soil-type">Soil Type</label>
-      <input type="text" id="soil-type" name="soil_type" required>
-    </div>
-    <button type="submit" class="ai-submit">Get Recommendations</button>
-  </form>
-  <div class="ai-results">
-    <!-- Display AI recommendations here -->
-  </div>
-</div>
+<style>
+/* Header styling from crop_analysis.css */
+.crop-analysis-header {
+    background: linear-gradient(to right, #2e7d32, #81c784);
+    padding: 1.5rem;
+    border-radius: 0.35rem;
+    margin-bottom: 2rem;
+}
+
+.crop-analysis-header h1 {
+    color: white;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.crop-analysis-header p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+}
+
+/* Input Grid Layout */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2e3338;
+    font-weight: 500;
+}
+
+.input-group label span {
+    color: #2e7d32;
+}
+
+.input-group input,
+.input-group select {
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+/* Button Styling */
+.submit-btn {
+    background: linear-gradient(to right, #2e7d32, #81c784);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 300ms ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem auto;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(to right, #1b5e20, #66bb6a);
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(46, 125, 50, 0.2);
+}
+
+/* White Container */
+.white-container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0.15rem 1.75rem rgba(0, 0, 0, 0.05);
+}
+
+/* Enhanced Loader Styling */
+.loader-container {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.loader-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e0e0e0;
+    border-radius: 50%;
+    border-top: 4px solid #2e7d32;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    animation: spin 1s linear infinite;
+}
+
+.loader-rings {
+    width: 80px;
+    height: 80px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top: 3px solid rgba(46, 125, 50, 0.2);
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+    margin-top: 2rem;
+}
+
+.loader-text h3 {
+    color: #2e7d32;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.loader-text p {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Fade in animation for loader */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.loader-container {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Response Section */
+.response-content {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 4px solid #2e7d32;
+    margin: 1.5rem 0;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #2e7d32;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: all 300ms ease;
+}
+
+.action-btn:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(46, 125, 50, 0.2);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .response-content {
+        padding: 1.5rem;
+    }
+}
+</style>
 
 <script>
-    // JavaScript code to toggle visibility based on the selected input type
-    document.addEventListener('DOMContentLoaded', function () {
-        const responseText = document.getElementById('responseText');
-        if (responseText) {
-            responseText.innerHTML = responseText.innerHTML.replace(/\\/g, '<br>*');
-        }
-
-        // Responsive toggle for input fields
-        const landAreaInput = document.getElementById('landArea');
-        const cropTypeInput = document.getElementById('cropType');
-        const seasonInput = document.getElementById('season');
-
-        const setInputsWidth = () => {
-            const windowWidth = window.innerWidth;
-            if (windowWidth <= 600) {
-                landAreaInput.style.width = '100%';
-                cropTypeInput.style.width = '100%';
-                seasonInput.style.width = '100%';
-            } else {
-                landAreaInput.style.width = 'calc(50% - 10px)';
-                cropTypeInput.style.width = 'calc(50% - 10px)';
-                seasonInput.style.width = 'calc(50% - 10px)';
-            }
-        };
-
-        setInputsWidth();
-
-        window.addEventListener('resize', setInputsWidth);
-    });
+document.getElementById('aiForm').addEventListener('submit', function() {
+    const loader = document.querySelector('.loader-container');
+    loader.style.display = 'block';
+    
+    // Smooth scroll to loader
+    loader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
 </script>
 {% endblock %}
 
