@@ -10,11 +10,11 @@
         </div>
     </div>
     <div class="sidebar">
-        <a href="{% url 'dashboard:dashboard_index' %}" class="{% if request.resolver_match.url_name == 'dashboard:dashboard_index' %}active{% endif %}">
+        <a href="{% url 'dashboard:dashboard_index' %}" class="{% if request.resolver_match.namespace == 'dashboard' and request.resolver_match.url_name == 'dashboard_index' %}active{% endif %}">
             <span class="material-symbols-sharp">dashboard</span>
             <h3>Dashboard</h3>
         </a>
-        <a href="{% url 'resources:resource_estimation' %}" class="{% if request.resolver_match.url_name == 'resources:resource_estimation' %}active{% endif %}">
+        <a href="{% url 'resources:resource_estimation' %}" class="{% if request.resolver_match.namespace == 'resources' and request.resolver_match.url_name == 'resource_estimation' %}active{% endif %}">
             <span class="material-symbols-sharp">analytics</span>
             <h3>Resource Estimation</h3>
         </a>
