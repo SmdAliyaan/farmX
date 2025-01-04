@@ -1,405 +1,151 @@
+{% extends 'extend.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crop Disease Prediction</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap" rel="stylesheet">
+{% block title %}Crop Disease Prediction{% endblock %}
 
-    <style>
+{% block content %}
+<div class="container-fluid">
+    <!-- Header styled like crop_analysis -->
+    <div class="crop-analysis-header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1><span class="material-symbols-sharp">local_florist</span> Crop Disease Prediction</h1>
+                <p>Upload and analyze crop images for disease detection</p>
+            </div>
+        </div>
+    </div>
 
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="white-container">
+                <div class="upload-container">
+                    <form method="post" enctype="multipart/form-data" onsubmit="showLoading()" class="upload-form">
+                        {% csrf_token %}
+                        <div class="file-upload-wrapper">
+                            <label for="image-upload">
+                                <span class="material-symbols-sharp">upload_file</span>
+                                <span>Choose an image</span>
+                            </label>
+                            <input type="file" id="image-upload" name="image" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span class="material-symbols-sharp">search</span>
+                            Analyze Image
+                        </button>
+                    </form>
+                </div>
 
+                <!-- Loader (similar to AI page) -->
+                <div class="loader-container" style="display: none;">
+                    <div class="loader-wrapper">
+                        <div class="loader"></div>
+                        <div class="loader-rings"></div>
+                    </div>
+                    <div class="loader-text">
+                        <h3>Analyzing Image</h3>
+                        <p>Please wait while we process your crop image...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<style>
+/* Reuse header styling from ai.html */
+.crop-analysis-header {
+    background: linear-gradient(to right, #2e7d32, #81c784);
+    padding: 1.5rem;
+    border-radius: 0.35rem;
+    margin-bottom: 2rem;
 }
 
-.carousel-inner img {
-    height: 70vh;
-}
-
-form {
+.crop-analysis-header h1 {
+    color: white;
+    margin: 0;
     display: flex;
-    height: 50vh;
-    justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    width: 60%;
+    gap: 0.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.crop-analysis-header p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+}
+
+/* Upload form styling */
+.upload-container {
     text-align: center;
-    margin: auto;
+    padding: 3rem 2rem;
 }
 
-
-.details h2 {
-    
-    position: relative;
-    top: 100px;
-    margin: auto;
-    color: rgb(18, 231, 231);
-    font-size: 3rem;
+.file-upload-wrapper {
+    margin: 2rem auto;
+    max-width: 400px;
 }
 
-label:hover {
-    transform: scale(1.03);
-}
-
-.details h2 {
-    /* margin-bottom: 300px; */
-    position: relative;
-    top: 100px;
-    margin: auto;
-    color: rgb(18, 231, 231);
-    font-size: 3rem;
-
-}
-
-.gallery-h1 h1 {
-
-    background-color: rgb(1, 79, 93);
-    color: white;
-    padding: 20px;
-    border-radius: 15px;
-
-}
-
-
-
-
-
-.details h1 {
-    color: white;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: rgb(1, 79, 93);
-}
-
-
-.upload {
+.file-upload-wrapper label {
     display: flex;
-
-    font-size: 20px;
-    background-color: rgb(255, 252, 252);
-    border-radius: 20px;
-    outline: none;
-    width: 315px;
-    color: rgb(0, 0, 0);
-    border: 3px solid rgb(45, 47, 49);
-
-
-
-}
-
-::-webkit-file-upload-button {
-    color: white;
-    padding: 20px;
-    border: 2px solid rgb(129, 129, 129);
-    background-color: rgb(129, 129, 129);
-    border-radius: 15px;
-
-}
-
-::-webkit-file-upload-button:hover {
-    border-radius: 20px;
-    border: 2px solid rgb(177, 174, 174);
-
-
-}
-
-
-
-button {
-    display: flex;
-
-    padding: 15px 35px;
-    background-color: rgb(65, 159, 176);
-    border-radius: 15px;
-    color: rgb(249, 242, 242);
-    font-size: 1.5rem;
-    border: 4px solid rgb(31, 185, 190);
-}
-
-.carousel-caption {
-    background: rgba(24, 25, 26, 0.5);
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px dashed #2e7d32;
     border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-
-
-.carousel-caption h3 {
-
-
-    font-family: 'Rowdies', cursive;
-    color: rgb(151, 220, 232);;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-
+.file-upload-wrapper label:hover {
+    background: rgba(46, 125, 50, 0.1);
 }
 
-.carousel-caption p {
-    padding: 7px;
-
-
+.file-upload-wrapper input[type="file"] {
+    display: none;
 }
 
-.img-thumbnail {
-    height: 300px;
-}
-
-.Content-h5 {
-
-    padding: 15px;
-    background-color: rgb(1, 79, 93);
+/* Reuse button and loader styles from ai.html */
+.submit-btn {
+    background: linear-gradient(to right, #2e7d32, #81c784);
     color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 300ms ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem auto;
+    min-width: 200px;
+    justify-content: center;
+}
+
+/* Include loader styles from ai.html */
+.loader-container {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
-    margin-bottom: 25px;
+    margin: 2rem 0;
+    position: relative;
 }
 
+/* Add the rest of the loader styles from ai.html */
+</style>
 
-@media only screen and (max-width: 325px) {
-    body {
-        font-size: x-small;
-    }
+<script>
+function showLoading() {
+    const loader = document.querySelector('.loader-container');
+    loader.style.display = 'block';
+    loader.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
-    </style>
-    
-</head>
-<body>
-    
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid justify-content-center">
-                <a class="navbar-brand mx-auto text-center" href="/">Crop Disease Prediction</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.kaggle.com/datasets/nafishamoin/bangladeshi-crops-disease-dataset">Dataset</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container-fluid">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active ">
-                        <img src="/static/images/img1.jpg" class="d-block w-100" alt="...">
 
-                        <div class="container">
-                            <div class="container background-img3">
-                                <div class="carousel-caption">
-
-                                    <h3>Crop
-                                         Disease Prediction AI Web App</h3>
-                                    <p>
-                                        Many veterans said that Deep Learning and AI is a threat to our world, but if we
-                                        use it properly, we can do many good things today, we will see a small example
-                                        of this in which we will be in crop farming
-                                        Find out about the disease
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <img src="/static/images/img2.jpg" class="d-block w-100" alt="...">
-                        <div class="container">
-                            <div class="carousel-caption">
-                                <h3> Diagnosis and treatment of Crop Diseases
-                                </h3>
-                                <p>
-                                    Many experts have said that Deep Learning and AI are a threat to our world, but if we use them correctly, we can also do many good things.
-                                    Today we will see a small example of this, in which we will learn about the diseases that occur in crops cultivation.
-                                    </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <img src="/static/images/img3.jpg" class="d-block w-100" alt="...">
-                        <div class="container">
-                            <div class="container ">
-                                <div class="carousel-caption">
-                                    <h3>
-                                        Diagnosis and treatment of Crop Diseases </h3>
-                                    <p>
-                                    For the past few years, deep learning and artificial intelligence have been the most talked-about topics.
-                                     Many experts say that these are a threat to our world, but if we use them correctly, we can do many good things today. 
-                                    One example of this is that we learn about crop diseases and find remedies for them.
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    
-     <section>
-
-        <div class="container-fluid details">
-            <h1 class="text-center mt-5 ">Predict Crop Disease & Get Cure</h1>
-            <h4 class="text-center mt-5">Upload Image and Predict Leaf Diseases in Corn, Potato, Rice, and Wheat</h4>
-           
-             <form method="post" enctype="multipart/form-data"  onsubmit="showloading()">
-                {% csrf_token %}
-                <input type="file" name="image" accept="image/*" required>
-                <button type="submit">Predict</button>
-            </form>
-        </div>
-    </section>
-
-
-
-
-    <section style="margin-bottom: 100px;">
-
-        <div class="container gallery-h1">
-
-            <h1 class="text-center mt-4 mb-4">Image Gallery</h1>
-
-
-
-            <hr class="mt-2 mb-5">
-
-            <div class="row text-center text-lg-left">
-
-                <div class="col-lg-4 col-md-4 col-6 col-12">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="/static/images/Gallery1.jpg" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-6 col-12">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="/static/images/Gallery2.jpg" alt="">
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-6 col-12">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="/static/images/Gallery3.jpg" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-6 col-12">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="/static/images/Gallery4.jpg" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-6 col-12">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="/static/images/Gallery5.jpeg" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-6 col-12">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="/static/images/Gallery6.jpg" alt="">
-                    </a>
-                </div>
-
-
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section>
-        <div class="container Content-h5">
-
-            <h4 style="font-size: 1rem;" class="text-center my-3 contents">
-                Crop Disease Image Classifiction and Prediction with Deep Learning</h4>
-
-        </div>
-    </section>
-
-    <h1>Crop Disease Prediction</h1>
-
-    <h2>Corn</h2>
-    <div>
-        <img src="{% static 'images/Azoxybin-corn.png' %}" alt="Azoxybin">
-        <img src="{% static 'images/corn-pyraclostrobin.png' %}" alt="Pyraclostrobin">
-        <img src="{% static 'images/corn-propiconazole.jpeg' %}" alt="Propiconazole">
-        <img src="{% static 'images/traizole-corn.jpg' %}" alt="Triazoles">
-        <img src="{% static 'images/actara.png' %}" alt="Actara">
-        <img src="{% static 'images/mancozeb-corn.jpg' %}" alt="Mancozeb">
-        <img src="{% static 'images/chlorothalonil-corn.png' %}" alt="Chlorothalonil">
-    </div>
-
-    <h2>Potato</h2>
-    <div>
-        <img src="{% static 'images/metaalaxyl-potato.jpeg' %}" alt="Metaalaxyl">
-        <img src="{% static 'images/panama.png' %}" alt="Panama">
-    </div>
-
-    <h2>Rice</h2>
-    <div>
-        <img src="{% static 'images/iprobhenfos-rice.jpg' %}" alt="Iprobhenfos">
-        <img src="{% static 'images/tricyclazole-rice.jpg' %}" alt="Tricyclazole">
-        <img src="{% static 'images/victor.png' %}" alt="Victor">
-        <img src="{% static 'images/carbaryl-rice.jpg' %}" alt="Carbaryl">
-        <img src="{% static 'images/imidacloprid-rice.jpeg' %}" alt="Imidacloprid">
-        <img src="{% static 'images/isoprothiolane-rice.jpg' %}" alt="Isoprothiolane">
-        <img src="{% static 'images/ulala.png' %}" alt="Ulala">
-    </div>
-
-    <h2>Wheat</h2>
-    <div>
-        <img src="{% static 'images/corn-propiconazole.jpeg' %}" alt="Propiconazole">
-        <img src="{% static 'images/tebuconazole-wheat.jpeg' %}" alt="Tebuconazole">
-        <img src="{% static 'images/preet.png' %}" alt="Preet">
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-</body>
-
-
-</html>
+// Add file input preview functionality
+document.getElementById('image-upload').addEventListener('change', function(e) {
+    const fileName = e.target.files[0]?.name || 'No file chosen';
+    this.previousElementSibling.querySelector('span:last-child').textContent = fileName;
+});
+</script>
+{% endblock %}
