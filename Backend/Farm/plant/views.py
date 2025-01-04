@@ -10,6 +10,7 @@ from .recommendations import recommendations
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+from django.core.files.storage import FileSystemStorage
 
 # Suppress TensorFlow warnings
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -75,3 +76,25 @@ def home(request):
                 os.remove(file_path)
     
     return render(request, 'plant/ho.html')
+
+def predict_disease(request):
+    if request.method == 'POST' and request.FILES['image']:
+        image_file = request.FILES['image']
+        # Create uploads directory if it doesn't exist
+        upload_dir = os.path.join(settings.MEDIA_ROOT, 'uploads', 'plant_images')
+        os.makedirs(upload_dir, exist_ok=True)
+        
+        # Save the uploaded file
+        fs = FileSystemStorage(location=upload_dir)
+        filename = fs.save(image_file.name, image_file)
+        
+        # Get the URL for the saved file
+        uploaded_file_url = settings.MEDIA_URL + 'uploads/plant_images/' + filename
+        
+        # Your prediction logic here
+        
+        return render(request, 'plant/plant.html', {
+            'image_url': uploaded_file_url,
+            'predicted_class': predicted_class,
+            # ... other context data ...
+        })
