@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from django.core.mail import send_mail
+from urllib.parse import urlparse
+import dj_database_url
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,8 +89,15 @@ WSGI_APPLICATION = 'Farm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'FarmX DB',
+        'USER': 'FarmX DB_owner',
+        'PASSWORD': '0zudr4XYqIkn',
+        'HOST': 'ep-morning-boat-a5hgeaqx.us-east-2.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        }
     }
 }
 
