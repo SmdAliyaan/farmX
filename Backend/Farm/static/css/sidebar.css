@@ -88,11 +88,12 @@ aside .sidebar {
     overflow-x: hidden;
 }
 
-
 aside h3 {
     font-weight: 500;
     font-size: 0.9rem;
-    line-height: 1.2;
+    line-height: 1.5;
+    overflow: hidden;
+    word-wrap: break-word;
     max-width: 9rem;
 }
 
@@ -104,7 +105,7 @@ aside .sidebar a {
     align-items: center;
     height: 3.2rem;
     transition: all .1s ease-in-out;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 aside .sidebar a.active {
