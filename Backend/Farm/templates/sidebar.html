@@ -1,3 +1,5 @@
+
+{% load static %}
 <aside>
     <div class="top">
         <div class="logo">
@@ -39,14 +41,21 @@
 
         <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
             <span class="material-symbols-sharp">inventory_2</span>
-            <h3>Crop Disease
-                 Detection</h3>
+            <h3>Crop Disease Detection</h3>
         </a>
         
         <a href="#">
             <span class="material-symbols-sharp">Monitoring</span>
             <h3>Analysis</h3>
         </a>
+        
+        <!-- New "Talk to Data" Section -->
+        <a href="{% url 'gemini' %}" class="{% if request.resolver_match.url_name == 'gemini' %}active{% endif %}">
+            <span class="material-symbols-sharp">chat</span>
+            <h3>Talk to Data</h3>
+        </a>
+        
+        
         <a href="#" onclick="document.getElementById('logout-form').submit();">
             <span class="material-symbols-sharp">logout</span>
             <h3>Logout</h3>
@@ -56,4 +65,3 @@
         </form>
     </div>
 </aside>
-
