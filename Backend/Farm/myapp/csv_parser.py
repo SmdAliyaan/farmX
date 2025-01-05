@@ -24,17 +24,17 @@ def get_crop_prices_from_csv(crop, file_path="commodity_prices.csv"):
 def predict_prices(prices):
     predictions = {}
     today = datetime.now()
+
+    daily_increase_percentage = 0.25  
+
     for state, price in prices.items():
-        data = pd.DataFrame({
-            "ds": pd.date_range(start=today - timedelta(days=10), periods=10),
-            "y": [price] * 10
-        })
-
-        model = Prophet()
-        model.fit(data)
-        future = model.make_future_dataframe(periods=7)
-        forecast = model.predict(future)
-
-        predictions[state] = list(zip(forecast["ds"].tail(7).dt.strftime("%Y-%m-%d"), forecast["yhat"].tail(7)))
+        forecast = []
+        for i in range(7):
+            date = (today + timedelta(days=i + 1)).strftime("%Y-%m-%d")
+            marginal_increase = price * (daily_increase_percentage / 100) * (i + 1)
+            predicted_price = price + marginal_increase
+            forecast.append((date, round(predicted_price, 2)))
+        
+        predictions[state] = forecast
 
     return predictions
