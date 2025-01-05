@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --clr-primary: rgb(78, 115, 70);
+    --clr-danger: #8B4513;
+    --clr-success: #90EE90;
+    --clr-white: #fff;
+    --clr-info-dark: #5c4033;
+    --clr-info-light: #d4d0c6;
+    --clr-dark: #2F4F4F;
+    --clr-warning: #DAA520;
+    --clr-light: rgba(144, 238, 144, 0.18);
+    --clr-primary-variant: #3c703f;
+    --clr-dark-variant: #6b4423;
+    --clr-color-background: #dad1cb;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 2rem;
+    color: var(--clr-dark);
+    font-size: 1.8rem;
+}
+
+.card {
+    flex: 0 0 calc(33.33% - 1.6rem);
+    padding: 1.4rem;
+    border-radius: 1.5rem;
+    background: var(--clr-white);
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+    min-width: 200px;
+    max-width: 250px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4rem 6rem rgba(132, 139, 200, 0.3);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.card-body h2 {
+    color: var(--clr-dark);
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+}
+
+.card-body p {
+    color: var(--clr-dark);
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.card-footer {
+    padding: 0.8rem 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--clr-grey-300);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.card-footer button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.card-footer .btn-primary {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+}
+
+.card-footer .btn-primary:hover {
+    background-color: var(--clr-info-dark);
+}
+
+.card-footer .btn-secondary {
+    background-color: var(--clr-grey-300);
+    color: var(--clr-secondary);
+}
+
+.card-footer .btn-secondary:hover {
+    background-color: var(--clr-grey-400);
+    color: var(--clr-white);
+}
+
+.card-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-danger);
+    color: var(--clr-white);
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+/* Main content styling - similar to dashboard */
+.main-content {
+    flex: 1;
+    margin-left: 14rem;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    z-index: 1;
+    transition: margin-left 0.3s ease;
+    background-color: var(--clr-color-background);
+    width: calc(100vw - 14rem);
+    position: relative;
+}
+
+.main-content.expanded {
+    margin-left: 0;
+}
+
+.inventory-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+    padding: 2rem;
+    overflow-y: auto;
+    background: transparent;
+}
+
+.contain {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    background-color: var(--clr-color-background);
+}
+
+.farm-button {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.farm-button:hover {
+    background-color: var(--clr-primary-variant);
+}
+
+/* Media Queries */
+@media screen and (max-width: 1400px) {
+    .card {
+        flex: 0 0 calc(45% - 1.6rem);
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .card {
+        flex: 0 0 calc(100% - 1.6rem);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(100% - 1.6rem);
+    }
+}
+
+.insights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    justify-content: flex-start;
+    padding: 0 2rem;
+    width: calc(100% - 4rem);
+    margin: 0;
+}
