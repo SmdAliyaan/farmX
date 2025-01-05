@@ -30,7 +30,7 @@ def chat_with_ai(request):
 #     engine.runAndWait()
 
 
-def get_ai_response(cropType,landArea,season,soilquality):
+def get_ai_response(cropType, landArea, season, soilquality):
     genai.configure(api_key="AIzaSyBbJRmC40mbGcc_7vi7cJLU9vDHG_0RDI4")  # Set up your API key
     generation_config = {  # Your generation config
         "temperature": 0.1,
@@ -53,8 +53,12 @@ def get_ai_response(cropType,landArea,season,soilquality):
     message = f"{context} Croptype : {cropType}, LandArea : {landArea}, Soil Quality : {soilquality},season : {season}, "
     response = convo.send_message(message)
     answer = convo.last.text
-    # print(f'hi{answer}')
-    return convo.last.text # Assuming 'message' contains the response text
+
+    # Remove '*' characters from the response
+    clean_answer = answer.replace('*', '')  # Remove '*' symbols
+
+    return clean_answer  # Return the cleaned response
+
 
 def extract_resources(response_text):
     pattern = r"(?P<resource>\w+:\s+)(?P<quantity>\d+\s+\w+)"
