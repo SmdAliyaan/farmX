@@ -7,6 +7,7 @@ recommendations = {
             {'image': 'images/Azoxybin-corn.png', 'name': 'Azoxybin'},
             {'image': 'images/corn-pyraclostrobin.png', 'name': 'Pyraclostrobin'},
             {'image': 'images/corn-propiconazole.jpeg', 'name': 'Propiconazole'}
+            
         ],
         'prevention': 'Plant resistant hybrids and use crop rotation.'
     },
