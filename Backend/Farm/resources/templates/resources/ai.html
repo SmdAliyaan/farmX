@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Header styled like crop_analysis -->
+  
     <div class="crop-analysis-header">
         <div class="header-content">
             <div class="header-text">
@@ -17,9 +17,9 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <!-- White Background Container -->
+       
             <div class="white-container">
-                <!-- Input Form Section -->
+               
                 <div class="search-container">
                     <form method="POST" id="aiForm" class="search-form">
                         {% csrf_token %}
@@ -82,7 +82,7 @@
                     </form>
                 </div>
 
-                <!-- Enhanced Loader -->
+         
                 <div class="loader-container" style="display: none;">
                     <div class="loader-wrapper">
                         <div class="loader"></div>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <!-- Response Section -->
+ 
                 {% if response %}
                     <div class="current-prices-section">
                         <div class="section-header">
@@ -116,7 +116,6 @@
 </div>
 
 <style>
-/* Header styling from crop_analysis.css */
 .crop-analysis-header {
     background: linear-gradient(to right, #2e7d32, #81c784);
     padding: 1.5rem;
@@ -138,7 +137,7 @@
     margin-top: 0.5rem;
 }
 
-/* Input Grid Layout */
+
 .input-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -181,7 +180,7 @@
     transform: translateY(-2px);
 }
 
-/* Button Styling */
+
 .submit-btn {
     background: linear-gradient(to right, #2e7d32, #81c784);
     color: white;
@@ -205,7 +204,7 @@
     box-shadow: 0 0.5rem 1rem rgba(46, 125, 50, 0.2);
 }
 
-/* White Container */
+
 .white-container {
     background: white;
     border-radius: 15px;
@@ -213,7 +212,7 @@
     box-shadow: 0 0.15rem 1.75rem rgba(0, 0, 0, 0.05);
 }
 
-/* Enhanced Loader Styling */
+
 .loader-container {
     text-align: center;
     padding: 3rem 2rem;
@@ -272,7 +271,7 @@
     margin: 0;
 }
 
-/* Fade in animation for loader */
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -282,7 +281,7 @@
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Response Section */
+
 .response-content {
     font-size: 1.125rem;
     line-height: 1.6;
@@ -312,7 +311,7 @@
     color: white;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .input-grid {
         grid-template-columns: 1fr;
@@ -330,7 +329,7 @@ document.getElementById('aiForm').addEventListener('submit', function() {
     const loader = document.querySelector('.loader-container');
     loader.style.display = 'block';
     
-    // Smooth scroll to loader
+  
     loader.scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 </script>

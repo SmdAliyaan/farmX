@@ -16,9 +16,10 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('plant/', include('plant.urls')),
     path('app/', include('myapp.urls')),
-    path('yolo/', include('yolo.urls')),
+    
     path('resources/', include('resources.urls', namespace='resources')),
     path('order/', views.order_view, name='order'),
+    path('marketplace/', include('inventory_recommendation.urls')),
 ]
 
 

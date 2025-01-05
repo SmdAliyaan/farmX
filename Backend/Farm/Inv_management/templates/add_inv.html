@@ -16,14 +16,14 @@
               action="{% if product %}{% url 'edit_product' product.pk %}{% else %}{% url 'add_product' %}{% endif %}">
             {% csrf_token %}
             
-            <!-- Product Name -->
+            
             <div class="form-group">
                 <label for="product-name">Product Name:</label>
                 <input type="text" id="product-name" name="name" 
                        value="{% if product %}{{ product.name }}{% else %}""{% endif %}" required>
             </div>
 
-            <!-- Product Image -->
+           
             <div class="form-group">
                 <label for="product-image">Product Image:</label>
                 <input type="file" id="product-image" name="image" accept="image/*">
@@ -33,35 +33,35 @@
                 {% endif %}
             </div>
 
-            <!-- Product Price -->
+            
             <div class="form-group">
                 <label for="product-price">Price:</label>
                 <input type="number" id="product-price" name="price" 
                        value="{% if product %}{{ product.price }}{% else %}""{% endif %}" step="0.01" required>
             </div>
 
-            <!-- Quantity Total -->
+            
             <div class="form-group">
                 <label for="product-quantity">Quantity Total:</label>
                 <input type="number" id="product-quantity" name="quantity_total" 
                        value="{% if product %}{{ product.quantity_total }}{% else %}""{% endif %}" required>
             </div>
 
-            <!-- Date Bought -->
+            
             <div class="form-group">
                 <label for="date-bought">Date Bought:</label>
                 <input type="date" id="date-bought" name="date_bought" 
                        value="{% if product %}{{ product.date_bought|date:'Y-m-d' }}{% else %}""{% endif %}" required>
             </div>
 
-            <!-- Date Expiration -->
+            
             <div class="form-group">
                 <label for="date-expiration">Date Expiration:</label>
                 <input type="date" id="date-expiration" name="date_expiration" 
                        value="{% if product %}{{ product.date_expiration|date:'Y-m-d' }}{% else %}""{% endif %}">
             </div>
 
-            <!-- Category Selection -->
+            
             <div class="form-group">
                 <label for="product-category">Category:</label>
                 <select id="product-category" name="category" required>
@@ -71,14 +71,14 @@
                 </select>
             </div>
 
-            <!-- Quantity Remaining -->
+           
             <div class="form-group">
                 <label for="quantity-remaining">Quantity Remaining:</label>
                 <input type="number" id="quantity-remaining" name="quantity_remaining" 
                        value="{% if product %}{{ product.quantity_remaining }}{% else %}""{% endif %}" required>
             </div>
 
-            <!-- Submit Button -->
+            
             <button type="submit">{% if product %}Save Changes{% else %}Add Product{% endif %}</button>
         </form>
 

@@ -8,7 +8,7 @@
 <style>
    
     .modal {
-        display: none; /* Hidden by default */
+        display: none; 
         position: fixed;
         z-index: 1000;
         left: 0;
@@ -52,7 +52,7 @@
     }
     .red-box {
         display: inline-block;
-        margin: 10px; /* Adjust as needed */
+        margin: 10px; 
         margin-left:-5px;
         padding: 5px 10px;
         text-align: center;
@@ -78,7 +78,7 @@
         {% for product in products %}
         <div class="card">
             <div class="card-body">
-                <!-- Display product image -->
+               
                 {% if product.image %}
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px;">
                 {% endif %}
@@ -100,7 +100,7 @@
     <a href="{% url 'add_product' %}" class="farm-button">Add a New Product</a>
 </div>
 
-<!-- Delete Confirmation Modal -->
+
 <div class="modal" id="delete-modal">
     <div class="modal-content">
         <h2 id="modal-title"></h2>
@@ -124,19 +124,19 @@ deleteLinks.forEach(link => {
         const productId = this.getAttribute('data-id');
         const productName = this.getAttribute('data-name');
 
-        // Update modal content
+       
         document.getElementById('modal-title').textContent = `Are you sure you want to delete "${productName}"?`;
 
-        // Update form action with the correct product ID
+        
         const deleteForm = document.getElementById('delete-form');
-        deleteForm.action = `/inv/delete/${productId}/`; // Set action dynamically
+        deleteForm.action = `/inv/delete/${productId}/`; 
 
-        // Show the modal
+       
         document.getElementById('delete-modal').style.display = 'block';
     });
 });
 
-// Hide modal on cancel
+
 document.getElementById('cancel-btn').addEventListener('click', function (event) {
     event.preventDefault();
     document.getElementById('delete-modal').style.display = 'none';
