@@ -34,7 +34,6 @@ header {
     border-top-right-radius: 10px;
 }
 
-/* Form Styles */
 form {
     display: flex;
     flex-direction: column;
@@ -63,7 +62,6 @@ form button:hover {
     background: #005bb5;
 }
 
-/* Link Styles */
 form a {
     color: #0073e6;
     text-decoration: none;
@@ -74,7 +72,6 @@ form a:hover {
     text-decoration: underline;
 }
 
-/* Message Styles */
 .message {
     text-align: center;
     margin: 20px 0;
