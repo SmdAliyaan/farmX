@@ -98,3 +98,4 @@ def predict_disease(request):
             'predicted_class': predicted_class,
             # ... other context data ...
         })
+    

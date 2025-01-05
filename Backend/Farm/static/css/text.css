@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    overflow: hidden; /* Prevents scrollbars from appearing */
+    overflow: hidden; 
 }
 
 body {
@@ -15,7 +15,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    flex-direction: column; /* Ensure elements stack vertically */
+    flex-direction: column; 
 }
 
 .navbar{
@@ -113,16 +113,15 @@ form textarea {
     margin-bottom: 10px;
     padding: 10px;
     box-sizing: border-box;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
-    /* border: none; */
+  
   font-size: 16px;
-  border: 2px solid #4CAF50; /* Green border */
-  background-color: #f1f1f1; /* Light gray background */
+  border: 2px solid #4CAF50; 
+  background-color: #f1f1f1; 
   border-radius: 8px;
   transition: all 0.3s ease;
-  color: #666; /* Darker text color */
-  outline: none; /* Remove default outline */
-  box-shadow: none; /* Remove default box-shadow */
+  color: #666; 
+  outline: none; 
+  box-shadow: none; 
 }
 
 form button {
@@ -139,9 +138,8 @@ form button {
 }
 
 form button:hover {
-    /* background-color: brown; */
-    background-color: #6A2E1A; /* Darker brown on hover */
-  transform: translateY(-3px); /* Slight lift effect */
+    background-color: #6A2E1A; 
+  transform: translateY(-3px); 
 }
 
 form .errorlist li {
@@ -150,10 +148,9 @@ form .errorlist li {
 }
 
 .danger {
-    color: green; /* Ensuring it is set to green */
+    color: green; 
 }
 
-/* Position the logo at the top left */
 .farmx-logo {
     width: 200px;
     height: auto;
@@ -163,7 +160,6 @@ form .errorlist li {
     z-index: 10; 
 }
 
-/* Position the "About", "Contact", and "Help Center" links at the top right of the screen */
 .top-right-links {
     position: fixed;
     top: 10px;
@@ -182,7 +178,7 @@ form .errorlist li {
     font-size: 20px;
     font-family: Inter;
     font-weight: 600;
-    margin-left: 20px; /* Space between the links */
+    margin-left: 20px; 
     cursor: pointer;
     border-radius: 15px;
     padding: 5px 15px;
@@ -192,23 +188,22 @@ form .errorlist li {
     text-decoration: underline;
 }
 
-/* Add styles for the login and register buttons with translucent background and blur effect */
 .top-right-links .farm-button {
     font-size: 16px;
-    padding: 12px 24px; /* Adjust padding to match the size of links */
+    padding: 12px 24px; 
     background: rgba(255, 255, 255, 0.3); 
     color: white;
     border-radius: 30px;
-    margin-left: 20px; /* Space between buttons */
+    margin-left: 20px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    backdrop-filter: blur(8px); /* Add blur effect to the background */
-    transform: translateX(0); /* Initial position */
+    backdrop-filter: blur(8px); 
+    transform: translateX(0); 
 }
 
 .top-right-links .farm-button:hover {
-    background-color: white; /* Change the background color to white when hovered */
-    color: black; /* Change text color to black on hover */
+    background-color: white; 
+    color: black; 
     backdrop-filter: none; 
     transform: translateX(10px); 
 }

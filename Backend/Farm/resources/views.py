@@ -1,7 +1,25 @@
 from django.shortcuts import render
 import google.generativeai as genai
 import re
+
 r = dict()
+
+# Parser to ensure LLM output consistency
+def parse_response(response):
+    # Standardize formatting by removing unwanted characters and normalizing structure
+    response = response.replace('*', '').strip()
+    lines = response.split('\n')
+    parsed_data = {}
+    
+    for line in lines:
+        # Ensure line follows format: "Resource: Quantity Unit"
+        match = re.match(r"^(\w+):\s+(\d+\s+\w+)", line)
+        if match:
+            resource, quantity = match.groups()
+            parsed_data[resource] = quantity
+    return parsed_data
+
+
 def chat_with_ai(request):
     global r
     if request.method == 'POST':
@@ -10,71 +28,57 @@ def chat_with_ai(request):
         season = request.POST.get('season')
         soilquality = request.POST.get('soilquality')
 
-
-        response = get_ai_response(cropType,landArea,season,soilquality)
+        response = get_ai_response(cropType, landArea, season, soilquality)
+        parsed_response = parse_response(response)
+        r = parsed_response
         
-        # Read out the response using pyttsx3
-        extracted_resources = extract_resources(response)
-        r = extracted_resources
-        print(r)
-        return render(request, 'resources/ai.html', {'cropType': cropType,'landArea': landArea,'season': season, 'response': response})
+        return render(request, 'resources/ai.html', {
+            'cropType': cropType,
+            'landArea': landArea,
+            'season': season,
+            'response': response,
+            'resources': parsed_response  # Pass parsed resources to the template
+        })
+    
     return render(request, 'resources/ai.html', {})
 
-# def read_aloud(text, language='en'):
-#     print('hi')
-#     engine = pyttsx3.init()
-#     engine.setProperty('rate', 150)  # Speed of speech, adjust as needed
-#     engine.setProperty('volume', 0.9)  # Volume level, adjust as needed
-#     engine.setProperty('voice', f'{language}_mbrola')  # Use the appropriate voice for the language
-#     engine.say(text)
-#     engine.runAndWait()
 
-
-def get_ai_response(cropType,landArea,season,soilquality):
-    genai.configure(api_key="AIzaSyBbJRmC40mbGcc_7vi7cJLU9vDHG_0RDI4")  # Set up your API key
-    generation_config = {  # Your generation config
+def get_ai_response(cropType, landArea, season, soilquality):
+    genai.configure(api_key="AIzaSyBbJRmC40mbGcc_7vi7cJLU9vDHG_0RDI4")  # API Key
+    
+    generation_config = {
         "temperature": 0.1,
         "top_p": 1,
         "top_k": 1,
         "max_output_tokens": 2048,
     }
-    safety_settings = [  # Your safety settings
-        {
-            "category": "HARM_CATEGORY_HARASSMENT",
-            "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-        },
-        # Add other settings as needed
+    
+    safety_settings = [
+        {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
     ]
-    model = genai.GenerativeModel(model_name="gemini-1.0-pro",
-                                  generation_config=generation_config,
-                                  safety_settings=safety_settings)
+
+    model = genai.GenerativeModel(
+        model_name="gemini-1.0-pro",
+        generation_config=generation_config,
+        safety_settings=safety_settings
+    )
+
     convo = model.start_chat(history=[])
-    context = "Act as a farmer helper who is using his resourse and planting crops .You are taking input as crop type, land area he is using in sq. metres,the soil quality and the season he is planting the crop in summer spring autumn winter and the output given is what all resourses are needed to plant this in what quantity For example a rice crop in some amount of area then output should be what all is needed and in what quantity (kgs) how many kgs of rice crops will i needd to plant in this much area . Output should be the name and the quantity. Also provide tools needed for the farmer"
-    message = f"{context} Croptype : {cropType}, LandArea : {landArea}, Soil Quality : {soilquality},season : {season}, "
+    context = (
+       "You are an experienced agricultural assistant helping a farmer plan their crop cultivation. The farmer will provide details about the crop type they want to plant, the land area in square meters, the soil quality, and the season (summer, spring, autumn, or winter). Based on this information, you will provide a detailed list of resources required, including the quantity of seeds (in kilograms) needed to cover the specified area. Additionally, outline the necessary fertilizers, water requirements, and any essential tools or equipment. Ensure the response is specific to the crop type, season, and soil conditions to maximize yield and efficiency. Include all tools the farmer will need throughout the planting and growing process."
+    )
+
+    message = (
+        f"{context} Croptype: {cropType}, LandArea: {landArea}, "
+        f"Soil Quality: {soilquality}, Season: {season}."
+    )
+
     response = convo.send_message(message)
     answer = convo.last.text
-    # print(f'hi{answer}')
-    return convo.last.text # Assuming 'message' contains the response text
 
-def extract_resources(response_text):
-    pattern = r"(?P<resource>\w+:\s+)(?P<quantity>\d+\s+\w+)"
-    matches = re.findall(pattern, response_text)
-
-    # Create a dictionary from the matches
-    resources_dict = {match[0].strip(): match[1].strip() for match in matches}
-
-    print(f'Hello {resources_dict}')
-    return resources_dict
-
-# Call the function with the response
+    return answer.strip()  # Return clean response
 
 
-# Output the extracted resources
 def order_view(request):
-    
     global r
-    print(f'shar{r}')
-    return render(request,'resources/order.html',{"resources": r})
-
-
-# Create your views here.
+    return render(request, 'resources/order.html', {"resources": r})

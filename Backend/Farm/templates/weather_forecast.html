@@ -21,7 +21,8 @@
                 <div class="card-img-overlay">
                     <h3 class="card-title text-white">Today's Weather</h3>
                 </div>
-                <img src="{% static 'images/dayone.jpg' %}" class="card-img-top img-fluid" alt="Weather Image">
+                <img src="{% static 'css/images/cloud.jpg' %}" class="card-img-top img-fluid" alt="Weather Image">
+
                 <div class="card-body">
                     {% if next_day_forecast %}
                         <p class="text-muted mb-2"> <h3>Date: {{ next_day_forecast.0.date }}</h3></p>
@@ -50,7 +51,7 @@
                 <div class="card-img-overlay">
                     <h3 class="card-title text-white">Next 1 Week</h3>
                 </div>
-                <img src="{% static 'assets/img/weekone.jpg' %}" class="card-img-top img-fluid" alt="Weather Image">
+                <img src="{% static 'css/images/cloud2.jpg' %}" class="card-img-top img-fluid" alt="Weather Image">
                 <div class="card-body">
                     {% if next_week_forecast %}
                         <p class="text-muted mb-2"><h3> Range: {{ next_week_forecast.0.date }} - {{ next_week_forecast.0.date }}</h3></p>
