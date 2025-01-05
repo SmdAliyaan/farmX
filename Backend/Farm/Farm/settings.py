@@ -28,9 +28,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tx*liad07aa+y&^eamc!v5qts8l2i&lbrs*t@(#l39-5d!xxi9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS = [
+        'farmx-backend.onrender.com',  # Update this with your Render URL
+        '.onrender.com',
+        'localhost',
+        '127.0.0.1'
+    ]
 
 
 # Application definition
@@ -50,7 +57,7 @@ INSTALLED_APPS = [
     'myapp',
     'yolo',
     'resources',
-    
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +172,8 @@ TWILIO_ACCOUNT_SID = 'ACe878110ff7ee0b1c6fd6754019ea71b2'
 TWILIO_AUTH_TOKEN = '2df008d871bdd1acda99bae50b27c0dc'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
