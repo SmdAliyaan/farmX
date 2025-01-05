@@ -1,0 +1,227 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Prevents scrollbars from appearing */
+}
+
+body {
+    background: linear-gradient(to bottom, rgba(72, 54, 54, 0.8), rgba(59, 40, 40, 0.8)),
+                url('/static/images/farX background') no-repeat center center fixed;
+    background-image: url(images/backgroundClear.png);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column; /* Ensure elements stack vertically */
+}
+
+.navbar{
+    margin: 0px;
+    padding: 0px;
+    height: 65px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.farm-container::before {
+    content: '';
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.farm-container > * {
+    position: relative;
+    z-index: 2;
+}
+
+.auth-box {
+    margin-bottom: 20px;
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30rem;
+    margin-left: 13rem;
+}
+
+.auth-buttons .farm-button {
+    flex: 1;
+    margin: 0 0.5rem;
+    padding: 20px;
+    font-size: 18px;
+    background-color: #755d5d;
+    border: none;
+    color: #6e0a0a;
+    border-radius: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.auth-buttons .farm-button:hover {
+    background-color: #584343;
+    transform: scale(1.05);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem;
+    color: #000000;
+    font-weight: bold;
+    font-size: larger;
+}
+
+form {
+    background-color: rgba(244, 241, 241, 0.193);
+    border-radius: 5%;
+    padding: 2rem;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 10;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+    /* border: none; */
+  font-size: 16px;
+  border: 2px solid #4CAF50; /* Green border */
+  background-color: #f1f1f1; /* Light gray background */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #666; /* Darker text color */
+  outline: none; /* Remove default outline */
+  box-shadow: none; /* Remove default box-shadow */
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #8B4513;
+    border: none;
+    color: rgb(221, 213, 213);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in,transform 0.2s ease;
+}
+
+form button:hover {
+    /* background-color: brown; */
+    background-color: #6A2E1A; /* Darker brown on hover */
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+form .errorlist li {
+    list-style-type: none;
+    color: red;
+}
+
+.danger {
+    color: green; /* Ensuring it is set to green */
+}
+
+/* Position the logo at the top left */
+.farmx-logo {
+    width: 200px;
+    height: auto;
+    position: fixed; 
+    top: 10px;
+    left: 20px; 
+    z-index: 10; 
+}
+
+/* Position the "About", "Contact", and "Help Center" links at the top right of the screen */
+.top-right-links {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    z-index: 10; 
+    
+    
+    padding: 10px 20px;
+}
+
+.link-item {
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 600;
+    margin-left: 20px; /* Space between the links */
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 5px 15px;
+}
+
+.link-item:hover {
+    text-decoration: underline;
+}
+
+/* Add styles for the login and register buttons with translucent background and blur effect */
+.top-right-links .farm-button {
+    font-size: 16px;
+    padding: 12px 24px; /* Adjust padding to match the size of links */
+    background: rgba(255, 255, 255, 0.3); 
+    color: white;
+    border-radius: 30px;
+    margin-left: 20px; /* Space between buttons */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    backdrop-filter: blur(8px); /* Add blur effect to the background */
+    transform: translateX(0); /* Initial position */
+}
+
+.top-right-links .farm-button:hover {
+    background-color: white; /* Change the background color to white when hovered */
+    color: black; /* Change text color to black on hover */
+    backdrop-filter: none; 
+    transform: translateX(10px); 
+}
+
+.separator {
+    margin-left: 20px;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+.tag-line{
+    margin-top: 100px;
+}
