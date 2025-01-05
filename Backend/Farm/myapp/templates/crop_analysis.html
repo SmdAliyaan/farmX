@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Page Heading -->
+    
     <div class="crop-analysis-header">
         <div class="header-content">
             <div class="header-text">
@@ -20,10 +20,10 @@
     
     <div class="card shadow mb-4">
         <div class="card-body">
-            <!-- Header -->
+           
 
 
-            <!-- Search Section -->
+           
             <div class="search-container">
                 <form method="POST" class="search-form">
                     {% csrf_token %}
@@ -38,7 +38,7 @@
                 </form>
             </div>
 
-            <!-- Current Prices Section -->
+         
             {% if current_prices %}
                 <div class="current-prices-section">
                     <div class="section-header">
@@ -69,7 +69,7 @@
                 </div>
             {% endif %}
 
-            <!-- Predictions Section -->
+           
             {% if predictions %}
                 <h2 class="h4 mb-3">Predicted Prices for the Next 7 Days:</h2>
                 <div class="timeline-container">
