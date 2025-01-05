@@ -56,8 +56,8 @@ def check_expiring_products():
         logger.error(f"Error in check_expiring_products: {str(e)}")
 
 def schedule_checker():
-    schedule.every(1).minutes.do(check_expiring_products)
-    # schedule.every().day.at("07:30").do(check_expiring_products)
+    #schedule.every(1).minutes.do(check_expiring_products)
+    schedule.every().day.at("07:30").do(check_expiring_products)
     while True:
         schedule.run_pending()
         time.sleep(60)
