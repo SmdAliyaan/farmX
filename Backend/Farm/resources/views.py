@@ -36,7 +36,8 @@ def chat_with_ai(request):
             'cropType': cropType,
             'landArea': landArea,
             'season': season,
-            'response': response
+            'response': response,
+            'resources': parsed_response  # Pass parsed resources to the template
         })
     
     return render(request, 'resources/ai.html', {})
@@ -64,9 +65,7 @@ def get_ai_response(cropType, landArea, season, soilquality):
 
     convo = model.start_chat(history=[])
     context = (
-        "You are an experienced agricultural assistant helping a farmer plan their crop cultivation. "
-        "The farmer will provide details about the crop type, land area in square meters, soil quality, "
-        "and season. Provide a list of required resources including seeds, fertilizers, and equipment."
+       "You are an experienced agricultural assistant helping a farmer plan their crop cultivation. The farmer will provide details about the crop type they want to plant, the land area in square meters, the soil quality, and the season (summer, spring, autumn, or winter). Based on this information, you will provide a detailed list of resources required, including the quantity of seeds (in kilograms) needed to cover the specified area. Additionally, outline the necessary fertilizers, water requirements, and any essential tools or equipment. Ensure the response is specific to the crop type, season, and soil conditions to maximize yield and efficiency. Include all tools the farmer will need throughout the planting and growing process."
     )
 
     message = (
