@@ -1,6 +1,4 @@
-/* Crop Analysis Page Styling */
 
-/* Header Styling */
 .crop-analysis-header {
     background: linear-gradient(to right, #2e7d32, #81c784);
     padding: 1rem;
@@ -14,7 +12,6 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Styling */
 .crop-search-form {
     background-color: #f8f9fc;
     padding: 1.5rem;
@@ -32,7 +29,6 @@
     box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
 }
 
-/* Price Tables Styling */
 .price-table {
     border: none;
     box-shadow: 0 0.15rem 1.75rem rgba(0, 0, 0, 0.15);
@@ -52,7 +48,7 @@
     vertical-align: middle;
 }
 
-/* Prediction Cards Styling */
+
 .prediction-card {
     transition: transform 0.2s ease;
     border: none;
@@ -76,13 +72,12 @@
     padding: 0.75rem;
 }
 
-/* Alert Styling */
 .custom-alert {
     border-left: 4px solid #e74a3b;
     background-color: #fff;
 }
 
-/* Animation for loading states */
+
 @keyframes pulse {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -93,7 +88,6 @@
     animation: pulse 1.5s infinite;
 }
 
-/* Timeline Styling */
 .timeline-container {
     display: flex;
     gap: 2rem;
@@ -192,7 +186,6 @@
     }
 }
 
-/* Add animation delays for each item */
 .rb-container ul.rb li:nth-child(1) .price-title { animation-delay: 0.1s; }
 .rb-container ul.rb li:nth-child(2) .price-title { animation-delay: 0.2s; }
 .rb-container ul.rb li:nth-child(3) .price-title { animation-delay: 0.3s; }
@@ -201,7 +194,7 @@
 .rb-container ul.rb li:nth-child(6) .price-title { animation-delay: 0.6s; }
 .rb-container ul.rb li:nth-child(7) .price-title { animation-delay: 0.7s; }
 
-/* Simplified Search Card Styling */
+
 .search-card {
     background: var(--clr-white);
     padding: 1.8rem;
@@ -251,7 +244,6 @@
     box-shadow: 0 0.5rem 1rem rgba(46, 125, 50, 0.2);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .search-card .middle {
         flex-direction: column;
@@ -262,7 +254,6 @@
     }
 }
 
-/* Search Styling */
 .search-container {
     margin: 1rem 0;
 }
@@ -326,7 +317,6 @@
     transform: translateY(0);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .search-box {
         flex-direction: column;
@@ -342,7 +332,6 @@
     }
 }
 
-/* Current Prices Section Styling */
 .current-prices-section {
     background: var(--clr-white);
     border-radius: 1rem;
@@ -424,7 +413,7 @@
     color: #1b5e20;
 }
 
-/* Animation for new rows */
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -440,12 +429,12 @@
     animation: slideIn 0.3s ease-out forwards;
 }
 
-/* Staggered animation for rows */
+
 .current-prices-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
 .current-prices-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
 .current-prices-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
 
-/* Responsive adjustments */
+
 @media (max-width: 576px) {
     .current-prices-section {
         padding: 1rem;
