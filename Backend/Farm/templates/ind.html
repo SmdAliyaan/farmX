@@ -3,7 +3,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <!-- Redirect directly to the dashboard -->
+  
     <script>
       window.location.href = "{% url 'dashboard:dashboard_index' %}";
     </script>
@@ -13,13 +13,13 @@
         <img src="{% static 'css/images/logo.png' %}" alt="Farm Image" class="farmx-logo">
       </div>
   
-  <!-- Top right links including Login and Register buttons -->
+ 
   <div class="top-right-links">
     <div class="link-item">About</div>
     <div class="link-item">Contact</div>
     <div class="link-item">Help Center</div>
 
-    <!-- Login and Register buttons inside top-right-links -->
+   
     <div class="login-register-buttons">
       <a href="{% url 'login' %}" class="farm-button">Login</a>
       <a href="{% url 'register' %}" class="farm-button">SignUp</a>
