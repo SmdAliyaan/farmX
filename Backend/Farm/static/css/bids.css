@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.icon {
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.text-secondary {
+    color: #6c757d !important;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.full-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.card-body .row {
+    margin-top: 20px;
+}
+
+.card-body .col-sm-3 {
+    margin-bottom: 20px;
+}
+
+.card-body h4, .card-body h5 {
+    margin: 0;
+}
+
+.card-body p {
+    margin: 5px 0;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: #000;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+    color: #007bff;
+}
