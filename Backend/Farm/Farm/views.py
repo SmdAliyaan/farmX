@@ -24,7 +24,7 @@ def registration_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Create Farmer instance
+   
             Farmer.objects.create(
                 name=user.username,
                 phone_number=form.cleaned_data['phone_number']
@@ -32,7 +32,7 @@ def registration_view(request):
             login(request, user)
             return redirect("index")
         else:
-            print(form.errors)  # Print form errors for debugging
+            print(form.errors)  
     else:
         form = RegistrationForm()
     return render(request, "registration/register.html", {"form": form})
@@ -42,10 +42,10 @@ def ind(request):
 
 def test(request):
     return render(request, 'Ham.html')
-# Farm/views.py
+
 from django.shortcuts import render
 
 def order_view(request):
-    # Your code here for handling the order view
+
     return render(request, 'order.html')
 
