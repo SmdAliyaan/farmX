@@ -40,7 +40,7 @@ body {
     grid-template-columns: 14rem auto;
 }
 
-/* Aside/Sidebar styling */
+
 aside {
     height: 100vh;
     position: fixed;
@@ -76,7 +76,6 @@ aside .top div .close {
     margin-right: 1rem;
 }
 
-/* Sidebar */
 aside .sidebar {
     background-color: var(--clr-white);
     display: flex;
@@ -124,24 +123,24 @@ aside .sidebar a:hover span {
     transition: all .3s ease;
 }
 
-/* Fix active state issue */
+
 aside .sidebar a.active:hover {
-    background: var(--clr-light); /* Keep background for active state even on hover */
-    color: var(--clr-primary); /* Ensure active link maintains primary color */
+    background: var(--clr-light); 
+    color: var(--clr-primary); 
 }
 
 aside .sidebar a.active span {
-    transform: translateX(0.5rem); /* Optional smooth hover effect */
+    transform: translateX(0.5rem);
 }
 
-/* Main content area */
+
 main {
     margin-left: 14rem;
     padding: 1.8rem;
     width: calc(100vw - 14rem);
 }
 
-/* Media Queries */
+
 @media screen and (max-width: 1200px) {
     .container {
         width: 94%;
@@ -170,4 +169,3 @@ main {
         width: calc(100vw - 7rem);
     }
 }
-

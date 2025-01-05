@@ -6,22 +6,21 @@ html, body {
 }
 
 body {
-  background-image: url(images/FARMM.jpg); /* Your image URL */
-  background-size: cover; /* Make sure the image covers the entire viewport */
-  background-position: center center; /* Center the background image */
-  background-attachment: fixed; /* Make the image fixed as you scroll */
+  background-image: url(images/FARMM.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
   
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center;     /* Center vertically */
-  height: 100vh;           /* Full viewport height */
-  flex-direction: column;  /* Stack elements vertically */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
 
-
 .login-container {
-  width: 400px; /* Set width for the login form */
-  background-color: rgba(244, 241, 241, 0.193); /* Slightly transparent background */
+  width: 400px;
+  background-color: rgba(244, 241, 241, 0.193);
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -121,5 +120,3 @@ body {
 .login-container .forgot-password:hover {
   color: #4CAF50; /* Green on hover */
 }
-
-

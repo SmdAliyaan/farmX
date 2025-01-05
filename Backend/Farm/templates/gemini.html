@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Header styled like crop_analysis -->
+ 
     <div class="crop-analysis-header">
         <div class="header-content">
             <div class="header-text">
@@ -17,7 +17,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="white-container">
-                <!-- Upload Form Section -->
+            
                 <div class="upload-section">
                     <form method="post" enctype="multipart/form-data" class="chat-form">
                         {% csrf_token %}
@@ -80,7 +80,7 @@
 <link rel="stylesheet" href="{% static 'css/gemini.css' %}">
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Handle file selection display
+  
     const fileInput = document.getElementById('pdf_files');
     const fileList = document.getElementById('selected-files-list');
 
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fileList.textContent = fileNames.join(', ');
     });
 
-    // Handle response text formatting
+  
     var responseTextElement = document.getElementById('response-text');
     if (responseTextElement) {
         responseTextElement.innerHTML = responseTextElement.innerHTML.split('*').join('<br>');

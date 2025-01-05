@@ -201,8 +201,6 @@ main .insights .progress .number {
 }
 
 
-/* Media Query */
-
 
 @media screen and (max-width: 1200px){
     main .insights {

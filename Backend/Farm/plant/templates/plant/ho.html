@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Header styled like crop_analysis -->
+   
     <div class="crop-analysis-header">
         <div class="header-content">
             <div class="header-text">
@@ -35,7 +35,7 @@
                     </form>
                 </div>
 
-                <!-- Loader (similar to AI page) -->
+               
                 <div class="loader-container" style="display: none;">
                     <div class="loader-wrapper">
                         <div class="loader"></div>
@@ -52,7 +52,7 @@
 </div>
 
 <style>
-/* Reuse header styling from ai.html */
+
 .crop-analysis-header {
     background: linear-gradient(to right, #2e7d32, #81c784);
     padding: 1.5rem;
@@ -74,7 +74,7 @@
     margin-top: 0.5rem;
 }
 
-/* Upload form styling */
+
 .upload-container {
     text-align: center;
     padding: 3rem 2rem;
@@ -104,7 +104,7 @@
     display: none;
 }
 
-/* Reuse button and loader styles from ai.html */
+
 .submit-btn {
     background: linear-gradient(to right, #2e7d32, #81c784);
     color: white;
@@ -122,7 +122,7 @@
     justify-content: center;
 }
 
-/* Include loader styles from ai.html */
+
 .loader-container {
     text-align: center;
     padding: 3rem 2rem;
@@ -132,7 +132,7 @@
     position: relative;
 }
 
-/* Add the rest of the loader styles from ai.html */
+
 </style>
 
 <script>
@@ -142,7 +142,7 @@ function showLoading() {
     loader.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Add file input preview functionality
+
 document.getElementById('image-upload').addEventListener('change', function(e) {
     const fileName = e.target.files[0]?.name || 'No file chosen';
     this.previousElementSibling.querySelector('span:last-child').textContent = fileName;
