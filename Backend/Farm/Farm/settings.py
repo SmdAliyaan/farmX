@@ -46,9 +46,9 @@ INSTALLED_APPS = [
     'plant',
     'widget_tweaks',
     'myapp',
-    'yolo',
-    'resources',
     
+    'resources',
+    'inventory_recommendation',
 ]
 
 MIDDLEWARE = [
