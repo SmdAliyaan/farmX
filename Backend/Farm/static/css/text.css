@@ -9,7 +9,7 @@ html, body {
 body {
     background: linear-gradient(to bottom, rgba(72, 54, 54, 0.8), rgba(59, 40, 40, 0.8)),
                 url('/static/images/farX background') no-repeat center center fixed;
-    background-image: url(images/backgroundClear.png);
+    background-image: url('images/FARMM.jpg');
     background-size: cover;
     display: flex;
     align-items: center;
@@ -224,4 +224,8 @@ form .errorlist li {
 
 .tag-line{
     margin-top: 100px;
+}
+.help-text{
+    color: #d1fabe;
+    text-size-adjust: 20px;
 }
