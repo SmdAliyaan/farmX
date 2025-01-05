@@ -116,7 +116,6 @@ h1 {
     text-decoration: none;
 }
 
-/* Main content styling - similar to dashboard */
 .main-content {
     flex: 1;
     margin-left: 14rem;
@@ -167,7 +166,6 @@ h1 {
     background-color: var(--clr-primary-variant);
 }
 
-/* Media Queries */
 @media screen and (max-width: 1400px) {
     .card {
         flex: 0 0 calc(45% - 1.6rem);

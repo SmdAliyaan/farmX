@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Header styled like crop_analysis -->
+   
     <div class="crop-analysis-header">
         <div class="header-content">
             <div class="header-text">
@@ -18,16 +18,16 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="white-container">
-                <!-- Results Grid -->
+               
                 <div class="results-grid">
-                    <!-- Image Section -->
+                 
                     <div class="image-section">
                         <div class="image-wrapper">
                             <img src="{{ image_url }}" alt="Analyzed Crop Image">
                         </div>
                     </div>
 
-                    <!-- Analysis Section -->
+                
                     <div class="analysis-section">
                         <div class="prediction-header">
                             <h2>{{ predicted_class }}</h2>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <!-- Solution Section -->
+     
                 <div class="solution-section">
                     <div class="section-header">
                         <span class="material-symbols-sharp">lightbulb</span>
@@ -69,7 +69,7 @@
                 </div>
 
                 {% if disease %}
-                    <!-- Product Recommendations -->
+              
                     <div class="products-section">
                         <div class="section-header">
                             <span class="material-symbols-sharp">medication</span>
@@ -94,7 +94,7 @@
                     </div>
                 {% endif %}
 
-                <!-- Action Button -->
+        
                 <a href="{% url 'home' %}" class="action-btn">
                     <span class="material-symbols-sharp">add_photo_alternate</span>
                     Analyze Another Image
@@ -105,7 +105,7 @@
 </div>
 
 <style>
-/* Header styling */
+
 .crop-analysis-header {
     background: linear-gradient(to right, #2e7d32, #81c784);
     padding: 1.5rem;
@@ -127,7 +127,7 @@
     margin-top: 0.5rem;
 }
 
-/* Container styling */
+
 .white-container {
     background: white;
     border-radius: 15px;
@@ -135,7 +135,7 @@
     box-shadow: 0 0.15rem 1.75rem rgba(0, 0, 0, 0.05);
 }
 
-/* Results Grid */
+
 .results-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -143,7 +143,7 @@
     margin-bottom: 2rem;
 }
 
-/* Image Section */
+
 .image-wrapper {
     border-radius: 15px;
     overflow: hidden;
@@ -156,7 +156,7 @@
     display: block;
 }
 
-/* Analysis Section */
+
 .prediction-header {
     background: #f8f9fa;
     padding: 1.5rem;
@@ -176,7 +176,7 @@
     font-size: 1.1rem;
 }
 
-/* Disease Info */
+
 .disease-info, .healthy-status {
     padding: 1.5rem;
     border-radius: 10px;
@@ -184,7 +184,7 @@
     border: 1px solid #e0e0e0;
 }
 
-/* Section Headers */
+
 .section-header {
     display: flex;
     align-items: center;
@@ -199,7 +199,7 @@
     font-size: 1.8rem;
 }
 
-/* Solution Section */
+
 .solution-section {
     margin: 2rem 0;
     padding: 2rem;
@@ -212,7 +212,7 @@
     color: #333;
 }
 
-/* Products Grid */
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -248,7 +248,7 @@
     text-align: center;
 }
 
-/* Action Button */
+
 .action-btn {
     display: inline-flex;
     align-items: center;
@@ -269,7 +269,7 @@
     color: white;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .results-grid {
         grid-template-columns: 1fr;
