@@ -1,5 +1,39 @@
-
 {% load static %}
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <div class="menu-toggle">
+            <span class="material-symbols-sharp">menu</span>
+        </div>
+        <div class="search-bar">
+            <span class="material-symbols-sharp">search</span>
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
+    <div class="nav-right">
+        <div class="nav-item">
+            <span class="material-symbols-sharp">notifications</span>
+            <span class="notification-badge">3</span>
+        </div>
+        <div class="nav-item">
+            <span class="material-symbols-sharp">mail</span>
+            <span class="message-badge">5</span>
+        </div>
+        <div class="profile-dropdown">
+            <img src="{% static 'images/default-profile.png' %}" alt="Profile" class="profile-img">
+            <div class="dropdown-content">
+                <a href="#"><span class="material-symbols-sharp">person</span>Profile</a>
+                <a href="#"><span class="material-symbols-sharp">settings</span>Settings</a>
+                <a href="#" onclick="document.getElementById('logout-form').submit();">
+                    <span class="material-symbols-sharp">logout</span>Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar -->
 <aside>
     <div class="top">
         <div class="logo">

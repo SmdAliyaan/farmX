@@ -44,7 +44,6 @@ body {
     background: var(--clr-color-background);
 }
 
-/* Main content styling */
 main .insights {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
