@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="register-container">
-  <h2>Register</h2>
+  <h1>Register</h1>
   <form method="post" action="{% url 'register' %}">
     {% csrf_token %}
     {% for field in form %}

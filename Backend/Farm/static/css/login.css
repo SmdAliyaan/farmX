@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-  background-image: url(images/backgroundClear.png); /* Your image URL */
+  background-image: url(images/FARMM.jpg); /* Your image URL */
   background-size: cover; /* Make sure the image covers the entire viewport */
   background-position: center center; /* Center the background image */
   background-attachment: fixed; /* Make the image fixed as you scroll */
@@ -103,7 +103,7 @@ body {
 .login-container a {
   margin-top: 10px;
   font-size: 14px;
-  color: #8B4513; /* Brown text for the link */
+  color: #bfff9f; /* Brown text for the link */
   text-decoration: none;
   transition: color 0.3s ease;
 }

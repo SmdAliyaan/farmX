@@ -1,0 +1,102 @@
+{% extends 'extend.html' %} 
+{% load static %}
+{% block title %}Talk with PDF{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header styled like crop_analysis -->
+    <div class="crop-analysis-header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1><span class="material-symbols-sharp">description</span> PDF Chat Assistant</h1>
+                <p>Upload PDFs and get intelligent answers to your questions</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="white-container">
+                <!-- Upload Form Section -->
+                <div class="upload-section">
+                    <form method="post" enctype="multipart/form-data" class="chat-form">
+                        {% csrf_token %}
+                        <div class="file-upload-wrapper">
+                            <label for="pdf_files">
+                                <span class="material-symbols-sharp">upload_file</span>
+                                <span>Upload PDF File(s)</span>
+                            </label>
+                            <input type="file" name="pdf_files" id="pdf_files" multiple required>
+                            <div class="selected-files" id="selected-files-list"></div>
+                        </div>
+
+                        <div class="question-wrapper">
+                            <label>
+                                <span class="material-symbols-sharp">chat</span>
+                                Ask your question
+                            </label>
+                            <textarea name="user_question" rows="4" placeholder="What would you like to know about the PDF content?"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="material-symbols-sharp">send</span>
+                            Get Answer
+                        </button>
+                    </form>
+                </div>
+
+                {% if response_text %}
+                    <div class="response-section">
+                        <div class="section-header">
+                            <span class="material-symbols-sharp">psychology</span>
+                            <h2>AI Response</h2>
+                        </div>
+                        <div class="response-content">
+                            <p id="response-text">{{ response_text|linebreaksbr }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if related_content %}
+                    <div class="related-section">
+                        <div class="section-header">
+                            <span class="material-symbols-sharp">link</span>
+                            <h2>Related Content</h2>
+                        </div>
+                        <div class="related-content">
+                            {% for content in related_content %}
+                                <div class="content-item">
+                                    {{ content }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/gemini.css' %}">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Handle file selection display
+    const fileInput = document.getElementById('pdf_files');
+    const fileList = document.getElementById('selected-files-list');
+
+    fileInput.addEventListener('change', function() {
+        let fileNames = [];
+        for(let i = 0; i < this.files.length; i++) {
+            fileNames.push(this.files[i].name);
+        }
+        fileList.textContent = fileNames.join(', ');
+    });
+
+    // Handle response text formatting
+    var responseTextElement = document.getElementById('response-text');
+    if (responseTextElement) {
+        responseTextElement.innerHTML = responseTextElement.innerHTML.split('*').join('<br>');
+    }
+});
+</script>
+{% endblock %}

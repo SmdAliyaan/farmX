@@ -1,179 +1,283 @@
+{% extends 'extend.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crop Disease Prediction</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
-        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap" rel="stylesheet">
+{% block title %}Disease Prediction Result{% endblock %}
 
-        <style>
-            * {
-                margin: 0px;
-                padding: 0px;
-                box-sizing: border-box; font-family: "Lato", sans-serif;
-                font-weight: 400;
-                font-style: normal;
-
-            }
-    
-            .card-style {
-                background-color: #dcdcdc;
-    
-            }
-    
-            .content {
-                padding: 15px;
-                color: white;
-                background-color: rgb(153, 156, 150);
-                /* font-size: 1rem; */
-            }
-    
-            @media (max-width: 430px) and (min-width: 200px) {
-    
-    
-                .content {
-                    font-size: 0.6rem;
-                    color: chartreuse;
-                }
-    
-                .content-h1 {
-    
-                    font-size: 1rem;
-                }
-            }
-    
-            .border img {
-                border-radius: 15px;
-                border: 2px solid black;
-                width: 27vw;  
-            }
-        </style>
-</head>
-<body>
-    <div class="container my-2">
-        <h1  style="padding: 15px; background-color:rgb(1, 79, 93); color: white;  font-family: Poetsen One, sans-serif;
-        font-weight: 900;
-        font-style: normal;"
-        class="text-center my-3 content-h1" >Prediction Result</h1>
-        <div class="row mb-5">
-    
-                <div class="col-sm" style="margin-bottom: 23px;">
-                    <span class="border border-primary">
-                        <img src="{{ image_url }}" alt="Uploaded Image" >
-    
-    
-                    </span>
-                </div>
-    
-                <div class="col-sm">
-    
-                    <div>
-                        <h1 style="padding: 15px; background-color: rgb(123, 145, 164); color: white;"
-                            class="text-center mb-4 content-h1 rounded">
-                           {{predicted_class}}                            
-                        </h1>   
-                        <h4 class="m-0" style="padding: 5px; background-color: rgb(136, 164, 189); color: white;">Confidence Score: {{ confidence_format }} </h4> 
-                    </div>
-                    {% if disease %}
-                    <h2>Disease Name:  {{ disease }}</h2>
-                    <h5 style="line-height: 100%;"> {{ text }} </h5>
-                    <hr class="w-100 mx-auto ">
-                    {% else %}
-                    <h2 style="line-height: 100%;">This crop is healthy. It's a healthy leaf image.</h2>
-                    {% endif %}                    
-                </div>
-    
-    <br>
-    <div>
-    <h1 class="text-center  content-h1 rounded" style="padding: 9px; background-color: rgb(90, 118, 120); color: white;">
-        {% if disease %} 
-        Solution for {{ disease }} Disease: 
-        {% else %}
-        Solution for {{ predicted_class }}: 
-        {% endif %}
-
-    
-    </h1>
-    <p> 
-      <strong>{{ solution }}</strong>    &nbsp;
-    </p>
-    <p>
-        <strong>{{ prevention }}</strong>
-
-    </p>
-
-   </div>
-    
-</div>
-    
-    
-      <section>
-        {% if disease %} 
-
-    
-            <div class="container">
-                <h1 style="padding: 12px; background-color: rgb(1, 79, 93); color: white;"
-                    class="text-center my-2 content-h1">
-                    Recommended Medicine Products</h1>
+{% block content %}
+<div class="container-fluid">
+    <!-- Header styled like crop_analysis -->
+    <div class="crop-analysis-header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1><span class="material-symbols-sharp">analytics</span> Prediction Result</h1>
+                <p>Analysis and recommendations for your crop</p>
             </div>
-    
-            <div class="container">
-    
-                {% if medicine_products %}
+        </div>
+    </div>
 
-                <div class="card-columns">
-                    {% for product in medicine_products %}
-
-                    <div class="card ">
-                        <div class="card-body text-center card-style">
-                            <img style="border-radius: 10px; max-height: 250px;" class="img-fluid" src="{% static product.image %}" alt="{{ product.name }}">
-                            
-                            <h3 class="card-text"> {{ product.name }}</h3>
-                            <h3 class="card-text">Dose: 60-80 gm/Acre</h3>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="white-container">
+                <!-- Results Grid -->
+                <div class="results-grid">
+                    <!-- Image Section -->
+                    <div class="image-section">
+                        <div class="image-wrapper">
+                            <img src="{{ image_url }}" alt="Analyzed Crop Image">
                         </div>
                     </div>
 
-                {% endfor %}
+                    <!-- Analysis Section -->
+                    <div class="analysis-section">
+                        <div class="prediction-header">
+                            <h2>{{ predicted_class }}</h2>
+                            <div class="confidence-score">
+                                Confidence Score: {{ confidence_format }}
+                            </div>
+                        </div>
 
-
-    
+                        {% if disease %}
+                            <div class="disease-info">
+                                <h3>Disease Detected: {{ disease }}</h3>
+                                <p class="disease-description">{{ text }}</p>
+                            </div>
+                        {% else %}
+                            <div class="healthy-status">
+                                <h3>Healthy Plant Detected</h3>
+                                <p>This crop appears to be healthy with no signs of disease.</p>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
+
+                <!-- Solution Section -->
+                <div class="solution-section">
+                    <div class="section-header">
+                        <span class="material-symbols-sharp">lightbulb</span>
+                        <h2>
+                            {% if disease %}
+                                Solution for {{ disease }}
+                            {% else %}
+                                Recommendations for {{ predicted_class }}
+                            {% endif %}
+                        </h2>
+                    </div>
+                    <div class="solution-content">
+                        <p>{{ solution }}</p>
+                        <p>{{ prevention }}</p>
+                    </div>
+                </div>
+
+                {% if disease %}
+                    <!-- Product Recommendations -->
+                    <div class="products-section">
+                        <div class="section-header">
+                            <span class="material-symbols-sharp">medication</span>
+                            <h2>Recommended Products</h2>
+                        </div>
+                        
+                        {% if medicine_products %}
+                            <div class="products-grid">
+                                {% for product in medicine_products %}
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="{% static 'images/products/' %}{{ product.image }}" alt="{{ product.name }}">
+                                        </div>
+                                        <div class="product-info">
+                                            <h3>{{ product.name }}</h3>
+                                            <p>Recommended Dose: 60-80 gm/Acre</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
                 {% endif %}
 
-                          
-    
-    
-               
+                <!-- Action Button -->
+                <a href="{% url 'home' %}" class="action-btn">
+                    <span class="material-symbols-sharp">add_photo_alternate</span>
+                    Analyze Another Image
+                </a>
             </div>
-
-        {% else %}
-
-
-        <div class="container">
-            <h1 style="padding: 12px; background-color: rgb(1, 79, 93); color: white;"
-                class="text-center my-2 content-h1">
-                No Recommended Products</h1>
         </div>
+    </div>
+</div>
 
+<style>
+/* Header styling */
+.crop-analysis-header {
+    background: linear-gradient(to right, #2e7d32, #81c784);
+    padding: 1.5rem;
+    border-radius: 0.35rem;
+    margin-bottom: 2rem;
+}
 
-        {% endif %}
-    
-        </section>
-    
-    
-    
+.crop-analysis-header h1 {
+    color: white;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
+.crop-analysis-header p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+}
 
-        <h1 style="padding: 12px; background-color: rgb(1, 79, 93); color: white;"
-        class="text-center my-2 content-h1">
-               <a style=" color: white;" href="{% url 'home' %}">Upload Another Image To Predict</a>
+/* Container styling */
+.white-container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0.15rem 1.75rem rgba(0, 0, 0, 0.05);
+}
 
-        </h1>
-        <br>
-</body>
-</html>
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Image Section */
+.image-wrapper {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Analysis Section */
+.prediction-header {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.prediction-header h2 {
+    color: #2e7d32;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.confidence-score {
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Disease Info */
+.disease-info, .healthy-status {
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.section-header span {
+    color: #2e7d32;
+    font-size: 1.8rem;
+}
+
+/* Solution Section */
+.solution-section {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.solution-content {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+/* Action Button */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #2e7d32;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: all 300ms ease;
+    margin-top: 2rem;
+}
+
+.action-btn:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(46, 125, 50, 0.2);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+</style>
+{% endblock %}
