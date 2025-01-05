@@ -225,3 +225,7 @@ form .errorlist li {
 .tag-line{
     margin-top: 100px;
 }
+.help-text{
+    color: #d1fabe;
+    text-size-adjust: 20px;
+}
