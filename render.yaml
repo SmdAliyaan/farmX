@@ -2,12 +2,11 @@ services:
   - type: web
     name: farmx-backend
     env: python
+    region: ohio  # or your preferred region
     buildCommand: |
       pip install -r Backend/Farm/requirements.txt
-      python Backend/Farm/manage.py collectstatic --noinput
-    startCommand: |
-      cd Backend/Farm && 
-      gunicorn Farm.wsgi:application --config gunicorn_config.py
+      cd Backend/Farm && python manage.py collectstatic --noinput
+    startCommand: cd Backend/Farm && gunicorn Farm.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.9
@@ -16,4 +15,6 @@ services:
       - key: PORT
         value: 8000
       - key: DJANGO_ALLOWED_HOSTS
-        value: ".onrender.com" 
+        value: "farmx-n5sp.onrender.com,.onrender.com,localhost,127.0.0.1"
+      - key: DEBUG
+        value: "False" 
