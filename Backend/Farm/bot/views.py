@@ -9,7 +9,7 @@ import schedule
 import time
 import threading
 
-# Direct Twilio credentials instead of settings
+
 client = Client('ACe878110ff7ee0b1c6fd6754019ea71b2', '2df008d871bdd1acda99bae50b27c0dc')
 
 logger = logging.getLogger(__name__)
@@ -19,13 +19,13 @@ def check_expiring_products():
     try:
         today = date.today()
         tomorrow = today + timedelta(days=1)
-        logger.info(f"Checking products expiring on {tomorrow}")  # Debug log
+        logger.info(f"Checking products expiring on {tomorrow}")  
 
         expiring_products = Product.objects.filter(
             date_expiration=tomorrow,
             quantity_remaining__gt=0
         )
-        logger.info(f"Found {expiring_products.count()} expiring products")  # Debug log
+        logger.info(f"Found {expiring_products.count()} expiring products")  
 
         if expiring_products:
             message = "⚠️ Products Expiring Tomorrow:\n\n"
@@ -36,9 +36,9 @@ def check_expiring_products():
                     f"Expiry Date: {product.date_expiration}\n\n"
                 )
 
-            logger.info(f"Attempting to send message: {message}")  # Debug log
+            logger.info(f"Attempting to send message: {message}")  
 
-            # Send WhatsApp message
+           
             try:
                 response = client.messages.create(
                     from_='whatsapp:+14155238886',
@@ -56,13 +56,13 @@ def check_expiring_products():
         logger.error(f"Error in check_expiring_products: {str(e)}")
 
 def schedule_checker():
-    #schedule.every(1).minutes.do(check_expiring_products)
+    
     schedule.every().day.at("07:30").do(check_expiring_products)
     while True:
         schedule.run_pending()
         time.sleep(60)
 
-# Start the scheduler in a background thread
+
 checker_thread = threading.Thread(target=schedule_checker)
 checker_thread.daemon = True
 checker_thread.start()

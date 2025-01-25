@@ -3,7 +3,6 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-  
     <script>
       window.location.href = "{% url 'dashboard:dashboard_index' %}";
     </script>
@@ -12,34 +11,34 @@
         <img src="{% static 'css/images/logo.png' %}" alt="Farm Image" class="farmx-logo">
       </div>
   
- 
   <div class="top-right-links">
-    <div class="link-item">About</div>
+    <a href ="{% url 'about' %}" class='link-item'>About</a>
     <div class="link-item">Contact</div>
     <div class="link-item">Help Center</div>
 
-   
     <div class="login-register-buttons">
       <a href="{% url 'login' %}" class="farm-button">Login</a>
       <a href="{% url 'register' %}" class="farm-button">SignUp</a>
     </div>
   </div>
-</div>
 
-<div class="tag-line">
-  <div style="width: 619px; height: 200px; left: 40px; top: 180px; position: absolute; color: rgb(31, 118, 21); font-size: 58px; font-family: 'Arial Black', sans-serif; font-weight: bold; line-height: 1.2; word-wrap: break-word; padding: 20px; margin-bottom: 30px;">
-    Where Technology Meets Tradition
+  <div class="tag-line">
+    <div style="width: 619px; height: 200px; left: 40px; top: 180px; position: absolute; color: rgb(255, 255, 255); font-size: 58px; font-family: 'Arial Black', sans-serif; font-weight: 600; line-height: 1.2; word-wrap: break-word; padding: 20px; margin-bottom: 30px;">
+      Where Technology
+    </div>
+    <div style="width: 619px; height: 200px; left: 40px; top: 270px; position: absolute; color: rgb(255, 255, 255); font-size: 58px; font-family: 'Arial Black', sans-serif; font-weight: 400; line-height: 1.2; word-wrap: break-word; padding: 20px; margin-bottom: 30px;">
+      Meets Tradition
+    </div>
   </div>
 
+  {% comment %}
   <div style="width: 600px; height: 167px; left: 40px; top: 356px; position: absolute; color:rgb(228, 228, 228); font-size: 22px; font-family: Helvetica; font-weight: 400; word-wrap: break-word; padding: 20px; line-height: 1.5;">
     FarmX combines modern tech with traditional farming to help you manage inventory, get WhatsApp alerts for product expiration, access weather forecasts, and stay updated on market prices. Empower your farming with FarmX.
-
   </div>
-</div>
-
+  {% endcomment %}
+  
   {% endif %}
 </div>
 {% endblock %}
-
 
 

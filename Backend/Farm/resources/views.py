@@ -4,15 +4,15 @@ import re
 
 r = dict()
 
-# Parser to ensure LLM output consistency
+
 def parse_response(response):
-    # Standardize formatting by removing unwanted characters and normalizing structure
+    
     response = response.replace('*', '').strip()
     lines = response.split('\n')
     parsed_data = {}
     
     for line in lines:
-        # Ensure line follows format: "Resource: Quantity Unit"
+       
         match = re.match(r"^(\w+):\s+(\d+\s+\w+)", line)
         if match:
             resource, quantity = match.groups()
@@ -37,14 +37,14 @@ def chat_with_ai(request):
             'landArea': landArea,
             'season': season,
             'response': response,
-            'resources': parsed_response  # Pass parsed resources to the template
+            'resources': parsed_response 
         })
     
     return render(request, 'resources/ai.html', {})
 
 
 def get_ai_response(cropType, landArea, season, soilquality):
-    genai.configure(api_key="AIzaSyBbJRmC40mbGcc_7vi7cJLU9vDHG_0RDI4")  # API Key
+    genai.configure(api_key="AIzaSyBbJRmC40mbGcc_7vi7cJLU9vDHG_0RDI4")  
     
     generation_config = {
         "temperature": 0.1,

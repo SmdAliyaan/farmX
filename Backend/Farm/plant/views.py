@@ -71,7 +71,7 @@ def home(request):
             return render(request, 'plant/ho.html', context)
             
         finally:
-            # Clean up uploaded file
+            
             if os.path.exists(file_path):
                 os.remove(file_path)
     
@@ -80,11 +80,11 @@ def home(request):
 def predict_disease(request):
     if request.method == 'POST' and request.FILES['image']:
         image_file = request.FILES['image']
-        # Create uploads directory if it doesn't exist
+       
         upload_dir = os.path.join(settings.MEDIA_ROOT, 'uploads', 'plant_images')
         os.makedirs(upload_dir, exist_ok=True)
         
-        # Save the uploaded file
+        
         fs = FileSystemStorage(location=upload_dir)
         filename = fs.save(image_file.name, image_file)
         

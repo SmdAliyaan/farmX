@@ -3,23 +3,11 @@
 <!-- Navbar -->
 <nav class="navbar">
     <div class="nav-left">
-        <div class="menu-toggle">
-            <span class="material-symbols-sharp">menu</span>
-        </div>
         <div class="search-bar">
             <span class="material-symbols-sharp">search</span>
             <input type="text" placeholder="Search...">
         </div>
     </div>
-    <div class="nav-right">
-        <div class="nav-item">
-            <span class="material-symbols-sharp">notifications</span>
-            <span class="notification-badge">3</span>
-        </div>
-        <div class="nav-item">
-            <span class="material-symbols-sharp">mail</span>
-            <span class="message-badge">5</span>
-        </div>
         <div class="profile-dropdown">
             <img src="{% static 'images/default-profile.png' %}" alt="Profile" class="profile-img">
             <div class="dropdown-content">
@@ -42,7 +30,7 @@
             </a>
         </div>
         <div class="close">
-            <span class="material-symbols-sharp">close</span>
+            <span class="material-symbols-sharp">menu</span>
         </div>
     </div>
     <div class="sidebar">
@@ -67,22 +55,11 @@
         <a href="{% url 'crop_analysis' %}" class="{% if request.resolver_match.url_name == 'crop_analysis' %}active{% endif %}">
             <span class="material-symbols-sharp">search_insights</span>
             <h3>Market Insights</h3>
-        </a>
-        <a href="{% url 'product_list' %}" class="{% if request.resolver_match.url_name == 'product_list' %}active{% endif %}">
-            <span class="material-symbols-sharp">store</span>
-            <h3>Marketplace</h3>
-        </a>
-        
+        </a>  
 
         <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
             <span class="material-symbols-sharp">inventory_2</span>
             <h3>Crop Disease Detection</h3>
-        </a>
-        
-        <!-- New "Talk to Data" Section -->
-        <a href="{% url 'gemini' %}" class="{% if request.resolver_match.url_name == 'gemini' %}active{% endif %}">
-            <span class="material-symbols-sharp">chat</span>
-            <h3>Talk to Data</h3>
         </a>
         
         
